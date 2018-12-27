@@ -7,6 +7,7 @@
  */
 
 require_once ("../banco/config_conexao.inc.php");
+
 try{
     $pdo= new PDO(BANCO,USUARIO,SENHA);
     $pdo->exec( "set names utf8");
