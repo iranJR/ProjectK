@@ -1,0 +1,143 @@
+/* ### Template da Página Inicial ### */
+
+/* Início do Cabeçalho Principal */
+
+#cabecalho {
+    margin-bottom: 0;
+    border-radius: 0;
+    background-color: #3A3A3A;
+    padding: 0.5%;
+}
+
+#logoProjectK {
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+#formPesquisar {
+    margin-left: 20%;
+    font-weight: bold;
+}
+
+#divInputPesquisar {
+    width: 180%;
+}
+
+#BotaoPesquisar {
+    background-color: crimson;
+    border-color: crimson;
+}
+
+#BotaoPesquisar:hover {
+    opacity: 0.9;
+}
+
+#BotaoPesquisar i{
+    font-size: 16px;
+}
+
+#divUsuarioCabecalho {
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 1%;
+    width: 18%;
+}
+
+#divFotoMenuUsuario {
+    margin-top: -3%;
+    margin-right: 5%;
+}
+
+#divFotoMenuUsuario img{
+    width: 36px;
+    height: 36px;
+}
+
+#divFotoMenuUsuario img:hover {
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+/* Fim do Cabeçalho Principal */
+
+/* Início do Menu Horizontal de Opções*/
+
+#MenuHorizontal {
+    background-color: crimson;
+    border-radius: 0;
+}
+
+#ulMenuHorizontal {
+    width: 50%;
+    margin-left: 25%;
+}
+
+#ulMenuHorizontal li {
+    margin-left: 5%;
+}
+
+#ulMenuHorizontal li a {
+    color: white;
+    font-weight: bold;
+    font-variant: small-caps;
+    font-size: 16px;
+}
+
+#ulMenuHorizontal li a:hover {
+    color: #E5E5E5;
+}
+
+/* Fim do Menu Horizontal de Opções*/
+
+/* Início do Menu Lateral Esquerdo - Opções do Usuário */
+
+#divMenuLateralUsuario {
+    margin-bottom: 10%;
+}
+
+#divMenuLateralUsuario a{
+     color: #068DD6;
+     font-weight: bold;
+ }
+
+#divMenuLateralUsuario a:hover{
+    cursor: pointer;
+}
+
+#imgFotoPerfilUsuario {
+    width: 140px;
+    height: 140px;
+    border: crimson solid 4px;
+}
+
+#BotaoMenuLateral {
+    background-color: crimson;
+    border-color: crimson;
+    font-weight: bold;
+    font-size: 14px;
+    width: 100%;
+}
+
+#BotaoMenuLateral:hover {
+    opacity: 0.8;
+}
+
+/* Fim do Menu Lateral Esquerdo - Opções do Usuário */
+
+/* Início do Menu Lateral Direito - Menu de Amigos */
+
+
+
+/* Início do Menu Lateral Direito - Menu de Amigos */
+
+/* Início do Rodapé */
+
+#divRodape {
+    background-color: #E5E5E5;
+    font-weight: bold;
+    color: black;
+}
+
+/* Fim do Rodapé */
