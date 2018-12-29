@@ -25,18 +25,18 @@ class AlbumDAO implements GenericsDAO
 
             if($statement->execute()){
                 if($statement->rowCount()>0){
-                    return"<script>alert('Album cadastrado com sucesso');</script>";
+                    return"<script>alert('Álbum cadastrado com sucesso !');</script>";
                 }
                 else{
-                    return"<script>alert('Erro ao tentar cadastrar o album');</script>";
+                    return"<script>alert('Não foi possível cadastrar o álbum !');</script>";
                 }
             }
             else{
-                throw new PDOException("<script>alert('Erro ao tentar executar o codigo sql');</script>");
+                throw new PDOException("<script>alert('Não foi possível executar o código SQL');</script>");
             }
         }
         catch (PDOException $erro){
-            return "Erro ao conectar ao banco ".$erro->getMessage();
+            return "Erro ao conectar com o banco de dados: ".$erro->getMessage();
         }
     }
 
@@ -54,18 +54,18 @@ class AlbumDAO implements GenericsDAO
 
             if($statement->execute()){
                 if($statement->rowCount()>0){
-                    return"<script>alert('Album alterado com sucesso');</script>";
+                    return"<script>alert('Álbum alterado com sucesso !');</script>";
                 }
                 else{
-                    return"<script>alert('Erro ao tentar alterar o album');</script>";
+                    return"<script>alert('Não foi possível alterar o álbum');</script>";
                 }
             }
             else{
-                throw new PDOException("<script>alert('Erro ao tentar executar o codigo sql');</script>");
+                throw new PDOException("<script>alert('Não foi possível executar o código SQL');</script>");
             }
         }
         catch (PDOException $erro){
-            return "Erro ao conectar ao banco ".$erro->getMessage();
+            return "Erro ao conectar com o banco de dados: ".$erro->getMessage();
         }
     }
 
@@ -76,14 +76,14 @@ class AlbumDAO implements GenericsDAO
             $statement = $pdo->prepare("DELETE FROM album WHERE idAlbum = :id");
             $statement->bindValue(":id",$obj->getIdAlbum());
             if($statement->execute()) {
-                return "<script>alert('Album excluido com sucesso');</script>";
+                return "<script>alert('Álbum apagado com sucesso !');</script>";
             }
             else{
-                throw new PDOException("<script>alert('Erro ao tentar executar o codigo sql');</script>");
+                throw new PDOException("<script>alert('Não foi possível executar o código SQL');</script>");
             }
         }
         catch (PDOException $erro){
-            return "Erro ao conectar ao banco ".$erro->getMessage();
+            return "Erro ao conectar com o banco de dados: ".$erro->getMessage();
         }
     }
 
@@ -105,10 +105,10 @@ class AlbumDAO implements GenericsDAO
                 return $obj;
             }
             else {
-                throw new PDOException("<script> alert('Não foi possível executar o código SQL !'); </script>");
+                throw new PDOException("<script> alert('Não foi possível executar o código SQL'); </script>");
             }
         } catch (PDOException $erro) {
-            return "Erro ao conectar ao banco ". $erro->getMessage();
+            return "Erro ao conectar com o banco de dados: ". $erro->getMessage();
         }
     }
 
@@ -124,7 +124,7 @@ class AlbumDAO implements GenericsDAO
                 throw new PDOException("<script> alert('Não foi possível executar o código SQL !'); </script>");
             }
         } catch (PDOException $erro) {
-            return "Erro ao conectar ao banco ". $erro->getMessage();
+            return "Erro ao conectar com o banco de dados: ". $erro->getMessage();
         }
     }
 }

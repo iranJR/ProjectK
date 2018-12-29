@@ -195,4 +195,43 @@
     margin-top: 0;
 }
 
+#senhaHelp {
+    font-weight: bolder;
+    color: white;
+    display: none;
+}
+
+#spanSenhaHelp {
+    font-weight: bolder;
+}
+
+#confirmSenhaHelp {
+    font-weight: bolder;
+    color: crimson;
+    display: none;
+}
+
+#spanSenhaHelp2 {
+    font-weight: bolder;
+    color: crimson;
+}
+
+#spanConfirmSenha {
+    font-weight: bolder;
+    color: white;
+}
+
+#barraForca {
+    width: 42%;
+    height: 10px;
+    margin-bottom: 0;
+    margin-left: 58%;
+    margin-top: -4%;
+    display: none;
+}
+
+#barra {
+    width: 0%;
+}
+
 /*Início Div de Cadastro*/

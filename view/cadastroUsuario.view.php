@@ -7,6 +7,12 @@
  */
 
 $dataAtual = date("Y-m-d");
+
+$dataMin = date("Y-m-d", strtotime("- 90 years"));
+
+require_once ("../dao/UfDAO.php");
+
+$ufDAO = new UfDAO();
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +26,9 @@ $dataAtual = date("Y-m-d");
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="../javaScript/JSCadastro.js"></script>
+    <script src="../javaScript/AjaxSelectCidade.js"></script>
+    <script src="../javaScript/JSForcaSenha.js"></script>
+    <script src="../javaScript/JSComparaSenha.js"></script>
     <title>ProjectK - Cadastro</title>
 
 </head>
@@ -59,7 +68,7 @@ $dataAtual = date("Y-m-d");
                 </div>
                 <div class="form-group col-md-6">
                     <label for="dataNasc">Data de Nascimento:</label>
-                    <input type="date" class="form-control" name="dataNasc" min="1898-01-01" max="<?= $dataAtual ?>" required>
+                    <input type="date" class="form-control" name="dataNasc" min="<?= $dataMin ?>" max="<?= $dataAtual ?>" required>
                 </div>
             </div>
             <div class="row">
@@ -78,16 +87,19 @@ $dataAtual = date("Y-m-d");
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="uf">Estado:</label>
-                    <select class="form-control" name="uf" required>
+                    <select id="uf" class="form-control" name="uf" required>
                         <option disabled selected value="">Selecione o seu estado...</option>
-                        <option value="1">1</option>
+                        <?php
+                            foreach ($ufDAO->buscarTodos() as $uf){
+                                echo "<option value='$uf->idUf'>$uf->nomeUf</option>";
+                            }
+                        ?>
                     </select>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="cidade">Cidade:</label>
-                    <select class="form-control" name="cidade" required>
+                    <select id="cidade" class="form-control" name="cidade" required>
                         <option disabled selected value="">Selecione a sua cidade...</option>
-                        <option value="1">1</option>
                     </select>
                 </div>
             </div>
@@ -104,21 +116,25 @@ $dataAtual = date("Y-m-d");
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="senha">Senha:</label>
-                    <input type="password" class="form-control" name="senha" placeholder="Digite aqui sua senha..."
+                    <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite aqui sua senha..."
                            required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                            title="A sua senha deve ter pelo menos 8 caracteres e conter pelo menos: uma letra maiúscula, uma letra minúscula e um dígito. ">
-                    <small id="senhaHelp" class="form-text text-muted">Força da Senha: Fraca</small>
+                    <small id="senhaHelp" class="form-text text-muted"><span id="spanSenhaHelp2">*</span> Força da Senha : <span id="spanSenhaHelp"></span>
+                        <div id="barraForca" class="progress">
+                            <div id="barra" class="progress-bar" role="progressbar"></div>
+                        </div>
+                    </small>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="confirmSenha">Confirme sua senha:</label>
-                    <input type="password" class="form-control" name="confirmSenha"
-                           placeholder="Digite sua senha novamente..."
+                    <input type="password" class="form-control" id="confirmSenha" name="confirmSenha"
+                           placeholder="Digite sua senha novamente..." title="As senhas devem ser iguais"
                            required>
-                    <small id="confirmSenhaHelp" class="form-text text-muted">As senhas devem ser iguais !</small>
+                    <small id="confirmSenhaHelp" class="form-text text-muted"><span id="spanSenhaHelp2">*</span> <span id="spanConfirmSenha">Atenção : </span> <span id="textSpanSenhaHelp">As senhas devem ser iguais ! </span><span id="spanSenhaHelp2">*</span></small>
                 </div>
             </div>
         </fieldset>
-        <button id="botaoLogin" type="submit" class="btn btn-info">Cadastrar</button>
+        <button id="botaoLogin" type="submit" disabled class="btn btn-info" title="Preencha todos os campos do formulário">Cadastrar</button>
     </form>
 </div>
 

@@ -27,18 +27,18 @@ class FotoDAO implements GenericsDAO
 
             if($statement->execute()){
                 if($statement->rowCount()>0){
-                    return"<script>alert('Foto postada com sucesso');</script>";
+                    return"<script>alert('Foto postada com sucesso !');</script>";
                 }
                 else{
-                    return"<script>alert('Erro ao tentar salvar a foto');</script>";
+                    return"<script>alert('Não foi possível salvar a foto !');</script>";
                 }
             }
             else{
-                throw new PDOException("<script>alert('Erro ao tentar executar o codigo sql');</script>");
+                throw new PDOException("<script>alert('Não foi possível executar o código SQL');</script>");
             }
         }
         catch (PDOException $erro){
-            return "Erro ao conectar ao banco ".$erro->getMessage();
+            return "Erro ao conectar com o banco de dados: ".$erro->getMessage();
         }
     }
 
@@ -57,18 +57,18 @@ class FotoDAO implements GenericsDAO
 
             if($statement->execute()){
                 if($statement->rowCount()>0){
-                    return"<script>alert('Foto alterada com sucesso');</script>";
+                    return"<script>alert('Foto alterada com sucesso !');</script>";
                 }
                 else{
-                    return"<script>alert('Erro ao tentar alterar a foto');</script>";
+                    return"<script>alert('Não foi possível alterar a foto !');</script>";
                 }
             }
             else{
-                throw new PDOException("<script>alert('Erro ao tentar executar o codigo sql');</script>");
+                throw new PDOException("<script>alert('Não foi possível executar o código SQL');</script>");
             }
         }
         catch (PDOException $erro){
-            return "Erro ao conectar ao banco ".$erro->getMessage();
+            return "Erro ao conectar com o banco de dados: ".$erro->getMessage();
         }
     }
 
@@ -79,14 +79,14 @@ class FotoDAO implements GenericsDAO
             $statement = $pdo->prepare("DELETE FROM foto WHERE idFoto = :id");
             $statement->bindValue(":id",$obj->getIdFoto());
             if($statement->execute()) {
-                return "<script>alert('Foto excluida com sucesso');</script>";
+                return "<script>alert('Foto apagada com sucesso !');</script>";
             }
             else{
-                throw new PDOException("<script>alert('Erro ao tentar executar o codigo sql');</script>");
+                throw new PDOException("<script>alert('Não foi possível executar o código SQL');</script>");
             }
         }
         catch (PDOException $erro){
-            return "Erro ao conectar ao banco ".$erro->getMessage();
+            return "Erro ao conectar com o banco de dados: ".$erro->getMessage();
         }
     }
 
@@ -109,10 +109,10 @@ class FotoDAO implements GenericsDAO
                 return $obj;
             }
             else {
-                throw new PDOException("<script> alert('Não foi possível executar o código SQL !'); </script>");
+                throw new PDOException("<script> alert('Não foi possível executar o código SQL'); </script>");
             }
         } catch (PDOException $erro) {
-            return "Erro ao conectar ao banco ". $erro->getMessage();
+            return "Erro ao conectar com o banco de dados: ". $erro->getMessage();
         }
     }
 
@@ -125,10 +125,10 @@ class FotoDAO implements GenericsDAO
                 $result = $statement->fetchAll(PDO::FETCH_OBJ);
                 return $result;
             } else {
-                throw new PDOException("<script> alert('Não foi possível executar o código SQL !'); </script>");
+                throw new PDOException("<script> alert('Não foi possível executar o código SQL'); </script>");
             }
         } catch (PDOException $erro) {
-            return "Erro ao conectar ao banco ". $erro->getMessage();
+            return "Erro ao conectar com o banco de dados: ". $erro->getMessage();
         }
     }
 }

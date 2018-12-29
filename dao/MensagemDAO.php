@@ -30,18 +30,18 @@ class MensagemDAO implements GenericsDAO
 
             if($statement->execute()){
                 if($statement->rowCount()>0){
-                    return"<script>alert('Mensagem enviada com sucesso');</script>";
+                    return"<script>alert('Mensagem enviada com sucesso !');</script>";
                 }
                 else{
-                    return"<script>alert('Erro ao tentar enviar mensagem');</script>";
+                    return"<script>alert('Não foi possível enviar a mensagem !');</script>";
                 }
             }
             else{
-                throw new PDOException("<script>alert('Erro ao tentar executar o codigo sql');</script>");
+                throw new PDOException("<script>alert('Não foi possível executar o código SQL');</script>");
             }
         }
         catch (PDOException $erro){
-            return "Erro ao conectar ao banco ".$erro->getMessage();
+            return "Erro ao conectar com o banco de dados: ".$erro->getMessage();
         }
     }
 
@@ -63,18 +63,18 @@ class MensagemDAO implements GenericsDAO
 
             if($statement->execute()){
                 if($statement->rowCount()>0){
-                    return"<script>alert('Mensagem alterada com sucesso');</script>";
+                    return"<script>alert('Mensagem alterada com sucesso !');</script>";
                 }
                 else{
-                    return"<script>alert('Erro ao tentar alterar a mensagem');</script>";
+                    return"<script>alert('Não foi possível alterar a mensagem !');</script>";
                 }
             }
             else{
-                throw new PDOException("<script>alert('Erro ao tentar executar o codigo sql');</script>");
+                throw new PDOException("<script>alert('Não foi possível executar o código SQL');</script>");
             }
         }
         catch (PDOException $erro){
-            return "Erro ao conectar ao banco ".$erro->getMessage();
+            return "Erro ao conectar com o banco de dados: ".$erro->getMessage();
         }
     }
 
@@ -85,14 +85,14 @@ class MensagemDAO implements GenericsDAO
             $statement = $pdo->prepare("DELETE FROM mensagem WHERE idMensagem = :id");
             $statement->bindValue(":id",$obj->getIdMensagem());
             if($statement->execute()) {
-                return "<script>alert('Mensagem excluido com sucesso');</script>";
+                return "<script>alert('Mensagem apagada com sucesso !');</script>";
             }
             else{
-                throw new PDOException("<script>alert('Erro ao tentar executar o codigo sql');</script>");
+                throw new PDOException("<script>alert('Não foi possível executar o código SQL');</script>");
             }
         }
         catch (PDOException $erro){
-            return "Erro ao conectar ao banco ".$erro->getMessage();
+            return "Erro ao conectar com o banco de dados: ".$erro->getMessage();
         }
     }
 
@@ -117,10 +117,10 @@ class MensagemDAO implements GenericsDAO
                 return $obj;
             }
             else {
-                throw new PDOException("<script> alert('Não foi possível executar o código SQL !'); </script>");
+                throw new PDOException("<script> alert('Não foi possível executar o código SQL'); </script>");
             }
         } catch (PDOException $erro) {
-            return "Erro ao conectar ao banco " . $erro->getMessage();
+            return "Erro ao conectar com o banco de dados: " . $erro->getMessage();
         }
     }
 
@@ -133,10 +133,10 @@ class MensagemDAO implements GenericsDAO
                 $result = $statement->fetchAll(PDO::FETCH_OBJ);
                 return $result;
             } else {
-                throw new PDOException("<script> alert('Não foi possível executar o código SQL !'); </script>");
+                throw new PDOException("<script> alert('Não foi possível executar o código SQL'); </script>");
             }
         } catch (PDOException $erro) {
-            return "Erro ao conectar ao banco " . $erro->getMessage();
+            return "Erro ao conectar com o banco de dados: " . $erro->getMessage();
         }
     }
 }

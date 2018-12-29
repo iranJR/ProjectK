@@ -35,18 +35,18 @@ class UsuarioDAO implements GenericsDAO
 
             if($statement->execute()){
                 if($statement->rowCount()>0){
-                    return"<script>alert('Usuario cadastro com sucesso');</script>";
+                    return"<script>alert('Usuário cadastrado com sucesso !');</script>";
                 }
                 else{
-                    return"<script>alert('Erro ao tentar cadastrar o usuario');</script>";
+                    return"<script>alert('Não foi possível cadastrar o usuário !');</script>";
                 }
             }
             else{
-                throw new PDOException("<script>alert('Erro ao tentar executar o codigo sql');</script>");
+                throw new PDOException("<script>alert('Não foi possível executar o código SQL');</script>");
             }
         }
         catch (PDOException $erro){
-            return "Erro ao conectar ao banco ".$erro->getMessage();
+            return "Erro ao conectar com o banco de dados: ".$erro->getMessage();
         }
     }
 
@@ -73,18 +73,18 @@ class UsuarioDAO implements GenericsDAO
 
             if($statement->execute()){
                 if($statement->rowCount()>0){
-                    return"<script>alert('Usuario alterado com sucesso');</script>";
+                    return"<script>alert('Usuário alterado com sucesso');</script>";
                 }
                 else{
-                    return"<script>alert('Erro ao tentar alterar o usuario');</script>";
+                    return"<script>alert('Não foi possível alterar o usuário !');</script>";
                 }
             }
             else{
-                throw new PDOException("<script>alert('Erro ao tentar executar o codigo sql');</script>");
+                throw new PDOException("<script>alert('Não foi possível executar o código SQL');</script>");
             }
         }
         catch (PDOException $erro){
-            return "Erro ao conectar ao banco ".$erro->getMessage();
+            return "Erro ao conectar com o banco de dados: ".$erro->getMessage();
         }
     }
 
@@ -95,14 +95,14 @@ class UsuarioDAO implements GenericsDAO
             $statement = $pdo->prepare("DELETE FROM usuario WHERE idUsuario = :id");
             $statement->bindValue(":id",$obj->getIdUsuario());
             if($statement->execute()) {
-                return "<script>alert('Usuario excluido com sucesso');</script>";
+                return "<script>alert('Usuário apagado com sucesso !');</script>";
             }
             else{
-                throw new PDOException("<script>alert('Erro ao tentar executar o codigo sql');</script>");
+                throw new PDOException("<script>alert('Não foi possível executar o código SQL');</script>");
             }
         }
         catch (PDOException $erro){
-            return "Erro ao conectar ao banco ".$erro->getMessage();
+            return "Erro ao conectar com o banco de dados: ".$erro->getMessage();
         }
     }
 
@@ -132,10 +132,10 @@ class UsuarioDAO implements GenericsDAO
                 return $obj;
             }
             else {
-                throw new PDOException("<script> alert('Não foi possível executar o código SQL !'); </script>");
+                throw new PDOException("<script> alert('Não foi possível executar o código SQL'); </script>");
             }
         } catch (PDOException $erro) {
-            return "Erro ao conectar ao banco ". $erro->getMessage();
+            return "Erro ao conectar com o banco de dados: ". $erro->getMessage();
         }
     }
     public function buscarTodos()
@@ -147,10 +147,10 @@ class UsuarioDAO implements GenericsDAO
                 $result = $statement->fetchAll(PDO::FETCH_OBJ);
                 return $result;
             } else {
-                throw new PDOException("<script> alert('Não foi possível executar o código SQL !'); </script>");
+                throw new PDOException("<script> alert('Não foi possível executar o código SQL'); </script>");
             }
         } catch (PDOException $erro) {
-            return "Erro ao conectar ao banco ". $erro->getMessage();
+            return "Erro ao conectar com o banco de dados: ". $erro->getMessage();
         }
     }
 
@@ -179,10 +179,10 @@ class UsuarioDAO implements GenericsDAO
                 return $obj;
             }
             else {
-                throw new PDOException("<script> alert('Não foi possível executar o código SQL !'); </script>");
+                throw new PDOException("<script> alert('Não foi possível executar o código SQL'); </script>");
             }
         } catch (PDOException $erro) {
-            return "Erro ao conectar ao banco ". $erro->getMessage();
+            return "Erro ao conectar com o banco de dados: ". $erro->getMessage();
         }
     }
 }

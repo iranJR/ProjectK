@@ -83,7 +83,7 @@ DROP TABLE IF EXISTS `cidade`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cidade` (
   `idCidade` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(255) NOT NULL,
+  `nomeCidade` varchar(255) NOT NULL,
   `idUf` int(11) DEFAULT NULL,
   PRIMARY KEY (`idCidade`),
   KEY `fk_cidade_uf_idx` (`idUf`),
@@ -230,11 +230,11 @@ DROP TABLE IF EXISTS `uf`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `uf` (
   `idUf` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(50) NOT NULL,
-  `sigla` char(2) NOT NULL,
+  `nomeUf` varchar(50) NOT NULL,
+  `siglaUf` char(2) NOT NULL,
   PRIMARY KEY (`idUf`),
-  UNIQUE KEY `nome_UNIQUE` (`nome`),
-  UNIQUE KEY `sigla_UNIQUE` (`sigla`)
+  UNIQUE KEY `nome_UNIQUE` (`nomeUf`),
+  UNIQUE KEY `sigla_UNIQUE` (`siglaUf`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -292,4 +292,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-22 14:29:30
+-- Dump completed on 2018-12-27 20:39:05
