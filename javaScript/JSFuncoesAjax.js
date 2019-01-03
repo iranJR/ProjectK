@@ -1,3 +1,5 @@
+/* ### Página de Cadastro de Usuário ### */
+
 /* ### Função em Ajax para preenchimento do select de cidade no cadastro
 do usuário ### */
 
@@ -6,3 +8,5 @@ $(document).ready(function(){
         $('#cidade').load('../util/PreencheCidadeAjax.php?uf='+$('#uf').val() );
     });
 });
+
+/*----------------------------------------------------------------------------*/

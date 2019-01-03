@@ -7,6 +7,11 @@
     border-radius: 0;
     background-color: #3A3A3A;
     padding: 0.5%;
+    position: fixed;
+    margin-top: 0;
+    width: 100%;
+    border: none;
+    z-index: 1;
 }
 
 #logoProjectK {
@@ -67,6 +72,10 @@
 #MenuHorizontal {
     background-color: crimson;
     border-radius: 0;
+    position: fixed;
+    margin-top: 4.7%;
+    width: 100%;
+    border: none;
 }
 
 #ulMenuHorizontal {
@@ -93,6 +102,11 @@
 
 /* Início do Menu Lateral Esquerdo - Opções do Usuário */
 
+#divMenuLateralEsquerdo {
+    position: fixed;
+    margin-top: 10%;
+}
+
 #divMenuLateralUsuario {
     margin-bottom: 10%;
 }
@@ -104,6 +118,8 @@
 
 #divMenuLateralUsuario a:hover{
     cursor: pointer;
+    opacity: 0.9;
+    color: #068DD6;
 }
 
 #imgFotoPerfilUsuario {
@@ -128,16 +144,71 @@
 
 /* Início do Menu Lateral Direito - Menu de Amigos */
 
+#divMenuLateralDireito {
+    position:fixed;
+    margin-left: 84%;
+    margin-top: 10%;
+}
 
+#tableAmigos {
+    margin-bottom: 0;
+}
+
+#tableAmigos tr td img {
+    width: 50px;
+    height: 50px;
+}
+
+#aVerTodos {
+    color: #068DD6;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#aVerTodos:hover {
+    opacity: 0.9;
+}
 
 /* Início do Menu Lateral Direito - Menu de Amigos */
+
+/* Início da Div Central - Mural de Notícias */
+
+#divMural {
+    margin-left: 17%;
+    margin-top: 10%;
+    z-index: -1;
+}
+
+/* Fim da Div Central - Mural de Notícias */
 
 /* Início do Rodapé */
 
 #divRodape {
-    background-color: #E5E5E5;
+    background-color: #3A3A3A;
     font-weight: bold;
-    color: black;
+    color: #E5E5E5;
+    padding-top: 0.2%;
+    position: relative;
+    margin-top: 2%;
+}
+
+#divRodape p{
+    margin-bottom: 0.2%;
+}
+
+#divRodape a{
+    color: #068DD6;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#divRodape a:hover {
+    opacity: 0.9;
+}
+
+#pDevs {
+    font-variant: small-caps;
+    font-size: 12px;
 }
 
 /* Fim do Rodapé */
