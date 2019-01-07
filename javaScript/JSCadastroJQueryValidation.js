@@ -13,7 +13,8 @@ $(document).ready(function () {
         theme: 'tooltipster-light'
     });
 
-    $("#form").validate({
+    // validador padrao em inglês
+    /*$("#form").validate({
         errorPlacement: function (error, element) {
             var lastError = $(element).data('lastError'),
                 newError = $(error).text();
@@ -27,6 +28,110 @@ $(document).ready(function () {
         },
         success: function (label, element) {
             $(element).tooltipster('hide');
+        }
+    });*/
+    var dataMax = new Date();
+    var dataMin = new Date();
+    var mesMax,diaMax,mesMin,diaMin;
+
+    dataMax.setFullYear(dataMax.getFullYear() - 18, dataMax.getMonth(), dataMax.getDay());
+    dataMin.setFullYear(dataMin.getFullYear() - 90, dataMin.getMonth(), dataMin.getDay());
+
+    if(dataMax.getMonth() < 10){
+        mesMax = "0"+dataMax.getMonth();
+    }else{
+        mesMax = ""+dataMax.getMonth();
+    }
+    if(dataMax.getDay() < 10){
+        diaMax = "0"+dataMax.getDay();
+    }else{
+        diaMax = ""+dataMax.getDay();
+    }
+    if(dataMin.getMonth() < 10){
+        mesMin = "0"+dataMin.getMonth();
+    }else{
+        mesMin = ""+dataMin.getMonth();
+    }
+    if(dataMin.getDay() < 10){
+        diaMin = "0"+dataMin.getDay();
+    }else{
+        diaMin = ""+dataMin.getDay();
+    }
+
+    $("#form").validate({
+        rules : {
+            nome:{
+                required:true,
+            },
+            sobrenome:{
+                required:true,
+            },
+            email:{
+                required:true,
+                email:true,
+            },
+            cpf:{
+                required:true,
+                minlength: 14,
+                maxlength: 14,
+            },
+            dataNasc:{
+                required:true,
+                min: dataMin.toISOString(),
+                max: dataMax.toISOString(),
+            },
+            sexo:{
+                required:true,
+            },
+            uf:{
+                required:true,
+            },
+            cidade:{
+                required:true,
+            },
+            senha:{
+                required:true,
+            },
+            confirmSenha:{
+                required:true,
+            },
+        },
+        messages:{
+            nome:{
+                required:"Preencha este campo",
+            },
+            sobrenome:{
+                required: "Preencha este campo",
+            },
+            email:{
+                required:"Preencha este campo",
+                email: "Formato de email Inválido",
+            },
+            cpf:{
+                required: "Preencha este campo",
+                minlength: "É necessário no mínimo 14 dígitos",
+                maxlength: "É necessário no maximo 14 dígitos",
+            },
+            dataNasc:{
+                required: "Preencha este campo",
+                min: "Ano deve ser posterior a " + diaMin + "/" + mesMin + "/" + dataMin.getFullYear(),
+                max: "Ano deve ser anterior a "+ diaMax +"/"+ mesMax +"/"+ dataMax.getFullYear(),
+            },
+            sexo:{
+                required: "Preencha este campo",
+            },
+            uf:{
+                required: "Preencha este campo",
+            },
+            cidade: {
+                required: "Preencha este campo",
+            },
+            senha: {
+                required: "Preencha este campo",
+            },
+            confirmSenha: {
+                required: "Preencha este campo",
+            },
         }
     });
 
@@ -105,3 +210,6 @@ $(document).ready(function () {
 <!--Início do JS para troca dos Steps do Formulário de Cadastro e do JQuery Validation-->
 
 /* ---------------------------------------------------------------------------------------------------- */
+
+
+

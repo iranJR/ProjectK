@@ -8,5 +8,5 @@
 
 define('BANCO' , "mysql:host=localhost;dbname=dbprojectk");
 define('USUARIO', "root");
-define('SENHA' , "201121061");
-#define('SENHA' , "baltazar_194");
+#define('SENHA' , "201121061");
+define('SENHA' , "baltazar_194");

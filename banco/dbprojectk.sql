@@ -2,9 +2,9 @@ CREATE DATABASE  IF NOT EXISTS `dbprojectk` /*!40100 DEFAULT CHARACTER SET latin
 USE `dbprojectk`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: dbprojectk
+-- Host: 127.0.0.1    Database: dbprojectk
 -- ------------------------------------------------------
--- Server version	5.7.20-log
+-- Server version	5.6.40-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -260,7 +260,7 @@ CREATE TABLE `usuario` (
   `nome` varchar(45) NOT NULL,
   `sobrenome` varchar(45) NOT NULL,
   `senha` varchar(64) NOT NULL,
-  `email` varchar(45) NOT NULL,
+  `email` varchar(64) NOT NULL,
   `cpf` varchar(45) NOT NULL,
   `dataNascimento` date NOT NULL,
   `sexo` varchar(45) NOT NULL,
@@ -271,7 +271,7 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`idUsuario`),
   UNIQUE KEY `email_UNIQUE` (`email`),
   UNIQUE KEY `cpf_UNIQUE` (`cpf`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -280,6 +280,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (1,'iran','junior','09810e9d06bae73bb0176190e4ebfaf4dced93edbf8be75cdfe666ed16cf6218','iran@mail.com','MTIyLjMzMy4zMzMtMzM=','1993-02-01','masculino','3094','13','','2019-01-04'),(2,'ciro','gustavo','320764da5cfe4267f129abb4b899b3e95aea1028e3a2d431286c4257bd441ff5','ciro@ciro.com','MTExLjExMS4xMTEtMTE=','1992-02-13','masculino','3094','13','','2019-01-05'),(3,'marcos','mazini','d52d73c7f98eaf8689eb9203765ff63c991ae2948d84ca348ab5d986ebeb6ff6','marcos@marcos','MjM0LjMxMy40NDQtNDM=','1993-03-12','masculino','3094','13','','2019-01-06'),(4,'bagunça','swat','d52d73c7f98eaf8689eb9203765ff63c991ae2948d84ca348ab5d986ebeb6ff6','swat@swat','MzkyLjgzOC42OTUtODQ=','1995-02-07','masculino','3094','13','','2019-01-06');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -292,4 +293,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-27 20:39:05
+-- Dump completed on 2019-01-07 15:14:31

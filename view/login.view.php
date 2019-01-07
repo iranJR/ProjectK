@@ -28,7 +28,7 @@
 </video>
 
 <div id="divLogin" class="col-sm-3">
-    <form id="formLogin" method="post" action="#">
+    <form id="formLogin" method="post" action="../controller/loginUsuario.action.php">
         <h1>ProjectK</h1>
         <hr>
         <p>

@@ -6,9 +6,9 @@
  * Time: 20:14
  */
 
-$dataAtual = date("Y-m-d");
+$dataAtual = date("Y", strtotime("-18 years"));
 
-$dataMin = date("Y-m-d", strtotime("- 90 years"));
+$dataMin = date("Y", strtotime("- 90 years"));
 
 require_once("../dao/UfDAO.php");
 
@@ -72,7 +72,7 @@ $ufDAO = new UfDAO();
         </div>
     </div>
 
-    <form role="form" id="form">
+    <form role="form" id="form" method="post" action="../controller/cadastroUsuario.action.php?act=save">
 
         <div class="row setup-content" id="step-1">
             <fieldset id="fieldsetCadastro">
@@ -97,8 +97,7 @@ $ufDAO = new UfDAO();
                     </div>
                     <div class="form-group col-md-6">
                         <label for="dataNasc">Data de Nascimento:</label>
-                        <input type="date" class="form-control" name="dataNasc" min="<?= $dataMin ?>"
-                               max="<?= $dataAtual ?>" required>
+                        <input type="date" class="form-control" name="dataNasc" required>
                     </div>
                 </div>
                 <div class="row">
