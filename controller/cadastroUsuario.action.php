@@ -21,7 +21,7 @@ if($_GET['act'] == 'save') {
             $usuario->setNome($_POST['nome']);
             $usuario->setSobrenome($_POST['sobrenome']);
             $usuario->setSenha(hash('sha256', $_POST['senha']));
-            $usuario->setEmail($_POST['email']);
+            $usuario->setEmail(base64_encode($_POST['email']));
             $usuario->setCpf(base64_encode($_POST['cpf']));
             $usuario->setDataNascimento(date('Y-m-d', strtotime($_POST['dataNasc'])));
             $usuario->setSexo($_POST['sexo']);

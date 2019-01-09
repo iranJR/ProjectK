@@ -6,9 +6,11 @@
  * Time: 20:14
  */
 
-$dataAtual = date("Y", strtotime("-18 years"));
+$dataMax = date("Y-m-d", strtotime("-18 years"));
+$dataMaxBR = date("d-m-Y", strtotime("-18 years"));
 
-$dataMin = date("Y", strtotime("- 90 years"));
+$dataMin = date("Y-m-d", strtotime("- 90 years"));
+$dataMinBR = date("d-m-Y", strtotime("- 90 years"));
 
 require_once("../dao/UfDAO.php");
 
@@ -97,8 +99,9 @@ $ufDAO = new UfDAO();
                     </div>
                     <div class="form-group col-md-6">
                         <label for="dataNasc">Data de Nascimento:</label>
-                        <input type="date" class="form-control" name="dataNasc" required>
+                        <input type="date" class="form-control" id="dataNasc" name="dataNasc" min="<?= $dataMin ?>" max="<?= $dataMax ?>" required>
                     </div>
+                    <input type="hidden" class="form-control" id="dataBR" name="dataNasc" min="<?= $dataMinBR ?>" max="<?= $dataMaxBR ?>" required>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-1">
@@ -121,7 +124,7 @@ $ufDAO = new UfDAO();
                     <div class="form-group col-md-6">
                         <label for="uf">Estado:</label>
                         <select id="uf" class="form-control" name="uf" required>
-                            <option disabled selected value="">Selecione o seu estado...</option>
+                            <option disabled selected value=''>Selecione o seu estado...</option>
                             <?php
                             foreach ($ufDAO->buscarTodos() as $uf) {
                                 echo "<option value='$uf->idUf'>$uf->nomeUf</option>";
@@ -136,6 +139,7 @@ $ufDAO = new UfDAO();
                         </select>
                     </div>
                 </div>
+
                 <button id="botaoProximo" class="btn btn-primary nextBtn pull-right" type="button">Próximo   <i class="glyphicon glyphicon-share-alt"></i></button>
             </fieldset>
         </div>
@@ -155,7 +159,7 @@ $ufDAO = new UfDAO();
                         <label for="senha">Senha:</label>
                         <input type="password" class="form-control" id="senha" name="senha"
                                placeholder="Digite aqui sua senha..."
-                               required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                               required passwordCheck="passwordCheck" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                                title="A sua senha deve ter pelo menos 8 caracteres e conter pelo menos: uma letra maiúscula, uma letra minúscula e um dígito. ">
                         <small id="senhaHelp" class="form-text text-muted"><span id="spanSenhaHelp2">*</span> Força da
                             Senha : <span id="spanSenhaHelp"></span>
@@ -182,8 +186,5 @@ $ufDAO = new UfDAO();
 
     </form>
 </div>
-
-
 </body>
-
 </html>

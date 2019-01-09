@@ -13,50 +13,40 @@ $(document).ready(function () {
         theme: 'tooltipster-light'
     });
 
-    // validador padrao em inglês
-    /*$("#form").validate({
-        errorPlacement: function (error, element) {
-            var lastError = $(element).data('lastError'),
-                newError = $(error).text();
+    /*jQuery.validator.addMethod("seletor", function(element) {
+        return ( $('#uf').val() === "");
+    });*/
 
-            $(element).data('lastError', newError);
-
-            if(newError !== '' && newError !== lastError){
-                $(element).tooltipster('content', newError);
-                $(element).tooltipster('show');
+    jQuery.validator.addMethod("passwordCheck",
+        function(value, element, param) {
+            if (this.optional(element)) {
+                return true;
+            } else if (!/[A-Z]/.test(value)) {
+                return false;
+            } else if (!/[a-z]/.test(value)) {
+                return false;
+            } else if (!/[0-9]/.test(value)) {
+                return false;
             }
+            return true;
         },
-        success: function (label, element) {
-            $(element).tooltipster('hide');
+        "erro");
+
+
+
+
+    /*$("#form").validate({
+        rules : {
+            uf:{
+                required: true,
+               }
+           },
+        messages: {
+            uf :{
+                required: "Preencha o campo",
+            }
         }
     });*/
-    var dataMax = new Date();
-    var dataMin = new Date();
-    var mesMax,diaMax,mesMin,diaMin;
-
-    dataMax.setFullYear(dataMax.getFullYear() - 18, dataMax.getMonth(), dataMax.getDay());
-    dataMin.setFullYear(dataMin.getFullYear() - 90, dataMin.getMonth(), dataMin.getDay());
-
-    if(dataMax.getMonth() < 10){
-        mesMax = "0"+dataMax.getMonth();
-    }else{
-        mesMax = ""+dataMax.getMonth();
-    }
-    if(dataMax.getDay() < 10){
-        diaMax = "0"+dataMax.getDay();
-    }else{
-        diaMax = ""+dataMax.getDay();
-    }
-    if(dataMin.getMonth() < 10){
-        mesMin = "0"+dataMin.getMonth();
-    }else{
-        mesMin = ""+dataMin.getMonth();
-    }
-    if(dataMin.getDay() < 10){
-        diaMin = "0"+dataMin.getDay();
-    }else{
-        diaMin = ""+dataMin.getDay();
-    }
 
     $("#form").validate({
         rules : {
@@ -77,11 +67,8 @@ $(document).ready(function () {
             },
             dataNasc:{
                 required:true,
-                min: dataMin.toISOString(),
-                max: dataMax.toISOString(),
-            },
-            sexo:{
-                required:true,
+                min: $("#dataNasc").attr("min"),
+                max: $("#dataNasc").attr("max"),
             },
             uf:{
                 required:true,
@@ -91,6 +78,8 @@ $(document).ready(function () {
             },
             senha:{
                 required:true,
+                minlength:8,
+                passwordCheck:true,
             },
             confirmSenha:{
                 required:true,
@@ -114,20 +103,19 @@ $(document).ready(function () {
             },
             dataNasc:{
                 required: "Preencha este campo",
-                min: "Ano deve ser posterior a " + diaMin + "/" + mesMin + "/" + dataMin.getFullYear(),
-                max: "Ano deve ser anterior a "+ diaMax +"/"+ mesMax +"/"+ dataMax.getFullYear(),
-            },
-            sexo:{
-                required: "Preencha este campo",
+                min: "<i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'></i>A data deve ser posterior ou igual a "+ $("#dataBR").attr("min"),
+                max: "A data deve ser anterior ou igual a "+$("#dataBR").attr("max"),
             },
             uf:{
-                required: "Preencha este campo",
+                required: "Preencha este campo agora",
             },
             cidade: {
                 required: "Preencha este campo",
             },
             senha: {
                 required: "Preencha este campo",
+                minlength: "A sua senha deve ter pelo menos 8 caracteres",
+                passwordCheck: "Necessário conter pelo menos: uma letra maiuscula, uma letra minúscula e um dígito",
             },
             confirmSenha: {
                 required: "Preencha este campo",

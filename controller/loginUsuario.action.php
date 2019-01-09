@@ -14,7 +14,7 @@ session_start();
 
 /*Verifica se foi setado no input um email e uma senha*/
 if(!empty($_POST['login']) && !empty($_POST['senha'])){
-    $email = $_POST['login'];
+    $email = base64_decode($_POST['login']);
     $senha = hash('sha256', $_POST['senha']);
     $usuario = new Usuario('','','','','','','','',
         '','','','');
@@ -23,6 +23,7 @@ if(!empty($_POST['login']) && !empty($_POST['senha'])){
     if($usuario->getEmail() == $email && $usuario->getSenha() == $senha){
         $_SESSION['idUsuario'] = $usuario->getIdUsuario();
         $_SESSION['nomeUsuario'] = $usuario->getNome();
+        $_SESSION['fotoPerfil'] = $usuario->getFotoPerfil();
         echo "<script>window.location.href='../view/paginaInicial.view.php'</script>";
         echo "entrou";
     }
