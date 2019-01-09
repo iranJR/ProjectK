@@ -13,20 +13,113 @@ $(document).ready(function () {
         theme: 'tooltipster-light'
     });
 
-    $("#form").validate({
-        errorPlacement: function (error, element) {
-            var lastError = $(element).data('lastError'),
-                newError = $(error).text();
+    /*jQuery.validator.addMethod("seletor", function(element) {
+        return ( $('#uf').val() === "");
+    });*/
 
-            $(element).data('lastError', newError);
-
-            if(newError !== '' && newError !== lastError){
-                $(element).tooltipster('content', newError);
-                $(element).tooltipster('show');
+    jQuery.validator.addMethod("passwordCheck",
+        function(value, element, param) {
+            if (this.optional(element)) {
+                return true;
+            } else if (!/[A-Z]/.test(value)) {
+                return false;
+            } else if (!/[a-z]/.test(value)) {
+                return false;
+            } else if (!/[0-9]/.test(value)) {
+                return false;
             }
+            return true;
         },
-        success: function (label, element) {
-            $(element).tooltipster('hide');
+        "erro");
+
+
+
+
+    /*$("#form").validate({
+        rules : {
+            uf:{
+                required: true,
+               }
+           },
+        messages: {
+            uf :{
+                required: "Preencha o campo",
+            }
+        }
+    });*/
+
+    $("#form").validate({
+        rules : {
+            nome:{
+                required:true,
+            },
+            sobrenome:{
+                required:true,
+            },
+            email:{
+                required:true,
+                email:true,
+            },
+            cpf:{
+                required:true,
+                minlength: 14,
+                maxlength: 14,
+            },
+            dataNasc:{
+                required:true,
+                min: $("#dataNasc").attr("min"),
+                max: $("#dataNasc").attr("max"),
+            },
+            uf:{
+                required:true,
+            },
+            cidade:{
+                required:true,
+            },
+            senha:{
+                required:true,
+                minlength:8,
+                passwordCheck:true,
+            },
+            confirmSenha:{
+                required:true,
+            },
+        },
+        messages:{
+            nome:{
+                required:"Preencha este campo",
+            },
+            sobrenome:{
+                required: "Preencha este campo",
+            },
+            email:{
+                required:"Preencha este campo",
+                email: "Formato de email Inválido",
+            },
+            cpf:{
+                required: "Preencha este campo",
+                minlength: "É necessário no mínimo 14 dígitos",
+                maxlength: "É necessário no maximo 14 dígitos",
+            },
+            dataNasc:{
+                required: "Preencha este campo",
+                min: "<i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'></i>A data deve ser posterior ou igual a "+ $("#dataBR").attr("min"),
+                max: "A data deve ser anterior ou igual a "+$("#dataBR").attr("max"),
+            },
+            uf:{
+                required: "Preencha este campo agora",
+            },
+            cidade: {
+                required: "Preencha este campo",
+            },
+            senha: {
+                required: "Preencha este campo",
+                minlength: "A sua senha deve ter pelo menos 8 caracteres",
+                passwordCheck: "Necessário conter pelo menos: uma letra maiuscula, uma letra minúscula e um dígito",
+            },
+            confirmSenha: {
+                required: "Preencha este campo",
+            },
         }
     });
 
@@ -105,3 +198,6 @@ $(document).ready(function () {
 <!--Início do JS para troca dos Steps do Formulário de Cadastro e do JQuery Validation-->
 
 /* ---------------------------------------------------------------------------------------------------- */
+
+
+

@@ -36,7 +36,7 @@ echo"<nav id='cabecalho' class='navbar navbar-inverse'>
                 <ul id='dropDownUser' class='dropdown-menu'>
                     <li><a href='#'>Meu Perfil</a></li>
                     <li><a href='#'>Configurações</a></li>
-                    <li><a href='#'>Sair</a></li>
+                    <li><a href='sair.action.php'>Sair</a></li>
                 </ul>
             </div>
         </div>
