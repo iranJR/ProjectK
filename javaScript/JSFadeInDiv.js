@@ -30,3 +30,14 @@ $(document).ready(function(){
 
 <!--Fim Animação da Div de Login-->
 /* ----------------------------------------------------------------- */
+
+/* ### Página de Contato da Index ### */
+
+<!--Início Animação da Div de Contato-->
+
+$(document).ready(function(){
+    $("#divContato").fadeIn(1500);
+});
+
+<!--Fim Animação da Div de Contato-->
+/* ----------------------------------------------------------------- */

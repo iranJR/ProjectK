@@ -11,7 +11,7 @@
     margin-top: 0;
     width: 100%;
     border: none;
-    z-index: 1;
+    z-index: 2;
 }
 
 #logoProjectK {
@@ -76,6 +76,7 @@
     margin-top: 4.7%;
     width: 100%;
     border: none;
+    z-index: 1;
 }
 
 #ulMenuHorizontal {
@@ -176,7 +177,6 @@
 #divMural {
     margin-left: 17%;
     margin-top: 10%;
-    z-index: -1;
 }
 
 /* Fim da Div Central - Mural de Notícias */
@@ -187,7 +187,7 @@
     background-color: #3A3A3A;
     font-weight: bold;
     color: #E5E5E5;
-    padding-top: 0.2%;
+    padding-top: 0.5%;
     position: relative;
     margin-top: 2%;
 }
@@ -212,3 +212,72 @@
 }
 
 /* Fim do Rodapé */
+
+/* ------------------------------------------------------------------------ */
+
+/* ### CSS da Página de Contato ### */
+
+/*Início Div de Contato*/
+
+#divContato{
+    background-color: #4c4c4c;
+    padding: 2%;
+    color: white;
+    border-radius: 20px;
+    margin-left: 8%;
+}
+
+#divContato h1{
+    font-weight: bold;
+    text-align: center;
+    font-size: 30px;
+    margin-right: 1%;
+}
+
+#divContato h4{
+    font-weight: bold;
+    text-align: center;
+}
+
+#divContato button{
+    background-color: crimson;
+    border-color: crimson;
+}
+
+#divContato button:hover{
+    opacity: 0.8;
+}
+
+#botaoContato{
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    width: 30%;
+    text-transform: uppercase;
+    margin-left: 35%;
+}
+
+#contMensagem {
+    color: white;
+    font-weight: bold;
+    margin-left: 72%;
+}
+
+/*Fim Div de Contato*/
+
+/* Início da Mensagem da Página de Contato */
+
+#mensagemContato {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#spanMensagemContato {
+    font-weight: bolder;
+    color: crimson;
+}
+
+/* Fim da Mensagem da Página de Contato */
+
+/* ------------------------------------------------------------------------ *

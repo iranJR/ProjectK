@@ -86,6 +86,73 @@
 
 /* ------------------------------------------------------------------------------------------ */
 
+/* ### Página de Contato na Index ### */
+
+/*Início Div de Contato*/
+
+#divContato{
+    margin-top: 75px;
+    margin-left: 350px;
+    background-color: rgba(38, 38, 38, 0.5);
+    padding: 2%;
+    color: white;
+    border-radius: 20px;
+    font-weight: bold;
+    display: none;
+}
+
+#divContato h1{
+    font-weight: bold;
+    text-align: center;
+    font-size: 30px;
+    margin-right: 1%;
+}
+
+#divContato h4{
+    font-weight: bold;
+    text-align: center;
+}
+
+#divContato button{
+    background-color: crimson;
+    border-color: crimson;
+}
+
+#divContato button:hover{
+    opacity: 0.8;
+}
+
+#botaoLogin{
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    width: 50%;
+    text-transform: uppercase;
+    margin-left: 25%;
+}
+
+#contMensagem {
+    color: white;
+    margin-left: 69%;
+}
+
+/*Fim Div de Contato*/
+
+/* Início Video de Login */
+
+#videoLogin {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: 100%;
+}
+
+/* Fim Video de Login */
+
+/* ------------------------------------------------------------------------------------------ */
+
 /* ### Página Index ### */
 
 /* Início da Div da Index*/
@@ -129,6 +196,37 @@
 }
 
 /* Fim da Div da Index*/
+
+/* Início do Rodapé da Index */
+
+#rodapeIndex {
+    background-color: #3A3A3A;
+    font-weight: bold;
+    color: #E5E5E5;
+    padding-top: 0.5%;
+    margin-top: 144px;
+}
+
+#rodapeIndex p{
+    margin-bottom: 0.2%;
+}
+
+#rodapeIndex a{
+    color: #068DD6;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#rodapeIndex a:hover {
+    opacity: 0.9;
+}
+
+#pDevs {
+    font-variant: small-caps;
+    font-size: 12px;
+}
+
+/* Fim do Rodapé da Index */
 
 /* Início Video de Index */
 

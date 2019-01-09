@@ -33,7 +33,7 @@ echo"<nav id='cabecalho' class='navbar navbar-inverse'>
             <div id='divFotoMenuUsuario' class='dropdown nav nav-bar navbar-right'>
                 <img class='dropdown-toggle img-circle' data-toggle='dropdown' src='../imagens/perfil.png'
                      alt='Foto Perfil'/>
-                <ul class='dropdown-menu'>
+                <ul id='dropDownUser' class='dropdown-menu'>
                     <li><a href='#'>Meu Perfil</a></li>
                     <li><a href='#'>Configurações</a></li>
                     <li><a href='#'>Sair</a></li>
@@ -94,6 +94,7 @@ echo"<div id = 'divMural' class='col-sm-8 text-left' >
     <h1 > Mural de Notícias </h1 >
     <p > Aqui será o feed, onde aparecem todas as atualizações .</p >
     <hr >
+    <button>Click</button>
     <h3 > Teste</h3 >
     <p > Fim do Feed...</p >
     <h1 > Mural de Notícias </h1 >
@@ -182,7 +183,7 @@ function rodape()
 
     echo "<footer id='divRodape' class='container-fluid text-center'>
     <p>ProjectK ® - 2018</p>
-    <p><a>Entre em contato conosco.</a></p>
+    <p><a href='../view/contato.view.php'>Entre em contato conosco.</a></p>
     <p id='pDevs'>Desenvolvido por: Ciro Gustavo e Iran Junior</p>
 </footer>";
 

@@ -41,5 +41,13 @@
     </div>
 </div>
 
+<div class="content">
+    <div id="rodapeIndex" class="col-md-12 text-center container-fluid">
+        <p>ProjectK ® - 2018</p>
+        <p><a href='view/contatoIndex.view.php'>Entre em contato conosco.</a></p>
+        <p id='pDevs'>Desenvolvido por: Ciro Gustavo e Iran Junior</p>
+    </div>
+</div>
+
 </body>
 </html>
