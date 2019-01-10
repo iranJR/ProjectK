@@ -74,7 +74,7 @@ $ufDAO = new UfDAO();
         </div>
     </div>
 
-    <form role="form" id="form" method="post" action="../controller/cadastroUsuario.action.php?act=save">
+    <form role="form" id="form" name="form" method="post" action="../controller/cadastroUsuario.action.php?act=save">
 
         <div class="row setup-content" id="step-1">
             <fieldset id="fieldsetCadastro">
@@ -101,7 +101,7 @@ $ufDAO = new UfDAO();
                         <label for="dataNasc">Data de Nascimento:</label>
                         <input type="date" class="form-control" id="dataNasc" name="dataNasc" min="<?= $dataMin ?>" max="<?= $dataMax ?>" required>
                     </div>
-                    <input type="hidden" class="form-control" id="dataBR" name="dataNasc" min="<?= $dataMinBR ?>" max="<?= $dataMaxBR ?>" required>
+                    <input type="hidden" class="form-control" id="dataBR" name="dataBR" min="<?= $dataMinBR ?>" max="<?= $dataMaxBR ?>" required>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-1">
@@ -124,7 +124,7 @@ $ufDAO = new UfDAO();
                     <div class="form-group col-md-6">
                         <label for="uf">Estado:</label>
                         <select id="uf" class="form-control" name="uf" required>
-                            <option disabled selected value=''>Selecione o seu estado...</option>
+                            <option disabled selected value="">Selecione o seu estado...</option>
                             <?php
                             foreach ($ufDAO->buscarTodos() as $uf) {
                                 echo "<option value='$uf->idUf'>$uf->nomeUf</option>";

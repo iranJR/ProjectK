@@ -6,7 +6,7 @@
  * Time: 14:33
  */
 
-function cabecalho(){
+function cabecalho($nomeUsuario, $fotoPerfil, $idUsuario){
 //Cabeçalho do site
 
 echo"<nav id='cabecalho' class='navbar navbar-inverse'>
@@ -29,14 +29,20 @@ echo"<nav id='cabecalho' class='navbar navbar-inverse'>
 
         <div id='divUsuarioCabecalho' class='nav nav-bar navbar-right'>
             <span class='glyphicon glyphicon-user'></span>
-            <label>Bem vindo, Usuário</label>
-            <div id='divFotoMenuUsuario' class='dropdown nav nav-bar navbar-right'>
-                <img class='dropdown-toggle img-circle' data-toggle='dropdown' src='../imagens/perfil.png'
-                     alt='Foto Perfil'/>
-                <ul id='dropDownUser' class='dropdown-menu'>
+            <label>Bem vindo, ".$nomeUsuario."</label>
+            <div id='divFotoMenuUsuario' class='dropdown nav nav-bar navbar-right'>";
+                if($fotoPerfil == '') {
+                    echo "<img class='dropdown-toggle img-circle' data-toggle='dropdown' src='../imagens/perfil.png'
+                     alt='Foto Perfil'/>";
+                }
+                else {
+                    echo "<img class='dropdown-toggle img-circle' data-toggle='dropdown' src='../imagens/Usuario/".$idUsuario."/Albuns/Perfil/".$fotoPerfil."'
+                     alt='Foto Perfil'/>";
+                }
+                echo"<ul id='dropDownUser' class='dropdown-menu'>
                     <li><a href='#'>Meu Perfil</a></li>
                     <li><a href='#'>Configurações</a></li>
-                    <li><a href='sair.action.php'>Sair</a></li>
+                    <li><a href='../controller/logout.action.php'>Sair</a></li>
                 </ul>
             </div>
         </div>
@@ -64,13 +70,18 @@ echo"<nav id='MenuHorizontal' class='navbar navbar-inverse'>
 //Fim do Menu Horizontal de Ações
 }
 
-function menuLateralEsquerdoUsuario() {
+function menuLateralEsquerdoUsuario($fotoPerfil, $idUsuario) {
 //Início do Menu Lateral do Usuário
 
 echo"<div id='divMenuLateralEsquerdo' class='col-sm-2 sidenav'>
-    <div id='divMenuLateralUsuario' class='container-fluid bg-1 text-center'>
-        <img id='imgFotoPerfilUsuario' src='../imagens/perfil.png' class='img-circle' alt='Foto Perfil'/>
-        <a>Editar Perfil</a>
+    <div id='divMenuLateralUsuario' class='container-fluid bg-1 text-center'>";
+        if($fotoPerfil == '') {
+            echo "<img id='imgFotoPerfilUsuario' src='../imagens/perfil.png' class='img-circle' alt='Foto Perfil'/>";
+        }
+        else {
+            echo "<img id='imgFotoPerfilUsuario' src='../imagens/Usuario/".$idUsuario."/Albuns/Perfil/".$fotoPerfil."'' class='img-circle' alt='Foto Perfil'/>";
+        }
+        echo"<a>Editar Perfil</a>
     </div>
         <p>Menu Lateral do Usuário</p>
         <p><a id='BotaoMenuLateral' class='btn btn-info' href='#'>Editar Perfil</a></p>

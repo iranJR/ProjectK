@@ -35,6 +35,7 @@ class UsuarioDAO implements GenericsDAO
 
             if($statement->execute()){
                 if($statement->rowCount()>0){
+                    $obj->setIdUsuario($pdo->lastInsertId());
                     return"<script>alert('Usuário cadastrado com sucesso !');</script>";
                 }
                 else{

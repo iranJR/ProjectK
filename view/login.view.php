@@ -28,7 +28,7 @@
 </video>
 
 <div id="divLogin" class="col-sm-3">
-    <form id="formLogin" method="post" action="../controller/loginUsuario.action.php">
+    <form id="formLogin" method="post" action="../controller/login.action.php">
         <h1>ProjectK</h1>
         <hr>
         <p>
@@ -48,7 +48,7 @@
         </div>
         <div id="divCheck" class="form-group">
             <div id="checkboxLogin" class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <input class="form-check-input" type="checkbox" name="gridCheck" value="true" id="gridCheck">
                 <label id="labelCheck" class="form-check-label" for="gridCheck">
                     Permanecer conectado
                 </label>

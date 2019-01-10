@@ -46,7 +46,7 @@ function emailFormularioContato($nomeUsuario, $mensagemUsuario) {
 <h1>".$nomeUsuario.", obrigado pelo seu contato !</h1>
 <hr style='height: 10px; background-color: crimson; border: none; width: 98%; margin-left: 0%'>
 <br/>
-<h3 style='font-weight: normal; white-space: pre-wrap'>".$nomeUsuario.", recebemos o seu contato e estaremos retornando
+<h3 style='font-weight: normal; white-space: pre-wrap'>".$nomeUsuario.", recebemos o seu feedback e estaremos retornando
 o mais breve possível.</h3>
 <h3 style='font-weight: normal; white-space: pre-wrap'><b>Sua mensagem:</b> ".$mensagemUsuario." </h3>
 <h3 style='font-weight: normal; white-space: pre-wrap'>Agradecemos desde já, o seu contato é muito importante para nós.

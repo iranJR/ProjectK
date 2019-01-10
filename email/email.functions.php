@@ -31,11 +31,7 @@ function enviarEmailBoasVindas($emailDestinatario, $nomeDestinatario, $sobrenome
     $email->msgHTML($html);
 
     //Função de realiza o envio do e-mail.
-    if (!$email->send()) {
-        echo "Erro ao enviar o E-mail: " . $email->ErrorInfo;
-    } else {
-        echo "E-mail enviado com sucesso!";
-    }
+    $email->send();
 }
 
 function enviarEmailFormularioContato($emailDestinatario, $nomeDestinatario, $motivo, $mensagem){

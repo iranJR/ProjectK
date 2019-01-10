@@ -7,6 +7,39 @@
  */
 
 require_once ("../view/templatePaginaInicial.php");
+
+// Iniciando a sessão.
+session_start();
+
+//Verificação de segurança. Se não houver usuário logado, redireciona para a página de login.
+if((empty($_SESSION['idUsuario']) || empty($_SESSION['nomeUsuario']) || empty($_SESSION['fotoPerfil'])) &&
+    (empty($_COOKIE['idUsuario']) || empty($_COOKIE['nomeUsuario']) || empty($_COOKIE['fotoPerfil']) ||
+        empty($_COOKIE['senha']) || empty($_COOKIE['email']))){
+
+    $msg = "É necessário estar logado para acessar esta página !";
+    echo "<script>window.location.href='../view/login.view.php?msg=".$msg."'</script>";
+}
+
+// Verificação se usuário está logado via sessão.
+if(!empty($_SESSION['idUsuario']) || !empty($_SESSION['nomeUsuario']) ||
+    !empty($_SESSION['fotoPerfil'])) {
+
+    $idUsuario = $_SESSION['idUsuario'];
+    $nomeUsuario = $_SESSION['nomeUsuario'];
+    $fotoPerfil = $_SESSION['fotoPerfil'];
+    echo "Logado por Sessão";
+}
+
+// Verificação se usuário está logado via cookie.
+if(!empty($_COOKIE['idUsuario']) || !empty($_COOKIE['nomeUsuario']) || !empty($_COOKIE['fotoPerfil']) ||
+!empty($_COOKIE['senha']) || !empty($_COOKIE['email'])){
+
+    $idUsuario = base64_decode($_COOKIE['idUsuario']);
+    $nomeUsuario = base64_decode($_COOKIE['nomeUsuario']);
+    $fotoPerfil = base64_decode($_COOKIE['fotoPerfil']);
+    echo "Logado por Cookies";
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +58,9 @@ require_once ("../view/templatePaginaInicial.php");
 <body>
 
 <!--Cabeçalho do site-->
-    <?php cabecalho(); ?>
+    <!-- O cabeçalho do site, requer três paramêtros agora, nome de usuário, foto de perfil e id do usuário
+    atribuidos via sessão ou cookies -->
+    <?php cabecalho($nomeUsuario, $fotoPerfil, $idUsuario); ?>
 <!--Fim do Cabeçalho do site -->
 
 <!--Menu Horizontal de Ações -->
@@ -38,7 +73,9 @@ require_once ("../view/templatePaginaInicial.php");
         <!-- Pausa na Div Geral da Página -->
 
         <!-- Início do Menu Lateral do Usuário -->
-        <?php menuLateralEsquerdoUsuario(); ?>
+        <!-- O cabeçalho do site, requer dois paramêtros agora, foto de perfil e id do usuário
+        atribuidos via sessão ou cookies -->
+        <?php menuLateralEsquerdoUsuario($fotoPerfil, $idUsuario); ?>
         <!-- Início do Menu Lateral do Usuário -->
 
         <!-- Início da Div Central da Página, Mural de Notícias -->

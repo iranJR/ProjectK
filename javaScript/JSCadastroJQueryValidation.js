@@ -87,38 +87,38 @@ $(document).ready(function () {
         },
         messages:{
             nome:{
-                required:"Preencha este campo",
+                required: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   Preencha este campo.</p>",
             },
             sobrenome:{
-                required: "Preencha este campo",
+                required: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   Preencha este campo.</p>",
             },
             email:{
-                required:"Preencha este campo",
-                email: "Formato de email Inválido",
+                required: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   Preencha este campo.</p>",
+                email: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   Formato de e-mail inválido. Exemplo: seuemail@exemplo.com</p>",
             },
             cpf:{
-                required: "Preencha este campo",
-                minlength: "É necessário no mínimo 14 dígitos",
-                maxlength: "É necessário no maximo 14 dígitos",
+                required: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   Preencha este campo.</p>",
+                minlength: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   É necessário no mínimo 14 dígitos.</p>",
+                maxlength: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   É necessário no máximo 14 dígitos.</p>",
             },
             dataNasc:{
-                required: "Preencha este campo",
-                min: "<i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'></i>A data deve ser posterior ou igual a "+ $("#dataBR").attr("min"),
-                max: "A data deve ser anterior ou igual a "+$("#dataBR").attr("max"),
+                required: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   Preencha este campo.</p>",
+                min: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   A data deve ser posterior ou igual a "+$("#dataBR").attr("min")+".</p>",
+                max: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   A data deve ser anterior ou igual a "+$("#dataBR").attr("max")+".</p>",
             },
             uf:{
-                required: "Preencha este campo agora",
+                required: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   Selecione um item da lista.</p>",
             },
             cidade: {
-                required: "Preencha este campo",
+                required: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   Selecione um item da lista.</p>",
             },
             senha: {
-                required: "Preencha este campo",
-                minlength: "A sua senha deve ter pelo menos 8 caracteres",
-                passwordCheck: "Necessário conter pelo menos: uma letra maiuscula, uma letra minúscula e um dígito",
+                required: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   Preencha este campo.</p>",
+                minlength: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   A senha deve conter pelo menos 8 caracteres.</p>",
+                passwordCheck: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   A senha deve conter pelo menos: uma letra maiúscula, uma letra minúscula e um dígito.</p>",
             },
             confirmSenha: {
-                required: "Preencha este campo",
+                required: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   Preencha este campo.</p>",
             },
         }
     });
