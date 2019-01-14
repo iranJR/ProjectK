@@ -51,7 +51,7 @@ $ufDAO = new UfDAO();
 
     <?php if (isset($_GET['msg'])) {
         echo "<hr id='hrCadastro'>";
-        echo "<p id='mensagemCadastro'><span id='spanSenhaHelp2'>* </span>".$_GET['msg']."<span id='spanSenhaHelp2'> *</span></p>";
+        echo "<p id='mensagemCadastro'><span id='spanSenhaHelp2'>* </span>" . $_GET['msg'] . "<span id='spanSenhaHelp2'> *</span></p>";
     } ?>
 
     <div class="stepwizard">
@@ -63,13 +63,14 @@ $ufDAO = new UfDAO();
             </div>
             <div class="stepwizard-step">
                 <a href="#step-2" type="button" class="btn btn-default btn-circle disabled"><i
-                            class="glyphicon glyphicon-map-marker"></i></a>
-                <p>Endereço</p>
-            </div>
-            <div class="stepwizard-step">
-                <a href="#step-3" type="button" class="btn btn-default btn-circle disabled"><i
                             class="glyphicon glyphicon-lock"></i></a>
                 <p>Dados de Acesso</p>
+            </div>
+            <div id="DivStep3" class="stepwizard-step">
+                <a href="#step-3" type="button" class="btn btn-default btn-circle disabled"><i
+
+                            class="glyphicon glyphicon-map-marker"></i></a>
+                <p>Endereço</p>
             </div>
         </div>
     </div>
@@ -99,9 +100,11 @@ $ufDAO = new UfDAO();
                     </div>
                     <div class="form-group col-md-6">
                         <label for="dataNasc">Data de Nascimento:</label>
-                        <input type="date" class="form-control" id="dataNasc" name="dataNasc" min="<?= $dataMin ?>" max="<?= $dataMax ?>" required>
+                        <input type="date" class="form-control" id="dataNasc" name="dataNasc" min="<?= $dataMin ?>"
+                               max="<?= $dataMax ?>" required>
                     </div>
-                    <input type="hidden" class="form-control" id="dataBR" name="dataBR" min="<?= $dataMinBR ?>" max="<?= $dataMaxBR ?>" required>
+                    <input type="hidden" class="form-control" id="dataBR" name="dataBR" min="<?= $dataMinBR ?>"
+                           max="<?= $dataMaxBR ?>" required>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-1">
@@ -113,38 +116,12 @@ $ufDAO = new UfDAO();
                         <label class="radio-inline"><input type="radio" name="sexo" value="feminino">Feminino</label>
                     </div>
                 </div>
-                <button id="botaoProximo" class="btn btn-primary nextBtn pull-right" type="button">Próximo   <i class="glyphicon glyphicon-share-alt"></i></button>
+                <button id="botaoProximo" class="btn btn-primary nextBtn pull-right" type="button">Próximo <i
+                            class="glyphicon glyphicon-share-alt"></i></button>
             </fieldset>
         </div>
 
         <div class="row setup-content" id="step-2">
-            <fieldset id="fieldsetCadastro">
-                <legend>Endereço:</legend>
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label for="uf">Estado:</label>
-                        <select id="uf" class="form-control" name="uf" required>
-                            <option disabled selected value="">Selecione o seu estado...</option>
-                            <?php
-                            foreach ($ufDAO->buscarTodos() as $uf) {
-                                echo "<option value='$uf->idUf'>$uf->nomeUf</option>";
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="cidade">Cidade:</label>
-                        <select id="cidade" class="form-control" name="cidade" required>
-                            <option disabled selected value="">Selecione a sua cidade...</option>
-                        </select>
-                    </div>
-                </div>
-
-                <button id="botaoProximo" class="btn btn-primary nextBtn pull-right" type="button">Próximo   <i class="glyphicon glyphicon-share-alt"></i></button>
-            </fieldset>
-        </div>
-
-        <div class="row setup-content" id="step-3">
             <fieldset id="fieldsetCadastro">
                 <legend>Dados de Acesso:</legend>
                 <div class="row">
@@ -178,9 +155,35 @@ $ufDAO = new UfDAO();
                                     id="spanSenhaHelp2">*</span></small>
                     </div>
                 </div>
+                <button id="botaoProximo2" class="btn btn-primary nextBtn pull-right" title="Preencha todos os campos do formulário" type="button" disabled>Próximo <i
+                            class="glyphicon glyphicon-share-alt"></i></button>
             </fieldset>
-            <button id="botaoLogin" type="submit" disabled class="btn btn-info"
-                    title="Preencha todos os campos do formulário">Cadastrar   <i class="glyphicon glyphicon-check"></i>
+        </div>
+
+        <div class="row setup-content" id="step-3">
+            <fieldset id="fieldsetCadastro">
+                <legend>Endereço:</legend>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="uf">Estado:</label>
+                        <select id="uf" class="form-control" name="uf" required>
+                            <option disabled selected value="">Selecione o seu estado...</option>
+                            <?php
+                            foreach ($ufDAO->buscarTodos() as $uf) {
+                                echo "<option value='$uf->idUf'>$uf->nomeUf</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="cidade">Cidade:</label>
+                        <select id="cidade" class="form-control" name="cidade" required>
+                            <option disabled selected value="">Selecione a sua cidade...</option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+            <button id="botaoLogin" type="submit" class="btn btn-info" >Cadastrar <i class="glyphicon glyphicon-check"></i>
             </button>
         </div>
 

@@ -31,7 +31,7 @@ echo"<nav id='cabecalho' class='navbar navbar-inverse'>
             <span class='glyphicon glyphicon-user'></span>
             <label>Bem vindo, ".$nomeUsuario."</label>
             <div id='divFotoMenuUsuario' class='dropdown nav nav-bar navbar-right'>";
-                if($fotoPerfil == '') {
+                if($fotoPerfil == 'perfil.png') {
                     echo "<img class='dropdown-toggle img-circle' data-toggle='dropdown' src='../imagens/perfil.png'
                      alt='Foto Perfil'/>";
                 }
@@ -75,7 +75,7 @@ function menuLateralEsquerdoUsuario($fotoPerfil, $idUsuario) {
 
 echo"<div id='divMenuLateralEsquerdo' class='col-sm-2 sidenav'>
     <div id='divMenuLateralUsuario' class='container-fluid bg-1 text-center'>";
-        if($fotoPerfil == '') {
+        if($fotoPerfil == 'perfil.png') {
             echo "<img id='imgFotoPerfilUsuario' src='../imagens/perfil.png' class='img-circle' alt='Foto Perfil'/>";
         }
         else {

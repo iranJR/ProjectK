@@ -364,6 +364,19 @@
     margin-left: 5%;
 }
 
+#botaoProximo2 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    width: 30%;
+    text-transform: uppercase;
+    margin-left: 30%;
+}
+
+#botaoProximo2 i {
+    margin-left: 5%;
+}
+
 /* Fim Botão de Próximo do Formulário de Cadastro */
 
 #inputSexo label {
@@ -382,6 +395,15 @@
 /* Início do CSS dos Step do Formulário de Cadastro e CSS do JQuery Validation */
 
 /*Downloaded from https://www.codeseek.co/brettmichaelorr/bootstrap-form-wizard-with-tooltipster-and-jquery-validate-RaRZLe */
+
+/* Início CSS para centralizar as Divs das Steps*/
+
+#DivStep3{
+    width: 33%;
+}
+
+/* FimCSS para centralizar as Divs das Steps*/
+
 .stepwizard {
     display: table;
     width: 100%;

@@ -27,6 +27,7 @@ if($_GET['act'] == 'save') {
             $usuario->setSexo($_POST['sexo']);
             $usuario->setCidade($_POST['cidade']);
             $usuario->setEstado($_POST['uf']);
+            $usuario->setFotoPerfil('perfil.png');
             $usuario->setDataCadastro(date('Y-m-d'));
 
             $usuarioDao = new UsuarioDAO();
