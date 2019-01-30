@@ -8,13 +8,17 @@
 
 require_once ("../view/templatePaginaInicial.php");
 
+/*Nomeclaturando sessão*/
+session_name(hash('sha256',$_SERVER['SERVER_ADDR'].$_SERVER['REMOTE_ADDR']));
+
 // Iniciando a sessão.
 session_start();
 
 //Verificação de segurança. Se não houver usuário logado, redireciona para a página de login.
 if((empty($_SESSION['idUsuario']) || empty($_SESSION['nomeUsuario']) || empty($_SESSION['fotoPerfil'])) &&
-    (empty($_COOKIE['idUsuario']) || empty($_COOKIE['nomeUsuario']) || empty($_COOKIE['fotoPerfil']) ||
-        empty($_COOKIE['senha']) || empty($_COOKIE['email']))){
+    (empty($_COOKIE[hash('sha256','idUsuario')]) || empty($_COOKIE[hash('sha256','nomeUsuario')]) ||
+        empty($_COOKIE[hash('sha256','fotoPerfil')]) || empty($_COOKIE[hash('sha256','senha')]) ||
+        empty($_COOKIE[hash('sha256','email')]))){
 
     $msg = "É necessário estar logado para acessar esta página !";
     echo "<script>window.location.href='../view/login.view.php?msg=".$msg."'</script>";
@@ -30,12 +34,13 @@ if(!empty($_SESSION['idUsuario']) || !empty($_SESSION['nomeUsuario']) ||
 }
 
 // Verificação se usuário está logado via cookie.
-if(!empty($_COOKIE['idUsuario']) || !empty($_COOKIE['nomeUsuario']) || !empty($_COOKIE['fotoPerfil']) ||
-    !empty($_COOKIE['senha']) || !empty($_COOKIE['email'])){
+if(!empty($_COOKIE[hash('sha256','idUsuario')]) || !empty($_COOKIE[hash('sha256','nomeUsuario')]) ||
+    !empty($_COOKIE[hash('sha256','fotoPerfil')]) || !empty($_COOKIE[hash('sha256','senha')]) ||
+    !empty($_COOKIE[hash('sha256','email')])){
 
-    $idUsuario = base64_decode($_COOKIE['idUsuario']);
-    $nomeUsuario = base64_decode($_COOKIE['nomeUsuario']);
-    $fotoPerfil = base64_decode($_COOKIE['fotoPerfil']);
+    $idUsuario = base64_decode($_COOKIE[hash('sha256','idUsuario')]);
+    $nomeUsuario = base64_decode($_COOKIE[hash('sha256','nomeUsuario')]);
+    $fotoPerfil = base64_decode($_COOKIE[hash('sha256','fotoPerfil')]);
 }
 
 ?>
@@ -50,6 +55,8 @@ if(!empty($_COOKIE['idUsuario']) || !empty($_COOKIE['nomeUsuario']) || !empty($_
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/tooltipster/3.3.0/js/jquery.tooltipster.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js'></script>
     <script src="../javaScript/JSFuncaoContato.js"></script>
     <script src="../javaScript/JSFuncoesAjax.js"></script>
     <title>ProjectK - Contato</title>

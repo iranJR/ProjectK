@@ -47,7 +47,7 @@ echo"<nav id='cabecalho' class='navbar navbar-inverse'>
                 }
                 echo"<ul id='dropDownUser' class='dropdown-menu'>
                     <li><a href='#'>Meu Perfil</a></li>
-                    <li><a href='#'>Configurações</a></li>
+                    <li><a href='../view/alterarSenha.view.php'>Configurações</a></li>
                     <li><a href='../controller/logout.action.php'>Sair</a></li>
                 </ul>
             </div>
@@ -143,7 +143,7 @@ function menuLateralDireitoAmigos()
 {
 //Início do Menu Lateral Direito, Menu de Amigos
 
-echo"<div id = 'divMenuLateralDireito' class='col-sm-2 sidenav' >
+echo "<div id = 'divMenuLateralDireito' class='col-sm-2 sidenav' >
     <table id = 'tableAmigos' class='table' >
         <thead >
         <tr >
@@ -152,14 +152,14 @@ echo"<div id = 'divMenuLateralDireito' class='col-sm-2 sidenav' >
         </thead >
         <tbody >
         <tr >
-            <td ><img src = '../imagens/thor.jpg' class='img-rounded' ></td >
-            <td ><img src = '../imagens/thor.jpg' class='img-rounded' ></td >
-            <td ><img src = '../imagens/thor.jpg' class='img-rounded' ></td >
+            <td ><img src = '../imagens/Usuario/15/Albuns/Perfil/thor.jpg' class='img-rounded' ></td >
+            <td ><img src = '../imagens/Usuario/15/Albuns/Perfil/thor.jpg' class='img-rounded' ></td >
+            <td ><img src = '../imagens/Usuario/15/Albuns/Perfil/thor.jpg' class='img-rounded' ></td >
         </tr >
         <tr >
-            <td ><img src = '../imagens/thor.jpg' class='img-rounded' ></td >
-            <td ><img src = '../imagens/thor.jpg' class='img-rounded' ></td >
-            <td ><img src = '../imagens/thor.jpg' class='img-rounded' ></td >
+            <td ><img src = '../imagens/Usuario/15/Albuns/Perfil/thor.jpg' class='img-rounded' ></td >
+            <td ><img src = '../imagens/Usuario/15/Albuns/Perfil/thor.jpg' class='img-rounded' ></td >
+            <td ><img src = '../imagens/Usuario/15/Albuns/Perfil/thor.jpg' class='img-rounded' ></td >
         </tr >
         <tr >
         <th scope = 'col' colspan = '3' ><a id = 'aVerTodos' > Ver Todos </a ></th >
@@ -175,14 +175,14 @@ echo"<div id = 'divMenuLateralDireito' class='col-sm-2 sidenav' >
         </thead >
         <tbody >
         <tr >
-            <td ><img src = '../imagens/thor.jpg' ></td >
-            <td ><img src = '../imagens/thor.jpg' ></td >
-            <td ><img src = '../imagens/thor.jpg' ></td >
+            <td ><img src = '../imagens/Usuario/15/Albuns/Perfil/thor.jpg' ></td >
+            <td ><img src = '../imagens/Usuario/15/Albuns/Perfil/thor.jpg' ></td >
+            <td ><img src = '../imagens/Usuario/15/Albuns/Perfil/thor.jpg' ></td >
         </tr >
         <tr >
-            <td ><img src = '../imagens/thor.jpg' ></td >
-            <td ><img src = '../imagens/thor.jpg' ></td >
-            <td ><img src = '../imagens/thor.jpg' ></td >
+            <td ><img src = '../imagens/Usuario/15/Albuns/Perfil/thor.jpg' ></td >
+            <td ><img src = '../imagens/Usuario/15/Albuns/Perfil/thor.jpg' ></td >
+            <td ><img src = '../imagens/Usuario/15/Albuns/Perfil/thor.jpg' ></td >
         </tr >
         <tr >
             <th scope = 'col' colspan = '3' ><a id = 'aVerTodos' > Ver Todos </a ></th >

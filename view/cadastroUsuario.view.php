@@ -29,7 +29,7 @@ $ufDAO = new UfDAO();
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/tooltipster/3.3.0/js/jquery.tooltipster.min.js'></script>
     <script src='https://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js'></script>
-    <script src="../javaScript/JSCadastroJQueryValidation.js"></script>
+    <script src="../javaScript/JSValidationCadastro.js"></script>
     <script src="../javaScript/JSFadeInDiv.js"></script>
     <script src="../javaScript/JSFuncoesAjax.js"></script>
     <script src="../javaScript/JSFuncoesSenha.js"></script>
@@ -153,6 +153,7 @@ $ufDAO = new UfDAO();
                         <small id="confirmSenhaHelp" class="form-text text-muted"><span id="spanSenhaHelp2">*</span>
                             <span id="spanConfirmSenha">Atenção : </span> <span id="textSpanSenhaHelp">As senhas devem ser iguais ! </span><span
                                     id="spanSenhaHelp2">*</span></small>
+                        <p id="aviso"></p>
                     </div>
                 </div>
                 <button id="botaoProximo2" class="btn btn-primary nextBtn pull-right" title="Preencha todos os campos do formulário" type="button" disabled>Próximo <i

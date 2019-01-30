@@ -141,7 +141,7 @@ atribuidos via sessão ou cookies -->
             <div class='media' style='border: solid; border-radius: 10px; border-color: #E5E5E5; border-width: 1px;'>
                 <div class='media-left media-middle'>
                     <a href='#'>
-                        <img class='media-object' src='../imagens/thor.jpg' alt='foto' style='width: 80px; height: 80px;'>
+                        <img class='media-object' src='../imagens/Usuario/15/Albuns/Perfil/thor.jpg' alt='foto' style='width: 80px; height: 80px;'>
                     </a>
                 </div>
                 <div class='media-body'>
@@ -157,8 +157,6 @@ atribuidos via sessão ou cookies -->
             </div>";
             }
             ?>
-
-
 
         </div>
         <!-- Fim da Div Central da Página, Mural de Notícias -->

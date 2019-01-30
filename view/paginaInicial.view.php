@@ -8,13 +8,17 @@
 
 require_once ("../view/templatePaginaInicial.php");
 
-// Iniciando a sessão.
+/*Nomeclaturando sessão*/
+session_name(hash('sha256',$_SERVER['SERVER_ADDR'].$_SERVER['REMOTE_ADDR']));
+
+/* Iniciando a sessão.*/
 session_start();
 
 //Verificação de segurança. Se não houver usuário logado, redireciona para a página de login.
 if((empty($_SESSION['idUsuario']) || empty($_SESSION['nomeUsuario']) || empty($_SESSION['fotoPerfil'])) &&
-    (empty($_COOKIE['idUsuario']) || empty($_COOKIE['nomeUsuario']) || empty($_COOKIE['fotoPerfil']) ||
-        empty($_COOKIE['senha']) || empty($_COOKIE['email']))){
+    (empty($_COOKIE[hash('sha256','idUsuario')]) || empty($_COOKIE[hash('sha256','nomeUsuario')])||
+        empty($_COOKIE[hash('sha256','fotoPerfil')]) || empty($_COOKIE[hash('sha256','senha')]) ||
+        empty($_COOKIE[hash('sha256','email')]))){
 
     $msg = "É necessário estar logado para acessar esta página !";
     echo "<script>window.location.href='../view/login.view.php?msg=".$msg."'</script>";
@@ -30,12 +34,13 @@ if(!empty($_SESSION['idUsuario']) || !empty($_SESSION['nomeUsuario']) ||
 }
 
 // Verificação se usuário está logado via cookie.
-if(!empty($_COOKIE['idUsuario']) || !empty($_COOKIE['nomeUsuario']) || !empty($_COOKIE['fotoPerfil']) ||
-!empty($_COOKIE['senha']) || !empty($_COOKIE['email'])){
+if(!empty($_COOKIE[hash('sha256','idUsuario')]) || !empty($_COOKIE[hash('sha256','nomeUsuario')]) ||
+    !empty($_COOKIE[hash('sha256','fotoPerfil')]) || !empty($_COOKIE[hash('sha256','senha')]) ||
+    !empty($_COOKIE[hash('sha256','email')])){
 
-    $idUsuario = base64_decode($_COOKIE['idUsuario']);
-    $nomeUsuario = base64_decode($_COOKIE['nomeUsuario']);
-    $fotoPerfil = base64_decode($_COOKIE['fotoPerfil']);
+    $idUsuario = base64_decode($_COOKIE[hash('sha256','idUsuario')]);
+    $nomeUsuario = base64_decode($_COOKIE[hash('sha256','nomeUsuario')]);
+    $fotoPerfil = base64_decode($_COOKIE[hash('sha256','fotoPerfil')]);
 }
 
 ?>

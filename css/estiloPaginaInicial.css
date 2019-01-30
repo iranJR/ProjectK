@@ -335,4 +335,39 @@
 
 /* Fim da Mensagem da Página de Contato */
 
-/* ------------------------------------------------------------------------ *
+/* ------------------------------------------------------------------------------------------ */
+
+/* ### Página de Alterar Senha ### */
+
+#divAlterarSenha {
+
+    background-color: rgba(38, 38, 38, 0.5);
+    padding: 2%;
+    color: white;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+input[type='password']{
+    color:black;
+}
+
+#divAlterarSenha h4{
+    font-weight: bold;
+    text-align: center;
+}
+
+#divAlterarSenha button{
+    background-color: crimson;
+    border-color: crimson;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    width: 20%;
+    text-transform: uppercase;
+    margin-left: 25%;
+}
+
+/* Fim da Div alterar Senha */
+
+/* ------------------------------------------------------------------------------------------ */

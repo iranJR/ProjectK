@@ -8,8 +8,9 @@
 
 //Verifica se existe um cookie de login criado, se houver compara os dados criptografados com os
 // dados do banco, se tudo ok, redireciona para a página inicial.
-if(!empty($_COOKIE['idUsuario']) && !empty($_COOKIE['nomeUsuario']) && !empty($_COOKIE['fotoPerfil']) &&
-    !empty($_COOKIE['senha']) && !empty($_COOKIE['email'])){
+if(!empty($_COOKIE[hash('sha256','idUsuario')]) && !empty($_COOKIE[hash('sha256','nomeUsuario')])
+    && !empty($_COOKIE[hash('sha256','fotoPerfil')]) && !empty($_COOKIE[hash('sha256','senha')])
+    && !empty($_COOKIE[hash('sha256','email')])){
 
     require_once ("../model/Usuario.php");
     require_once ("../dao/UsuarioDAO.php");
@@ -17,10 +18,10 @@ if(!empty($_COOKIE['idUsuario']) && !empty($_COOKIE['nomeUsuario']) && !empty($_
     $usuario = new Usuario('','','','','','',
         '','','','','','');
     $usuarioDao = new UsuarioDAO();
-    $usuario = $usuarioDao->buscarPeloId(base64_decode($_COOKIE['idUsuario']));
+    $usuario = $usuarioDao->buscarPeloId(base64_decode($_COOKIE[hash('sha256','idUsuario')]));
 
-    if($usuario->getEmail() == base64_decode($_COOKIE['email']) &&
-        $usuario->getSenha() == base64_decode($_COOKIE['senha'])){
+    if($usuario->getEmail() == base64_decode($_COOKIE[hash('sha256','email')]) &&
+        $usuario->getSenha() == base64_decode($_COOKIE[hash('sha256','senha')])){
         echo "<script>window.location.href='paginaInicial.view.php'</script>";
     }
 }

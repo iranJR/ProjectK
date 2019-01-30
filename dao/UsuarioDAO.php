@@ -114,7 +114,7 @@ class UsuarioDAO implements GenericsDAO
             $statement = $pdo->prepare("SELECT * FROM usuario WHERE idUsuario= :id");
             $statement->bindValue(":id",$id);
             if($statement->execute()){
-                $rs= $statement->fetch(PDO::FETCH_OBJ);
+                $rs = $statement->fetch(PDO::FETCH_OBJ);
                 $obj = new Usuario('','','','','','',
                     '', '', '', '', '','');
                 $obj->setIdUsuario($rs->idUsuario);

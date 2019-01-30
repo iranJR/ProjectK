@@ -5,7 +5,6 @@
 /*Downloaded from https://www.codeseek.co/brettmichaelorr/bootstrap-form-wizard-with-tooltipster-and-jquery-validate-RaRZLe */
 $(document).ready(function () {
 
-    //validation
     $('input, select').tooltipster({
         trigger: 'custom',
         onlyOne: false,
@@ -13,10 +12,17 @@ $(document).ready(function () {
         theme: 'tooltipster-light'
     });
 
-    /*jQuery.validator.addMethod("seletor", function(element) {
-        return ( $('#uf').val() === "");
-    });*/
+    // funcao que define o padrão do campo nome
+    jQuery.validator.addMethod("letras", function(value, element) {
+        return this.optional(element) || /^[A-zÀ-ú]+$/i.test(value);
+    }, "erro");
 
+    // funcao que define o padrão do campo sobrenome
+    jQuery.validator.addMethod("espacamento", function(value, element) {
+        return this.optional(element) || /^[A-zÀ-ú]+\s[A-zÀ-ú]+\s?$/i.test(value) || /^[A-zÀ-ú]+$/i.test(value);
+    }, "erro");
+
+    // funcao que define o padrão da senha
     jQuery.validator.addMethod("passwordCheck",
         function(value, element, param) {
             if (this.optional(element)) {
@@ -32,29 +38,20 @@ $(document).ready(function () {
         },
         "erro");
 
-
-
-
-    /*$("#form").validate({
-        rules : {
-            uf:{
-                required: true,
-               }
-           },
-        messages: {
-            uf :{
-                required: "Preencha o campo",
-            }
-        }
-    });*/
-
+    // validacoes do formulario
     $("#form").validate({
         rules : {
             nome:{
                 required:true,
+                letras:true,
+                minlength:3,
+                maxlength: 20,
             },
             sobrenome:{
                 required:true,
+                espacamento:true,
+                minlength:2,
+                maxlength: 45,
             },
             email:{
                 required:true,
@@ -88,9 +85,16 @@ $(document).ready(function () {
         messages:{
             nome:{
                 required: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   Preencha este campo.</p>",
+                letras: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   Digite apenas o primeiro nome.</p>",
+                minlength:"<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   O nome deve conter no mínimo 3 letras.</p>",
+                maxlength: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   O nome deve conter no máximo 20 letras.</p>",
             },
             sobrenome:{
                 required: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   Preencha este campo.</p>",
+                espacamento: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   Digite no máximo 2 nomes para o sobrenome.</p>",
+                minlength:"<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   O nome deve conter no mínimo 2 letras.</p>",
+                maxlength: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   O nome deve conter no máximo 45 letras.</p>",
+
             },
             email:{
                 required: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   Preencha este campo.</p>",
