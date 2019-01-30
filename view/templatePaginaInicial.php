@@ -16,16 +16,22 @@ echo"<nav id='cabecalho' class='navbar navbar-inverse'>
             <a id='logoProjectK' class='navbar-brand' href='../view/paginaInicial.view.php'>ProjectK</a>
         </div>
 
-        <form id='formPesquisar' class='navbar-form navbar-left' method='post' action='#'>
+        <div class='dropdown show'>
+          <form id='formPesquisar' class='navbar-form navbar-left' method='post' action='#'>
             <div id='divInputPesquisar' class='input-group'>
-                <input id='inputPesquisar' name='busca' type='text' class='form-control' placeholder='Pesquisar...'>
+                <input id='inputPesquisar' name='busca' type='text' class='form-control' autocomplete='off' placeholder='Pesquisar...'>
                 <div class='input-group-btn'>
                     <button id='BotaoPesquisar' class='btn btn-warning' type='submit'>
                         <i class='glyphicon glyphicon-search'></i>
                     </button>
-                </div>
-            </div>
+                </div>                
+            </div>            
         </form>
+        
+          <ul id='ulDropDownPesquisa' class='dropdown-menu'>
+          
+          </ul>
+        </div>
 
         <div id='divUsuarioCabecalho' class='nav nav-bar navbar-right'>
             <span class='glyphicon glyphicon-user'></span>

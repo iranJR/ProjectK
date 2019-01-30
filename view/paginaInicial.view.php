@@ -27,7 +27,6 @@ if(!empty($_SESSION['idUsuario']) || !empty($_SESSION['nomeUsuario']) ||
     $idUsuario = $_SESSION['idUsuario'];
     $nomeUsuario = $_SESSION['nomeUsuario'];
     $fotoPerfil = $_SESSION['fotoPerfil'];
-    echo "Logado por Sessão";
 }
 
 // Verificação se usuário está logado via cookie.
@@ -37,7 +36,6 @@ if(!empty($_COOKIE['idUsuario']) || !empty($_COOKIE['nomeUsuario']) || !empty($_
     $idUsuario = base64_decode($_COOKIE['idUsuario']);
     $nomeUsuario = base64_decode($_COOKIE['nomeUsuario']);
     $fotoPerfil = base64_decode($_COOKIE['fotoPerfil']);
-    echo "Logado por Cookies";
 }
 
 ?>
@@ -52,6 +50,7 @@ if(!empty($_COOKIE['idUsuario']) || !empty($_COOKIE['nomeUsuario']) || !empty($_
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../javaScript/JSFuncoesAjax.js"></script>
     <title>ProjectK - Página Inicial</title>
 
 </head>

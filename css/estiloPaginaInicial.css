@@ -65,6 +65,61 @@
     cursor: pointer;
 }
 
+/* Inicío do Menu DropDown de Pesquisa por Usuário */
+
+#ulDropDownPesquisa {
+    margin-left: 31.7%;
+    margin-top: 3.2%;
+    width: 29.6%;
+    padding: 1%;
+    background-color: #EEEEEE;
+}
+
+#DivMediaDropdownUser {
+    margin-bottom: 2%;
+}
+
+#divMediaUser {
+    border: solid;
+    border-radius: 10px;
+    border-color: #E5E5E5;
+    border-width: 1px;
+    background-color: white;
+}
+
+#divMediaUser div img {
+    width: 70px;
+    height: 70px;
+}
+
+#divMediaUserDados {
+    margin-top: 6%;
+}
+
+#divMediaUserDados h5 {
+    font-weight: bold;
+}
+
+#divMediaUserVerTodos {
+    font-weight: bold;
+    color: #068DD6;
+    text-align: center;
+}
+
+#divMediaUserVerTodos:hover {
+    color: #068DD6;
+    text-decoration: underline;
+    background-color: #EEEEEE;
+}
+
+#DivMediaUserP {
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* Fim do Menu DropDown de Pesquisa por Usuário */
+
 /* Fim do Cabeçalho Principal */
 
 /* Início do Menu Horizontal de Opções*/
