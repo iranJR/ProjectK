@@ -6,8 +6,6 @@
  * Time: 17:18
  */
 
-$nome = $email = null;
-
 if (!empty($_POST['nome']) && !empty($_POST['email']) && !empty($_POST['motivo'])
     && !empty($_POST['mensagem']) && !empty($_POST['pagina'])) {
 

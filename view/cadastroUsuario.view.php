@@ -153,7 +153,6 @@ $ufDAO = new UfDAO();
                         <small id="confirmSenhaHelp" class="form-text text-muted"><span id="spanSenhaHelp2">*</span>
                             <span id="spanConfirmSenha">Atenção : </span> <span id="textSpanSenhaHelp">As senhas devem ser iguais ! </span><span
                                     id="spanSenhaHelp2">*</span></small>
-                        <p id="aviso"></p>
                     </div>
                 </div>
                 <button id="botaoProximo2" class="btn btn-primary nextBtn pull-right" title="Preencha todos os campos do formulário" type="button" disabled>Próximo <i

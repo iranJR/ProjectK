@@ -5,6 +5,7 @@
  * Date: 08/01/2019
  * Time: 21:22
  */
+
 /*Nomeclaturando sessão*/
 session_name(hash('sha256',$_SERVER['SERVER_ADDR'].$_SERVER['REMOTE_ADDR']));
 

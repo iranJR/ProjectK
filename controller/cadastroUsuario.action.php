@@ -5,9 +5,9 @@ require_once ("../dao/UsuarioDAO.php");
 require_once ("../model/Album.php");
 require_once ("../dao/AlbumDAO.php");
 
-$nome = $dataNasc = $email = $cpf = $senha = $confirmaSenha = null;
+$nome = $dataNasc = $email = $cpf = $senha = null;
 
-$dataMax = date("Y-m-d", strtotime("-18 years"));
+$dataMax = date("Y-m-d", strtotime("- 18 years"));
 $dataMin = date("Y-m-d", strtotime("- 90 years"));
 
 if($_GET['act'] == 'save') {
@@ -88,7 +88,8 @@ if($_GET['act'] == 'save') {
                 echo "<script>window.location.href='../view/cadastroUsuario.view.php?msg=$msg'</script>";
             }
         }else{
-            echo "Aviso: Navegação suspeita, para um navegação segura verifique se todos os puglins estão ativados!!!";
+            $msg = "Aviso: Navegação suspeita, para um navegação segura verifique se todos os plugins estão ativados !";
+            echo "<script>window.location.href='../view/cadastroUsuario.view.php?msg=$msg'</script>";
         }
     }else{
         $msg = "Preencha todos os campos obrigatórios !";

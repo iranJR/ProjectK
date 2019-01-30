@@ -63,7 +63,8 @@ if(!empty($_POST['login']) && !empty($_POST['senha'])) {
             echo "<script>window.location.href='../view/login.view.php?msg=" . $msg . "'</script>";
         }
     } else {
-          echo "Aviso: Navegação suspeita, para um navegação segura verifique se todos os puglins estão ativados!!!";
+        $msg = "Aviso: Navegação suspeita, para um navegação segura verifique se todos os plugins estão ativados !";
+        echo "<script>window.location.href='../view/cadastroUsuario.view.php?msg=$msg'</script>";
     }
 }else{
     $msg = "Por favor digite um login e uma senha !";

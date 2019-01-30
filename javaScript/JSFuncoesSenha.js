@@ -59,23 +59,26 @@ $(document).ready(function() {
         if ($("#confirmSenha").val() !== "") {
             // verifica se os campos tem o mesmo valor
             if ($("#senha").val() === $("#confirmSenha").val()) {
-                $("#aviso").css("color", "#37C967");
-                $("#aviso").text("As senhas são iguais ! ");
+                $("#confirmSenhaHelp").css("display", "block");
+                $("#textSpanSenhaHelp").css("color", "#37C967");
+                $("#textSpanSenhaHelp").text("As senhas são iguais ! ");
                 var txt = $("#spanSenhaHelp").text();
-                //var tam = $("#senha").val();
-                // O cadastro só é habilitado caso a senha seja forte e tenha mais de 7 caracteres
-                if (txt === "Forte" /*&& tam.value > 7*/) {
+
+                // O cadastro só é habilitado caso a senha seja forte.
+                if (txt === "Forte") {
                     $("#botaoProximo2").prop("disabled", false);
                 } else {
                     $("#botaoProximo2").prop("disabled", true);
                 }
             } else {
-                $("#aviso").css("color", "crimson");
-                $("#aviso").text("As senhas são diferentes ! ");
+                $("#confirmSenhaHelp").css("display", "block");
+                $("#textSpanSenhaHelp").css("color", "crimson");
+                $("#textSpanSenhaHelp").text("As senhas são diferentes ! ");
                 $("#botaoProximo2").prop("disabled", true);
             }
         } else {
-            $("#aviso").text("");
+            $("#confirmSenhaHelp").css("display", "none");
+            $("#textSpanSenhaHelp").text("");
         }
     });
 
@@ -85,23 +88,26 @@ $(document).ready(function() {
         if ($("#senha").val() !== "") {
             // verifica se a senha e confirmSenha são iguais ou diferentes
             if ($("#senha").val() === $("#confirmSenha").val()) {
-                $("#aviso").css("color", "#37C967");
-                $("#aviso").text("As senhas são iguais ! ");
+                $("#confirmSenhaHelp").css("display", "block");
+                $("#textSpanSenhaHelp").css("color", "#37C967");
+                $("#textSpanSenhaHelp").text("As senhas são iguais ! ");
                 var txt = $("#spanSenhaHelp").text();
-                //  var tam = $("#confirmSenha").val();
-                // O cadastro só é habilitado caso a senha seja forte e tenha mais de 7 caracteres
-                if (txt === "Forte" /*&& tam.value > 7*/) {
+
+                // O cadastro só é habilitado caso a senha seja forte.
+                if (txt === "Forte") {
                     $("#botaoProximo2").prop("disabled", false);
                 } else {
                     $("#botaoProximo2").prop("disabled", true);
                 }
             } else {
-                $("#aviso").css("color", "crimson");
-                $("#aviso").text("As senhas são diferentes ! ");
+                $("#confirmSenhaHelp").css("display", "block");
+                $("#textSpanSenhaHelp").css("color", "crimson");
+                $("#textSpanSenhaHelp").text("As senhas são diferentes ! ");
                 $("#botaoProximo2").prop("disabled", true);
             }
         } else {
-            $("#aviso").text("");
+            $("#confirmSenhaHelp").css("display", "none");
+            $("#textSpanSenhaHelp").text("");
         }
     });
 
@@ -109,7 +115,7 @@ $(document).ready(function() {
     $("#senha").blur(function () {
         // se o campo estiver vazio, sumirá a mensagem
         if ($("#senha").val() === "") {
-            $("#aviso").text("");
+            $("#confirmSenhaHelp").css("display", "none");
         }
     });
 
@@ -117,7 +123,7 @@ $(document).ready(function() {
     $("#confirmSenha").blur(function () {
         // se o campo estiver vazio, sumirá a mensagem
         if ($("#confirmSenha").val() === "") {
-            $("#aviso").text("");
+            $("#confirmSenhaHelp").css("display", "none");
         }
     });
 
@@ -191,9 +197,9 @@ $(document).ready(function () {
                 $("#textSpanSenhaHelp").css("color", "#37C967");
                 $("#textSpanSenhaHelp").text("As senhas são iguais ! ");
                 var txt = $("#spanSenhaHelp").text();
-                //var tam = $("#senha").val();
-                // O cadastro só é habilitado caso a senha seja forte e tenha mais de 7 caracteres
-                if (txt === "Forte" /*&& tam.value > 7*/) {
+
+                // O cadastro só é habilitado caso a senha seja forte.
+                if (txt === "Forte") {
                     $("#botaoAlterarSenha").prop("disabled", false);
                 } else {
                     $("#botaoAlterarSenha").prop("disabled", true);
@@ -212,14 +218,14 @@ $(document).ready(function () {
     $("#confirmSenhaNova").keyup(function () {
         // verifica se o campo senha está preenchido
         if ($("#senhaNova").val() !== "") {
-            // verifica se a senha e confirmSenha são iguais ou diferentes
+            // verifica se a senha e confirmSenha são iguais ou diferentes.
             if ($("#senhaNova").val() === $("#confirmSenhaNova").val()) {
                 $("#textSpanSenhaHelp").css("color", "#37C967");
                 $("#textSpanSenhaHelp").text("As senhas são iguais ! ");
                 var txt = $("#spanSenhaHelp").text();
-                //  var tam = $("#confirmSenha").val();
-                // O cadastro só é habilitado caso a senha seja forte e tenha mais de 7 caracteres
-                if (txt === "Forte" /*&& tam.value > 7*/) {
+
+                // O cadastro só é habilitado caso a senha seja forte.
+                if (txt === "Forte") {
                     $("#botaoAlterarSenha").prop("disabled", false);
                 } else {
                     $("#botaoAlterarSenha").prop("disabled", true);
@@ -251,11 +257,5 @@ $(document).ready(function () {
     });
 
 });
-
-/*----------------------------------------------------------------------------------*/
-
-
-
-
 
 /*----------------------------------------------------------------------------------*/
