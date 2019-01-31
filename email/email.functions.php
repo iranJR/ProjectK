@@ -68,3 +68,57 @@ function enviarEmailFormularioContato($emailDestinatario, $nomeDestinatario, $mo
         return "E-mail enviado com sucesso!";
     }
 }
+
+function enviarEmailCodigoRecuperacaoSenha($emailDestinatario, $nomeDestinatario, $codigoRecuperacao){
+    global $email;
+
+    // Remetente: informar o e-mail e o nome do remetente.
+    $email->setFrom(REMETENTE, NOMEREMETENTE);
+
+    // Destinatário: informar o e-mail e o nome do destinatário.
+    $email->addAddress($emailDestinatario, $nomeDestinatario);
+
+    // Assunto do E-mail.
+    $email->Subject = 'ProjectK - Código para Recuperação de Senha';
+
+    // Mensagem, corpo do e-mail.
+
+    // Adiciona uma imagem ao e-mail, no scr da tag <img> se usa o cid dado neste comando para chama-lá.
+    $email->AddEmbeddedImage('../email/imagens/logoEmail.jpg', 'favicon');
+
+    $html = emailCodigoRecuperacaoSenha($nomeDestinatario, $codigoRecuperacao);
+    // Adiciona um código html ao corpo do e-mail, mensagem.
+    $email->msgHTML($html);
+
+    //Função de realiza o envio do e-mail.
+    if (!$email->send()) {
+        return "Erro ao enviar o E-mail: " . $email->ErrorInfo;
+    } else {
+        return "E-mail enviado com sucesso!";
+    }
+}
+
+function enviarEmailAlertaTrocaSenha($emailDestinatario, $nomeDestinatario){
+    global $email;
+
+    // Remetente: informar o e-mail e o nome do remetente.
+    $email->setFrom(REMETENTE, NOMEREMETENTE);
+
+    // Destinatário: informar o e-mail e o nome do destinatário.
+    $email->addAddress($emailDestinatario, $nomeDestinatario);
+
+    // Assunto do E-mail.
+    $email->Subject = 'ProjectK - Alerta de Segurança';
+
+    // Mensagem, corpo do e-mail.
+
+    // Adiciona uma imagem ao e-mail, no scr da tag <img> se usa o cid dado neste comando para chama-lá.
+    $email->AddEmbeddedImage('../email/imagens/logoEmail.jpg', 'favicon');
+
+    $html = emailAlertaTrocaSenha($nomeDestinatario);
+    // Adiciona um código html ao corpo do e-mail, mensagem.
+    $email->msgHTML($html);
+
+    //Função de realiza o envio do e-mail.
+    $email->send();
+}

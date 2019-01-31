@@ -84,6 +84,111 @@
 
 /* Fim Video de Login */
 
+/* ### Página de Recuperar Senha na Index ### */
+
+/*Início Div de Recuperar Senha*/
+
+#divRecuperarSenha{
+    margin-top: 150px;
+    margin-left: 350px;
+    background-color: rgba(38, 38, 38, 0.5);
+    padding: 2%;
+    color: white;
+    border-radius: 20px;
+    font-weight: bold;
+    display: none;
+}
+
+#divRecuperarSenha h1{
+    font-weight: bold;
+    text-align: center;
+    font-size: 30px;
+    margin-right: 1%;
+}
+
+#divRecuperarSenha h4{
+    font-weight: bold;
+    text-align: center;
+}
+
+#divRecuperarSenha button{
+    background-color: crimson;
+    border-color: crimson;
+}
+
+#divRecuperarSenha button:hover{
+    opacity: 0.8;
+}
+
+#botaoRecuperar{
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    width: 55%;
+    text-transform: uppercase;
+    margin-left: 6%;
+}
+
+#botaoVoltarLogin{
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    width: 55%;
+    text-transform: uppercase;
+    margin-left: 40%;
+}
+
+/*Fim Div de Recuperar Senha*/
+
+/* ------------------------------------------------------------------------------------------ */
+
+/* ### Página do Código de Recuperação de Senha na Index ### */
+
+/*Início Div de Código de Recuperação*/
+
+#divCodigoRecuperacao{
+    margin-top: 150px;
+    margin-left: 450px;
+    background-color: rgba(38, 38, 38, 0.5);
+    padding: 2%;
+    color: white;
+    border-radius: 20px;
+    font-weight: bold;
+    display: none;
+}
+
+#divCodigoRecuperacao h1{
+    font-weight: bold;
+    text-align: center;
+    font-size: 30px;
+    margin-right: 1%;
+}
+
+#divCodigoRecuperacao h4{
+    font-weight: bold;
+    text-align: center;
+}
+
+#divCodigoRecuperacao button{
+    background-color: crimson;
+    border-color: crimson;
+}
+
+#divCodigoRecuperacao button:hover{
+    opacity: 0.8;
+}
+
+#botaoCodRec{
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    width: 55%;
+    text-transform: uppercase;
+    margin-left: 28%;
+}
+
+/*Fim Div de Código de Recuperação*/
+
 /* ------------------------------------------------------------------------------------------ */
 
 /* ### Página de Contato na Index ### */
@@ -150,53 +255,6 @@
 }
 
 /* Fim Video de Login */
-
-/* ------------------------------------------------------------------------------------------ */
-
-/* ### Página de Contato na Index ### */
-
-/*Início Div de Contato*/
-
-#divRecuperarSenha{
-    margin-top: 150px;
-    margin-left: 350px;
-    background-color: rgba(38, 38, 38, 0.5);
-    padding: 2%;
-    color: white;
-    border-radius: 20px;
-    font-weight: bold;
-    display: none;
-}
-
-#divRecuperarSenha h1{
-    font-weight: bold;
-    text-align: center;
-    font-size: 30px;
-    margin-right: 1%;
-}
-
-#divRecuperarSenha h4{
-    font-weight: bold;
-    text-align: center;
-}
-
-#divRecuperarSenha button{
-    background-color: crimson;
-    border-color: crimson;
-}
-
-#divRecuperarSenha button:hover{
-    opacity: 0.8;
-}
-
-#botaoRecuperar{
-    text-align: center;
-    font-weight: bold;
-    font-size: 18px;
-    width: 35%;
-    text-transform: uppercase;
-    margin-left: 30%;
-}
 
 /* ------------------------------------------------------------------------------------------ */
 

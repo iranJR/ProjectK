@@ -42,13 +42,13 @@ $(document).ready(function(){
 <!--Fim Animação da Div de Contato-->
 /* ----------------------------------------------------------------- */
 
-/* ### Página de Recuperar Senha da Index ### */
+/* ### Página do Código de Recuperação de Senha da Index ### */
 
-<!--Início Animação da Div de Recuperar Senha-->
+<!--Início Animação da Div do Código de Recuperação-->
 
 $(document).ready(function(){
-    $("#divRecuperarSenha").fadeIn(1500);
+    $("#divCodigoRecuperacao").fadeIn(1500);
 });
 
-<!--Fim Animação da Div de Recuperar Senha-->
+<!--Fim Animação da Div do Código de Recuperação-->
 /* ----------------------------------------------------------------- */
