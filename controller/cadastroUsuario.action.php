@@ -78,22 +78,22 @@ if($_GET['act'] == 'save') {
                     enviarEmailBoasVindas(base64_decode($usuario->getEmail()), $usuario->getNome(), $usuario->getSobrenome());
 
                     $msg = "Seus dados foram cadastrados com sucesso !";
-                    echo "<script>window.location.href='../view/login.view.php?msg=$msg'</script>";
+                    echo "<script>window.location.href='../view/login.view.php?msg=".$msg."'</script>";
                 } else {
                     $msg = "Não foi possível realizar o seu cadastro !";
-                    echo "<script>window.location.href='../view/cadastroUsuario.view.php?msg=$msg'</script>";
+                    echo "<script>window.location.href='../view/cadastroUsuario.view.php?msg=".$msg."'</script>";
                 }
             } catch (PDOException $erro) {
                 $msg = "Erro ao cadastrar os dados: " . $erro->getMessage();
-                echo "<script>window.location.href='../view/cadastroUsuario.view.php?msg=$msg'</script>";
+                echo "<script>window.location.href='../view/cadastroUsuario.view.php?msg=".$msg."'</script>";
             }
         }else{
             $msg = "Aviso: Navegação suspeita, para um navegação segura verifique se todos os plugins estão ativados !";
-            echo "<script>window.location.href='../view/cadastroUsuario.view.php?msg=$msg'</script>";
+            echo "<script>window.location.href='../view/cadastroUsuario.view.php?msg=".$msg."'</script>";
         }
     }else{
         $msg = "Preencha todos os campos obrigatórios !";
-        echo "<script>window.location.href='../view/cadastroUsuario.view.php?msg=$msg'</script>";
+        echo "<script>window.location.href='../view/cadastroUsuario.view.php?msg=".$msg."'</script>";
     }
 }
 

@@ -34,7 +34,7 @@ if(!empty($_POST['login']) && !empty($_POST['senha'])) {
         $senha = hash('sha256', $_POST['senha']);
         $usuario = new Usuario('', '', '', '', '', '', '', '',
             '', '', '', '');
-        $dao = new usuarioDao();
+        $dao = new UsuarioDAO();
         $usuario = $dao->buscarPeloLogin($email, $senha);
         if ($usuario->getEmail() == $email && $usuario->getSenha() == $senha) {
 
@@ -64,7 +64,7 @@ if(!empty($_POST['login']) && !empty($_POST['senha'])) {
         }
     } else {
         $msg = "Aviso: Navegação suspeita, para um navegação segura verifique se todos os plugins estão ativados !";
-        echo "<script>window.location.href='../view/cadastroUsuario.view.php?msg=$msg'</script>";
+        echo "<script>window.location.href='../view/login.view.php?msg=".$msg."'</script>";
     }
 }else{
     $msg = "Por favor digite um login e uma senha !";

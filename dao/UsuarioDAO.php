@@ -186,4 +186,36 @@ class UsuarioDAO implements GenericsDAO
             return "Erro ao conectar com o banco de dados: ". $erro->getMessage();
         }
     }
+
+    public function buscarPeloLoginCPF($email,$cpf){
+        global $pdo;
+        try{
+            $statement = $pdo->prepare("SELECT * FROM usuario WHERE email = :email AND cpf = :cpf");
+            $statement->bindValue(":email",$email);
+            $statement->bindValue(":cpf",$cpf);
+            if($statement->execute()){
+                $rs= $statement->fetch(PDO::FETCH_OBJ);
+                $obj = new Usuario('','','','','','',
+                    '', '', '', '', '','');
+                $obj->setIdUsuario($rs->idUsuario);
+                $obj->setNome($rs->nome);
+                $obj->setSobreNome($rs->sobrenome);
+                $obj->setSenha($rs->senha);
+                $obj->setEmail($rs->email);
+                $obj->setCpf($rs->cpf);
+                $obj->setDataNascimento($rs->dataNascimento);
+                $obj->setSexo($rs->sexo);
+                $obj->setCidade($rs->cidade);
+                $obj->setEstado($rs->estado);
+                $obj->setFotoPerfil($rs->fotoPerfil);
+                $obj->setDataCadastro($rs->dataCadastro);
+                return $obj;
+            }
+            else {
+                throw new PDOException("<script> alert('Não foi possível executar o código SQL'); </script>");
+            }
+        } catch (PDOException $erro) {
+            return "Erro ao conectar com o banco de dados: ". $erro->getMessage();
+        }
+    }
 }

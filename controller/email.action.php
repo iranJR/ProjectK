@@ -19,19 +19,19 @@ if (!empty($_POST['nome']) && !empty($_POST['email']) && !empty($_POST['motivo']
         }
 
         if ($_POST['pagina'] == "contato") {
-            echo "<script>window.location.href='../view/contato.view.php?msg=$msg'</script>";
+            echo "<script>window.location.href='../view/contato.view.php?msg=".$msg."'</script>";
         } else {
-            echo "<script>window.location.href='../view/contatoIndex.view.php?msg=$msg'</script>";
+            echo "<script>window.location.href='../view/contatoIndex.view.php?msg=".$msg."'</script>";
         }
 
 } else {
     $msg = "Preencha todos os campos obrigatórios !";
 
     if($_POST['pagina'] == "contato"){
-        echo "<script>window.location.href='../view/contato.view.php?msg=$msg'</script>";
+        echo "<script>window.location.href='../view/contato.view.php?msg=".$msg."'</script>";
     }
     else{
-        echo "<script>window.location.href='../view/contatoIndex.view.php?msg=$msg'</script>";
+        echo "<script>window.location.href='../view/contatoIndex.view.php?msg=".$msg."'</script>";
     }
 }
 

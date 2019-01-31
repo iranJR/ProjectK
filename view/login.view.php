@@ -58,11 +58,11 @@
             </div>
         </div>
         <div class="form-group">
-            <a id="esqueceuSenha">Esqueceu sua senha ?</a>
+            <a href="../view/recuperarSenhaIndex.php" id="esqueceuSenha">Esqueceu sua senha ?</a>
         </div>
         <button id="botaoLogin" type="submit" class="btn btn-info">Entrar</button>
         <hr id="hr">
-        <p>Ainda não possui cadastro ? <a href="cadastroUsuario.view.php">Clique aqui</a> e cadastre-se agora.</p>
+        <p>Ainda não possui cadastro ? <a href="../view/cadastroUsuario.view.php">Clique aqui</a> e cadastre-se agora.</p>
     </form>
 </div>
 

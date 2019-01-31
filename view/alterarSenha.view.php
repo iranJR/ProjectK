@@ -87,7 +87,7 @@ require_once ("../view/templatePaginaInicial.php");
 
         <div id='divMural'>
             <div id="divAlterarSenha">
-               <form id="formLogin" method="post" action="../controller/alterarSenha.action.php?act=save">
+               <form id="formLogin" method="post" action="../controller/recuperarSenha.action.php?act=save">
                    <div class="row">
                        <h4>Alterar Senha</h4>
                        <hr>

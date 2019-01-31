@@ -153,6 +153,53 @@
 
 /* ------------------------------------------------------------------------------------------ */
 
+/* ### Página de Contato na Index ### */
+
+/*Início Div de Contato*/
+
+#divRecuperarSenha{
+    margin-top: 150px;
+    margin-left: 350px;
+    background-color: rgba(38, 38, 38, 0.5);
+    padding: 2%;
+    color: white;
+    border-radius: 20px;
+    font-weight: bold;
+    display: none;
+}
+
+#divRecuperarSenha h1{
+    font-weight: bold;
+    text-align: center;
+    font-size: 30px;
+    margin-right: 1%;
+}
+
+#divRecuperarSenha h4{
+    font-weight: bold;
+    text-align: center;
+}
+
+#divRecuperarSenha button{
+    background-color: crimson;
+    border-color: crimson;
+}
+
+#divRecuperarSenha button:hover{
+    opacity: 0.8;
+}
+
+#botaoRecuperar{
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    width: 35%;
+    text-transform: uppercase;
+    margin-left: 30%;
+}
+
+/* ------------------------------------------------------------------------------------------ */
+
 /* ### Página Index ### */
 
 /* Início da Div da Index*/
@@ -238,7 +285,7 @@
     width: 100%;
 }
 
-/* Início Video de Index */
+/* Fim Video de Index */
 
 /* ------------------------------------------------------------------------------------------ */
 
