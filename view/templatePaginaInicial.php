@@ -152,14 +152,14 @@ echo "<div id = 'divMenuLateralDireito' class='col-sm-2 sidenav' >
         </thead >
         <tbody >
         <tr >
-            <td ><img src = '../imagens/Usuario/15/Albuns/Perfil/thor.jpg' class='img-rounded' ></td >
-            <td ><img src = '../imagens/Usuario/15/Albuns/Perfil/thor.jpg' class='img-rounded' ></td >
-            <td ><img src = '../imagens/Usuario/15/Albuns/Perfil/thor.jpg' class='img-rounded' ></td >
+            <td ><img src = '../imagens/thor.jpg' class='img-rounded' ></td >
+            <td ><img src = '../imagens/thor.jpg' class='img-rounded' ></td >
+            <td ><img src = '../imagens/thor.jpg' class='img-rounded' ></td >
         </tr >
         <tr >
-            <td ><img src = '../imagens/Usuario/15/Albuns/Perfil/thor.jpg' class='img-rounded' ></td >
-            <td ><img src = '../imagens/Usuario/15/Albuns/Perfil/thor.jpg' class='img-rounded' ></td >
-            <td ><img src = '../imagens/Usuario/15/Albuns/Perfil/thor.jpg' class='img-rounded' ></td >
+            <td ><img src = '../imagens/thor.jpg' class='img-rounded' ></td >
+            <td ><img src = '../imagens/thor.jpg' class='img-rounded' ></td >
+            <td ><img src = '../imagens/thor.jpg' class='img-rounded' ></td >
         </tr >
         <tr >
         <th scope = 'col' colspan = '3' ><a id = 'aVerTodos' > Ver Todos </a ></th >
@@ -175,14 +175,14 @@ echo "<div id = 'divMenuLateralDireito' class='col-sm-2 sidenav' >
         </thead >
         <tbody >
         <tr >
-            <td ><img src = '../imagens/Usuario/15/Albuns/Perfil/thor.jpg' ></td >
-            <td ><img src = '../imagens/Usuario/15/Albuns/Perfil/thor.jpg' ></td >
-            <td ><img src = '../imagens/Usuario/15/Albuns/Perfil/thor.jpg' ></td >
+            <td ><img src = '../imagens/thor.jpg' ></td >
+            <td ><img src = '../imagens/thor.jpg' ></td >
+            <td ><img src = '../imagens/thor.jpg' ></td >
         </tr >
         <tr >
-            <td ><img src = '../imagens/Usuario/15/Albuns/Perfil/thor.jpg' ></td >
-            <td ><img src = '../imagens/Usuario/15/Albuns/Perfil/thor.jpg' ></td >
-            <td ><img src = '../imagens/Usuario/15/Albuns/Perfil/thor.jpg' ></td >
+            <td ><img src = '../imagens/thor.jpg' ></td >
+            <td ><img src = '../imagens/thor.jpg' ></td >
+            <td ><img src = '../imagens/thor.jpg' ></td >
         </tr >
         <tr >
             <th scope = 'col' colspan = '3' ><a id = 'aVerTodos' > Ver Todos </a ></th >

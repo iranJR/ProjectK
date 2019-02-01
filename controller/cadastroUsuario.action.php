@@ -45,8 +45,8 @@ if($_GET['act'] == 'save') {
                 $usuario = new Usuario('', '', '', '', '', '', '', '',
                     '', '', '', '');
 
-                $usuario->setNome(ucfirst(strtolower($_POST['nome'])));
-                $usuario->setSobrenome(ucfirst(strtolower($_POST['sobrenome'])));
+                $usuario->setNome(mb_convert_case($_POST['nome'], MB_CASE_TITLE));
+                $usuario->setSobrenome(mb_convert_case($_POST['sobrenome'], MB_CASE_TITLE));
                 $usuario->setSenha(hash('sha256', $_POST['senha']));
                 $usuario->setEmail(base64_encode($_POST['email']));
                 $usuario->setCpf(base64_encode($_POST['cpf']));

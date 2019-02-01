@@ -2,9 +2,9 @@ CREATE DATABASE  IF NOT EXISTS `dbprojectk` /*!40100 DEFAULT CHARACTER SET latin
 USE `dbprojectk`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: dbprojectk
+-- Host: localhost    Database: dbprojectk
 -- ------------------------------------------------------
--- Server version	5.6.40-log
+-- Server version	5.7.20-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -32,7 +32,7 @@ CREATE TABLE `album` (
   PRIMARY KEY (`idAlbum`),
   KEY `fk_album_usuario_idx` (`idUsuario`),
   CONSTRAINT `fk_album_usuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +41,7 @@ CREATE TABLE `album` (
 
 LOCK TABLES `album` WRITE;
 /*!40000 ALTER TABLE `album` DISABLE KEYS */;
+INSERT INTO `album` VALUES (1,'Perfil','2019-02-01',1),(2,'Perfil','2019-02-01',2),(3,'Perfil','2019-02-01',3),(4,'Perfil','2019-02-01',4),(5,'Perfil','2019-02-01',5),(6,'Perfil','2019-02-01',6),(7,'Perfil','2019-02-01',7),(8,'Perfil','2019-02-01',8),(9,'Perfil','2019-02-01',9);
 /*!40000 ALTER TABLE `album` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -222,6 +223,33 @@ LOCK TABLES `post` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `recuperarsenha`
+--
+
+DROP TABLE IF EXISTS `recuperarsenha`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `recuperarsenha` (
+  `idRecuperarSenha` int(11) NOT NULL AUTO_INCREMENT,
+  `codigoRecuperacao` int(11) NOT NULL,
+  `dataExpiracao` datetime NOT NULL,
+  `emailRecuperacao` varchar(64) NOT NULL,
+  `cpfRecuperacao` varchar(45) NOT NULL,
+  PRIMARY KEY (`idRecuperarSenha`),
+  UNIQUE KEY `codigoRecuperacao_UNIQUE` (`codigoRecuperacao`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `recuperarsenha`
+--
+
+LOCK TABLES `recuperarsenha` WRITE;
+/*!40000 ALTER TABLE `recuperarsenha` DISABLE KEYS */;
+/*!40000 ALTER TABLE `recuperarsenha` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `uf`
 --
 
@@ -271,7 +299,7 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`idUsuario`),
   UNIQUE KEY `email_UNIQUE` (`email`),
   UNIQUE KEY `cpf_UNIQUE` (`cpf`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -280,7 +308,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'iran','junior','09810e9d06bae73bb0176190e4ebfaf4dced93edbf8be75cdfe666ed16cf6218','iran@mail.com','MTIyLjMzMy4zMzMtMzM=','1993-02-01','masculino','3094','13','','2019-01-04'),(2,'ciro','gustavo','320764da5cfe4267f129abb4b899b3e95aea1028e3a2d431286c4257bd441ff5','ciro@ciro.com','MTExLjExMS4xMTEtMTE=','1992-02-13','masculino','3094','13','','2019-01-05'),(3,'marcos','mazini','d52d73c7f98eaf8689eb9203765ff63c991ae2948d84ca348ab5d986ebeb6ff6','marcos@marcos','MjM0LjMxMy40NDQtNDM=','1993-03-12','masculino','3094','13','','2019-01-06'),(4,'bagunça','swat','d52d73c7f98eaf8689eb9203765ff63c991ae2948d84ca348ab5d986ebeb6ff6','swat@swat','MzkyLjgzOC42OTUtODQ=','1995-02-07','masculino','3094','13','','2019-01-06');
+INSERT INTO `usuario` VALUES (1,'Ciro','Gustavo','96e5f2c2f16e3513a539f3fa493a0c649d7d49bde5995cdcc5a82a5aec5ae6e6','Y2lyby5zYW50b3NAdmlhbm5hc2VtcHJlLmNvbS5icg==','MTExLjExMS4xMTEtMTE=','1992-02-20','masculino','3094','13','tony.jpg','2019-02-01'),(2,'Iran','Junior','f542cc9b6bc50f26eb02355e0a39f86a4223bca449f49a7506158d7e78816be8','aXJhbi5qdW5pb3JAdmlhbm5hc2VtcHJlLmNvbS5icg==','MjIyLjIyMi4yMjItMjI=','1993-05-13','masculino','3094','13','thor.jpg','2019-02-01'),(3,'Marcos','Mazini','0761f00dd344c80f66db367e26ff786a7b2a11b5dd38e1e8678e2f83ed1e1207','bWFyY29zQG1hcmNvcy5jb20uYnI=','MzMzLjMzMy4zMzMtMzM=','1993-08-01','masculino','3094','13','hulk.jpg','2019-02-01'),(4,'Marta','Vieira silva','c2bea9378e075b0c080a473a535ac4558d33cdfc1612e8ed9ce91f5a9f13af0e','bWFydGFAbWFydGEuY29tLmJy','NDQ0LjQ0NC40NDQtNDQ=','1986-02-16','feminino','58','2','marta.jpg','2019-02-01'),(5,'Ronaldinho','Gaúcho','b4b27de39e37a4297bb551dd7b00953699ccbf922c9ce3d01f26f3cfb2c140a3','cm9uYWxkaW5ob0Byb25hbGRpbmhvLmNvbS5icg==','NTU1LjU1NS41NTUtNTU=','1980-03-21','masculino','5936','21','gaucho.png','2019-02-01'),(6,'Maike','Da Swat','948c6449e3bea818899fe53874d408502ed4820b2e8b402b03af72d835facc25','bWFpa2VAbWFpa2UuY29tLmJy','NjY2LjY2Ni42NjYtNjY=','1985-04-01','masculino','5292','19','maike.jpg','2019-02-01'),(7,'Ronaldo','Fenômeno','7654bccff8e9bd0a77182ebc6cd59e0362f5be33be4caefa62b1589b18481191','cm9uYWxkb0Byb25hbGRvLmNvbS5icg==','Nzc3Ljc3Ny43NzctNzc=','1976-02-22','masculino','5297','19','ronaldo.png','2019-02-01'),(8,'Carlos','Alberto Coelho','dcdb8f2d32d5571402953e15766231dc3a4a38d622d8940b88d95d44c9ae4c17','Y29lbGhvQGNvZWxoby5jb20uYnI=','ODg4Ljg4OC44ODgtODg=','1961-04-01','masculino','5254','19','perfil.png','2019-02-01'),(9,'Roberto','Lacordia','bf4eac1978bf9370dc7548132a38add10dd2287caa10ef8b9cf0df7a5e6a157f','bGFjb3JkaWFAbGFjb3JkaWEuY29tLmJy','OTk5Ljk5OS45OTktOTk=','1972-12-09','masculino','2741','13','perfil.png','2019-02-01');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -293,4 +321,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-07 15:14:31
+-- Dump completed on 2019-02-01 15:33:53
