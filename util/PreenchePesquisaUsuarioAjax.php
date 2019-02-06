@@ -8,6 +8,7 @@
 $busca = $_GET['busca'];
 $busca = str_replace("1", " ", $busca);
 $busca = explode(' ', $busca, 2);
+
 require_once ('../banco/conexao_bd.php');
 
 global $pdo;
@@ -16,7 +17,7 @@ if(count($busca) == 2) {
     $sql = "SELECT * FROM usuario where nome like :busca && sobrenome like :busca2 order by nome, sobrenome LIMIT 5";
     $statement = $pdo->prepare($sql);
     $statement->bindValue(':busca', $busca[0] . '%');
-    $statement->bindValue(':busca2', '%' . $busca[1] . '%');
+    $statement->bindValue(':busca2', $busca[1] . '%');
 }else{
     $sql = "SELECT * FROM usuario where nome like :busca order by nome, sobrenome LIMIT 5";
     $statement = $pdo->prepare($sql);
@@ -57,10 +58,16 @@ if(count($dados) > 0){
             </div>
             </div></a></li>";
     }
-
-            echo"<li>
-                <a id='divMediaUserVerTodos' class='dropdown-item' href='#'>Ver Todos</a>
+        if(count($busca) == 2) {
+            echo "<li>
+                <a id='divMediaUserVerTodos' class='dropdown-item' href='../view/buscaUsuario.view.php?palavra=$busca[0] $busca[1]'>Ver Todos</a>
             </li>";
+        }
+        else{
+            echo "<li>
+                <a id='divMediaUserVerTodos' class='dropdown-item' href='../view/buscaUsuario.view.php?palavra=$busca[0]'>Ver Todos</a>
+            </li>";
+        }
 }
 else {
     echo "<li><p id='DivMediaUserP'>Nenhum resultado encontrado.</p></li>";

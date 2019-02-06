@@ -17,7 +17,7 @@ echo"<nav id='cabecalho' class='navbar navbar-inverse'>
         </div>
 
         <div class='dropdown show'>
-          <form id='formPesquisar' class='navbar-form navbar-left' method='post' action='#'>
+          <form id='formPesquisar' class='navbar-form navbar-left' method='get' action='../view/buscaUsuario.view.php'>
             <div id='divInputPesquisar' class='input-group'>
                 <input id='inputPesquisar' name='busca' type='text' class='form-control' autocomplete='off' placeholder='Pesquisar...'>
                 <div class='input-group-btn'>
@@ -162,7 +162,7 @@ echo "<div id = 'divMenuLateralDireito' class='col-sm-2 sidenav' >
             <td ><img src = '../imagens/thor.jpg' class='img-rounded' ></td >
         </tr >
         <tr >
-        <th scope = 'col' colspan = '3' ><a id = 'aVerTodos' > Ver Todos </a ></th >
+        <th scope = 'col' colspan = '3' ><a id = 'aVerTodos' href='verAmigos.view.php?'> Ver Todos </a ></th >
         </tr >
         </tbody >
     </table >

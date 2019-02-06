@@ -12,6 +12,10 @@ session_name(hash('sha256',$_SERVER['SERVER_ADDR'].$_SERVER['REMOTE_ADDR']));
 /* Iniciando a sessão.*/
 session_start();
 
+$idUsuario = 1;
+$nomeUsuario = "ciro";
+$fotoPerfil = "";
+
 //Verificação de segurança. Se não houver usuário logado, redireciona para a página de login.
 if((empty($_SESSION['idUsuario']) || empty($_SESSION['nomeUsuario']) || empty($_SESSION['fotoPerfil'])) &&
     (empty($_COOKIE[hash('sha256','idUsuario')]) || empty($_COOKIE[hash('sha256','nomeUsuario')]) ||
@@ -19,7 +23,7 @@ if((empty($_SESSION['idUsuario']) || empty($_SESSION['nomeUsuario']) || empty($_
         empty($_COOKIE[hash('sha256','email')]))){
 
     $msg = "É necessário estar logado para acessar esta página !";
-    echo "<script>window.location.href='../view/login.view.php?msg=".$msg."'</script>";
+    // echo "<script>window.location.href='../view/login.view.php?msg=".$msg."'</script>";
 }
 
 // Verificação se usuário está logado via sessão.
@@ -60,6 +64,7 @@ require_once ("../view/templatePaginaInicial.php");
     <script src="../javaScript/JSFuncaoContato.js"></script>
     <script src="../javaScript/JSFuncoesSenha.js"></script>
     <script src="../javaScript/JSValidationAlterarSenha.js"></script>
+    <script src="../javaScript/JSFuncoesAjax.js"></script>
     <title>ProjectK - Alterar Senha</title>
 </head>
 <body>
@@ -86,12 +91,12 @@ require_once ("../view/templatePaginaInicial.php");
         confirme sua nova senha);  -->
 
         <div id='divMural'>
-            <div id="divAlterarSenha">
+            <div id='divAlterarSenha' class="form-group col-md-6">
                <form id="formLogin" method="post" action="../controller/recuperarSenha.action.php?act=save">
                    <div class="row">
                        <h4>Alterar Senha</h4>
                        <hr>
-                       <div class="form-group col-md-6">
+                       <div class="form-group col-md-8">
                             <input type="hidden" name="usuario" value="<?= $idUsuario ?>">
                             <label class="labelForm" for="nome">Senha Atual:</label>
                             <input type="password" name="senhaAtual" id="senhaAtual" placeholder="Digite sua senha atual...">
@@ -99,33 +104,43 @@ require_once ("../view/templatePaginaInicial.php");
                    </div>
                    <hr>
                    <div class="row">
-                       <div class="form-group col-md-6">
+                       <div class="form-group col-md-8">
                            <label class="labelForm" for="nome">Nova Senha:</label>
                            <input type="password" name="senhaNova" id="senhaNova" placeholder="Digite sua senha nova...">
-                           <small id="senhaHelp" class="form-text text-muted"><span id="spanSenhaHelp2">*</span> Força da
-                               Senha : <span id="spanSenhaHelp"> </span>
-                               <div id="barraForca" class="progress">
-                                   <div id="barra" class="progress-bar" role="progressbar"></div>
-                               </div>
-                           </small>
-                       </div>
-                       <div class="form-group col-md-6">
-                           <label class="labelForm" for="nome">Confirme a Nova Senha:</label>
-                           <input type="password" name="confirmSenhaNova" id="confirmSenhaNova" placeholder="Confirme sua senha nova...">
-                           <small id="confirmSenhaHelp" class="form-text text-muted">
-                               <span id="spanSenhaHelp2">*</span>
-                               <span id="spanConfirmSenha">Atenção : </span>
-                               <span id="textSpanSenhaHelp">As senhas devem ser iguais ! </span>
-                               <span id="spanSenhaHelp2">*</span>
-                           </small>
+                              <p>
+                                 <small id="senhaHelp" class="form-text text-muted"><span id="spanSenhaHelp2">*</span> Força da
+                                      Senha : <span id="spanSenhaHelp"> </span>
+                                      <div id="barraForca" class="progress">
+                                          <div id="barra" class="progress-bar" role="progressbar"></div>
+                                      </div>
+                                 </small>
+                              </p>
                        </div>
                    </div>
+                   <hr>
                    <div class="row">
-                      <button id="botaoAlterarSenha" type="submit" class="btn btn-info">Alterar</button>
+                       <div class="form-group col-md-10">
+                           <label class="labelForm" for="nome">Confirme a Nova Senha:</label>
+                           <input type="password" name="confirmSenhaNova" id="confirmSenhaNova" placeholder="Confirme sua senha nova...">
+                           <p>
+                              <small id="confirmSenhaHelp" class="form-text text-muted">
+                                 <span id="spanSenhaHelp2">*</span>
+                                 <span id="spanConfirmSenha">Atenção : </span>
+                                 <span id="textSpanSenhaHelp">As senhas devem ser iguais ! </span>
+                                 <span id="spanSenhaHelp2">*</span>
+                              </small>
+                           </p>
+                       </div>
+                   </div>
+                   <hr>
+                   <div class="row">
+                       <div class="form-group col-md-13">
+                            <button id="botaoAlterarSenha" type="submit" class="btn btn-info">Alterar</button>
+                       </div>
                    </div>
                </form>
             </div>
-        <div>
+        </div>
         <!-- Fim da Div Central da Página, Alterar Senha -->
 
         <!-- Início do Menu Lateral Direito, Menu de Amigos -->

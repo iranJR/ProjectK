@@ -479,3 +479,31 @@ input[type='password']{
 /* Fim da Div de Perfil de Usuário */
 
 /* ------------------------------------------------------------------------------------------ */
+
+/* ### Página de Busca de Usuário ### */
+
+/*Paginação*/
+#UlPaginacao li a{
+    background-color: #3EC374;
+    color: white;
+    font-weight: bold;
+}
+
+#UlPaginacao li a:hover{
+    opacity: 0.7;
+}
+
+#Paginacao{
+    text-align: center;
+}
+
+.esconder{
+    visibility: hidden;
+}
+
+.mostrar{
+    visibility: visible;
+}
+/*Fim da Paginação*/
+
+/* -------------------------------------------------------------------------------------------- */
