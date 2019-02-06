@@ -31,7 +31,7 @@ if($_GET['act'] == 'save') {
         if (preg_match("/^(([0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}))$/", $_POST['cpf'])) {
             $cpf = $_POST['cpf'];
         }
-        // verifica se a senha possui ao menos um digito, uma letra maiscula, uma minuscula e possi no mínimo 6 caracteres
+        // verifica se a senha possui ao menos um digito, uma letra maiscula, uma minuscula e possi no mínimo 8 caracteres
         if (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$/", $_POST['senha'])) {
             // verifica se a senha e a senha confirmada são iguais
             if ($_POST['senha'] == $_POST['confirmSenha']) {

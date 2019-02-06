@@ -157,4 +157,30 @@ emailRecuperacao = :emailRecuperacao, cpfRecuperacao = :cpfRecuperacao WHERE idR
             return "Erro ao conectar com o banco de dados: ". $erro->getMessage();
         }
     }
+
+    public function buscarTodosPeloLoginCPF($emailRecuperacao, $cpfRecuperacao)
+    {
+        global $pdo;
+        try{
+            $statement= $pdo->prepare("SELECT * FROM recuperarsenha WHERE emailRecuperacao = :emailRecuperacao AND cpfRecuperacao = :cpfRecuperacao AND dataExpiracao > :dataControle");
+
+            setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+            date_default_timezone_set('America/Sao_Paulo');
+
+            $dataControle = date("Y-m-d H:i:s", strtotime("- 1 day"));
+
+            $statement->bindValue(":emailRecuperacao",$emailRecuperacao);
+            $statement->bindValue(":cpfRecuperacao",$cpfRecuperacao);
+            $statement->bindValue(":dataControle",$dataControle);
+
+            if($statement->execute()){
+                $result = $statement->fetchAll(PDO::FETCH_OBJ);
+                return $result;
+            } else {
+                throw new PDOException("<script> alert('Não foi possível executar o código SQL !'); </script>");
+            }
+        } catch (PDOException $erro) {
+            return "Erro ao conectar com o banco de dados: ". $erro->getMessage();
+        }
+    }
 }

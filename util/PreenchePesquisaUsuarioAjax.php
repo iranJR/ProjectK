@@ -40,11 +40,11 @@ if(count($dados) > 0){
             <div id='divMediaUser' class='media'>
                 <div class='media-left media-middle'>";
                     if($usuario->fotoPerfil == 'perfil.png') {
-                    echo "<a href='#' ><img class='media-object' src='../imagens/perfil.png''
+                    echo "<a href='../view/perfilUsuario.view.php?userID=".$usuario->idUsuario."' ><img class='media-object' src='../imagens/perfil.png''
                      alt='Foto Perfil'/></a>";
                 }
                 else {
-                    echo "<a href='#'><img class='media-object' src='../imagens/Usuario/".$usuario->idUsuario."/Albuns/Perfil/".$usuario->fotoPerfil."' 
+                    echo "<a href='../view/perfilUsuario.view.php?userID=".$usuario->idUsuario."'><img class='media-object' src='../imagens/Usuario/".$usuario->idUsuario."/Albuns/Perfil/".$usuario->fotoPerfil."' 
                     alt='Foto Perfil'/></a>";
                 }
                 echo"</div>

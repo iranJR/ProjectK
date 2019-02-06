@@ -187,6 +187,43 @@
     margin-left: 28%;
 }
 
+/*Início Div de Nova Senha da Index */
+
+#divNovaSenha{
+    margin-top: 150px;
+    margin-left: 350px;
+    background-color: rgba(38, 38, 38, 0.5);
+    padding: 2%;
+    color: white;
+    border-radius: 20px;
+    font-weight: bold;
+    display: block;
+}
+
+#divNovaSenha h1{
+    font-weight: bold;
+    text-align: center;
+    font-size: 30px;
+    margin-right: 1%;
+}
+
+#divNovaSenha h4{
+    font-weight: bold;
+    text-align: center;
+}
+
+#divNovaSenha button{
+    background-color: crimson;
+    border-color: crimson;
+    margin-left: 35%;
+}
+
+#divNovaSenha button:hover{
+    opacity: 0.8;
+}
+
+/*Fim Div de Nova Senha da Index */
+
 /*Fim Div de Código de Recuperação*/
 
 /* ------------------------------------------------------------------------------------------ */

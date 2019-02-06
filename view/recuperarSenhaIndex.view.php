@@ -20,7 +20,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/tooltipster/3.3.0/js/jquery.tooltipster.min.js'></script>
     <script src='https://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js'></script>
+    <script src="../javaScript/JSValidationAlterarSenha.js"></script>
     <script src="../javaScript/JSFadeInDiv.js"></script>
+    <script src="../javaScript/JSVerificaCodigoSenha.js"></script>
     <title>ProjectK - Recuperar Senha</title>
 
 </head>
@@ -31,7 +33,7 @@
 </video>
 
 <div id="divCodigoRecuperacao" class="col-sm-4">
-    <form id="formLogin" method="post" action="../controller/recuperarSenha.action.php">
+    <form id="formCodigoVerificacao" method="post" action="">
         <h1><i class="glyphicon glyphicon-lock"></i> Formulário para Recuperação de Senha</h1>
         <h4>Informe aqui o seu código de recuperação.</h4>
         <hr>
@@ -42,18 +44,21 @@
         </p>
 
         <div class="row">
-            <input type="hidden" name="act" value="etapa2"/>
             <div class="form-group col-md-10">
                 <label class="labelForm" for="cpf">Código de Recuperação:</label>
-                <input type="text" pattern="[0-9]+" class="form-control" name="codigoRecuperacao" placeholder="Digite aqui o código de recuperação..."
+                <input type="text" pattern="[0-9]+" class="form-control" id="codigoRecuperacao" name="codigoRecuperacao" placeholder="Digite aqui o código de recuperação..."
                        required minlength="9" maxlength="9">
             </div>
         </div>
 
         <br/>
-        <button id="botaoCodRec" type="submit" class="btn btn-info">Verificar   <i
+        <button id="botaoCodRec" type="button" class="btn btn-info nextBtn" disabled title="Preencha o código de verificação.">Verificar   <i
                     class="glyphicon glyphicon-share-alt"></i></button>
     </form>
+</div>
+
+<div id="newDiv">
+
 </div>
 
 </body>
