@@ -59,6 +59,7 @@ if(!empty($_COOKIE[hash('sha256','idUsuario')]) || !empty($_COOKIE[hash('sha256'
     <script src='https://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js'></script>
     <script src="../javaScript/JSFuncaoContato.js"></script>
     <script src="../javaScript/JSFuncoesAjax.js"></script>
+    <script src="../javaScript/JSFuncoesPaginaInicial.js"></script>
     <title>ProjectK - Contato</title>
 
 </head>
@@ -69,7 +70,7 @@ if(!empty($_COOKIE[hash('sha256','idUsuario')]) || !empty($_COOKIE[hash('sha256'
 <!--Fim do Cabeçalho do site -->
 
 <!--Menu Horizontal de Ações -->
-    <?php menuHorizontal(); ?>
+    <?php menuHorizontal($idUsuario); ?>
 <!-- Fim do Menu Horizontal de Ações -->
 
 <!-- Inicio da Div Geral da Página -->

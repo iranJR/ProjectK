@@ -115,6 +115,7 @@ $exibir_botao_final = ($range_final > $pagina_atual) ? 'mostrar' : 'esconder';
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="../javaScript/JSFuncoesAjax.js"></script>
+    <script src="../javaScript/JSFuncoesPaginaInicial.js"></script>
     <title>ProjectK - Página Inicial</title>
 
 </head>
@@ -127,7 +128,7 @@ atribuidos via sessão ou cookies -->
 <!--Fim do Cabeçalho do site -->
 
 <!--Menu Horizontal de Ações -->
-<?php menuHorizontal(); ?>
+<?php menuHorizontal($idUsuario); ?>
 <!-- Fim do Menu Horizontal de Ações -->
 
 <!-- Inicio da Div Geral da Página -->

@@ -53,12 +53,12 @@ DROP TABLE IF EXISTS `amigo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `amigo` (
-  `idSolitacao` int(11) NOT NULL AUTO_INCREMENT,
+  `idSolicitacao` int(11) NOT NULL AUTO_INCREMENT,
   `dataSolicitacao` date NOT NULL,
   `idSolicitante` int(11) NOT NULL,
   `idSolicitado` int(11) NOT NULL,
   `dataConfirmacao` date DEFAULT NULL,
-  PRIMARY KEY (`idSolitacao`),
+  PRIMARY KEY (`idSolicitacao`),
   KEY `fk_solicitado_usuario_idx` (`idSolicitado`),
   KEY `fk_solicitante_usuario_idx` (`idSolicitante`),
   CONSTRAINT `fk_solicitado_usuario` FOREIGN KEY (`idSolicitado`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -237,7 +237,7 @@ CREATE TABLE `recuperarsenha` (
   `cpfRecuperacao` varchar(45) NOT NULL,
   PRIMARY KEY (`idRecuperarSenha`),
   UNIQUE KEY `codigoRecuperacao_UNIQUE` (`codigoRecuperacao`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -246,6 +246,7 @@ CREATE TABLE `recuperarsenha` (
 
 LOCK TABLES `recuperarsenha` WRITE;
 /*!40000 ALTER TABLE `recuperarsenha` DISABLE KEYS */;
+INSERT INTO `recuperarsenha` VALUES (1,152693483,'2019-02-03 13:19:43','aXJhbi5qdW5pb3JAdmlhbm5hc2VtcHJlLmNvbS5icg==','MjIyLjIyMi4yMjItMjI='),(2,351933686,'2019-02-04 18:50:12','aXJhbi5qdW5pb3JAdmlhbm5hc2VtcHJlLmNvbS5icg==','MjIyLjIyMi4yMjItMjI='),(3,974457288,'2019-02-04 18:57:48','aXJhbi5qdW5pb3JAdmlhbm5hc2VtcHJlLmNvbS5icg==','MjIyLjIyMi4yMjItMjI='),(4,761836139,'2019-02-04 18:59:11','aXJhbi5qdW5pb3JAdmlhbm5hc2VtcHJlLmNvbS5icg==','MjIyLjIyMi4yMjItMjI='),(5,580146479,'2019-02-06 14:47:45','aXJhbi5qdW5pb3JAdmlhbm5hc2VtcHJlLmNvbS5icg==','MjIyLjIyMi4yMjItMjI=');
 /*!40000 ALTER TABLE `recuperarsenha` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -321,4 +322,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-02-01 15:33:53
+-- Dump completed on 2019-02-07 21:13:57

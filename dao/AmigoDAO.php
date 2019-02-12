@@ -17,16 +17,16 @@ class AmigoDAO implements GenericsDAO
     {
         global $pdo;
         try{
-            $statement = $pdo->prepare("INSERT INTO amigo(dataSolicitacao , idSolicitante, idSolicitado, dataConfirmacao) 
-            VALUES(:dataSolicitacao , :idSolicitante, :idSolicitado, :dataConfirmacao)");
+            $statement = $pdo->prepare("INSERT INTO amigo(dataSolicitacao , idSolicitante, idSolicitado) 
+            VALUES(:dataSolicitacao , :idSolicitante, :idSolicitado)");
 
             $statement->bindValue(":dataSolicitacao",$obj->getDataSolicitacao());
             $statement->bindValue(":idSolicitante",$obj->getIdSolicitante());
             $statement->bindValue(":idSolicitado",$obj->getIdSolicitado());
-            $statement->bindValue(":dataConfirmacao",$obj->getDataConfirmacao());
 
             if($statement->execute()){
                 if($statement->rowCount()>0){
+                    $obj->setIdSolicitacao($pdo->lastInsertId());
                     return"<script>alert('Amizade solicitada com sucesso !');</script>";
                 }
                 else{
@@ -76,8 +76,8 @@ class AmigoDAO implements GenericsDAO
     {
         global $pdo;
         try{
-            $statement = $pdo->prepare("DELETE FROM amigo WHERE idAmigo = :id");
-            $statement->bindValue(":id",$obj->getIdAmigo());
+            $statement = $pdo->prepare("DELETE FROM amigo WHERE idSolicitacao = :id");
+            $statement->bindValue(":id",$obj->getIdSolicitacao());
             if($statement->execute()) {
                 return "<script>alert('Amizade apagada com sucesso !');</script>";
             }
@@ -94,7 +94,7 @@ class AmigoDAO implements GenericsDAO
     {
         global $pdo;
         try{
-            $statement = $pdo->prepare("SELECT * FROM amigo WHERE idAmigo= :id");
+            $statement = $pdo->prepare("SELECT * FROM amigo WHERE idSolicitacao= :id");
             $statement->bindValue(":id",$id);
             if($statement->execute()){
                 $rs= $statement->fetch(PDO::FETCH_OBJ);
@@ -121,6 +121,83 @@ class AmigoDAO implements GenericsDAO
         global $pdo;
         try{
             $statement= $pdo->prepare("SELECT * FROM amigo ");
+            if($statement->execute()){
+                $result = $statement->fetchAll(PDO::FETCH_OBJ);
+                return $result;
+            } else {
+                throw new PDOException("<script> alert('Não foi possível executar o código SQL'); </script>");
+            }
+        } catch (PDOException $erro) {
+            return "Erro ao conectar com o banco de dados: " . $erro->getMessage();
+        }
+    }
+
+    public function buscarPorAmizade($idUsuario, $idAmigo)
+    {
+        global $pdo;
+        try{
+            $statement = $pdo->prepare("SELECT * FROM amigo WHERE idSolicitante = :idUsuario AND idSolicitado = :idAmigo OR idSolicitado = :idUsuario AND idSolicitante = :idAmigo");
+            $statement->bindValue(":idUsuario",$idUsuario);
+            $statement->bindValue(":idAmigo",$idAmigo);
+            if($statement->execute()){
+                $rs= $statement->fetch(PDO::FETCH_OBJ);
+                $obj = new Amigo('','','','','');
+                $obj->setIdSolicitacao($rs->idSolicitacao);
+                $obj->setDataSolicitacao($rs->dataSolicitacao);
+                $obj->setIdSolicitante($rs->idSolicitante);
+                $obj->setIdSolicitado($rs->idSolicitado);
+                $obj->setDataConfirmacao($rs->dataConfirmacao);
+
+                return $obj;
+            }
+            else {
+                throw new PDOException("<script> alert('Não foi possível executar o código SQL'); </script>");
+            }
+        } catch (PDOException $erro) {
+            return "Erro ao conectar com o banco de dados: " . $erro->getMessage();
+        }
+    }
+
+    public function buscarTodosAmigos($idUsuario)
+    {
+        global $pdo;
+        try{
+            $statement= $pdo->prepare("SELECT * FROM amigo WHERE idSolicitante = :id AND dataConfirmacao != null OR idSolicitado = :id AND dataConfirmacao != null ");
+            $statement->bindValue(":id",$idUsuario);
+            if($statement->execute()){
+                $result = $statement->fetchAll(PDO::FETCH_OBJ);
+                return $result;
+            } else {
+                throw new PDOException("<script> alert('Não foi possível executar o código SQL'); </script>");
+            }
+        } catch (PDOException $erro) {
+            return "Erro ao conectar com o banco de dados: " . $erro->getMessage();
+        }
+    }
+
+    public function buscarSolicitacoesRecebidas($idUsuario)
+    {
+        global $pdo;
+        try{
+            $statement= $pdo->prepare("SELECT * FROM amigo WHERE idSolicitado = :id AND dataConfirmacao is null");
+            $statement->bindValue(":id",$idUsuario);
+            if($statement->execute()){
+                $result = $statement->fetchAll(PDO::FETCH_OBJ);
+                return $result;
+            } else {
+                throw new PDOException("<script> alert('Não foi possível executar o código SQL'); </script>");
+            }
+        } catch (PDOException $erro) {
+            return "Erro ao conectar com o banco de dados: " . $erro->getMessage();
+        }
+    }
+
+    public function buscarSolicitacoesEnviadas($idUsuario)
+    {
+        global $pdo;
+        try{
+            $statement= $pdo->prepare("SELECT * FROM amigo WHERE idSolicitante = :id AND dataConfirmacao is null");
+            $statement->bindValue(":id",$idUsuario);
             if($statement->execute()){
                 $result = $statement->fetchAll(PDO::FETCH_OBJ);
                 return $result;

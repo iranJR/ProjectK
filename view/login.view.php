@@ -53,7 +53,7 @@
                    placeholder="Digite aqui sua senha...">
         </div>
         <div id="divCheck" class="form-group">
-            <div id="checkboxLogin" class="form-check">
+            <div id="checkboxLogin" class="form-check col-md-9">
                 <input class="form-check-input" type="checkbox" name="gridCheck" value="true" id="gridCheck">
                 <label id="labelCheck" class="form-check-label" for="gridCheck">
                     Permanecer conectado

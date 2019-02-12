@@ -65,6 +65,7 @@ require_once ("../view/templatePaginaInicial.php");
     <script src="../javaScript/JSFuncoesSenha.js"></script>
     <script src="../javaScript/JSValidationAlterarSenha.js"></script>
     <script src="../javaScript/JSFuncoesAjax.js"></script>
+    <script src="../javaScript/JSFuncoesPaginaInicial.js"></script>
     <title>ProjectK - Alterar Senha</title>
 </head>
 <body>
@@ -74,7 +75,7 @@ require_once ("../view/templatePaginaInicial.php");
 <!--Fim do Cabeçalho do site -->
 
 <!--Menu Horizontal de Ações -->
-<?php menuHorizontal(); ?>
+<?php menuHorizontal($idUsuario); ?>
 <!-- Fim do Menu Horizontal de Ações -->
 
 <!-- Inicio da Div Geral da Página -->

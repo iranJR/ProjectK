@@ -6,6 +6,15 @@
  * Time: 14:33
  */
 
+require_once ("../model/Amigo.php");
+require_once ("../dao/AmigoDAO.php");
+require_once ("../model/Usuario.php");
+require_once ("../dao/UsuarioDAO.php");
+require_once ("../model/Cidade.php");
+require_once ("../dao/CidadeDAO.php");
+require_once ("../model/Uf.php");
+require_once ("../dao/UfDAO.php");
+
 function cabecalho($nomeUsuario, $fotoPerfil, $idUsuario){
 //Cabeçalho do site
 
@@ -46,7 +55,7 @@ echo"<nav id='cabecalho' class='navbar navbar-inverse'>
                      alt='Foto Perfil'/>";
                 }
                 echo"<ul id='dropDownUser' class='dropdown-menu'>
-                    <li><a href='#'>Meu Perfil</a></li>
+                    <li><a href='../view/perfilUsuario.view.php?userID=".$idUsuario."'>Meu Perfil</a></li>
                     <li><a href='../view/alterarSenha.view.php'>Configurações</a></li>
                     <li><a href='../controller/logout.action.php'>Sair</a></li>
                 </ul>
@@ -59,16 +68,146 @@ echo"<nav id='cabecalho' class='navbar navbar-inverse'>
 //Fim do Cabeçalho do site
 }
 
-function menuHorizontal() {
+function menuHorizontal($idUsuario) {
 //Menu Horizontal de Ações
+
+    $solicitacoesRecibidas = new Amigo('','','','','');
+    $solicitacoesEnviadas = $solicitacoesRecibidas;
+
+    $amigoDAO = new AmigoDAO();
+
+    $solicitacoesRecibidas = $amigoDAO->buscarSolicitacoesRecebidas($idUsuario);
+    $solicitacoesEnviadas = $amigoDAO->buscarSolicitacoesEnviadas($idUsuario);
+
+    $numSolicitacoesRecebidas = '';
+    if(count($solicitacoesRecibidas) > 0){
+        $numSolicitacoesRecebidas = count($solicitacoesRecibidas);
+    }
 
 echo"<nav id='MenuHorizontal' class='navbar navbar-inverse'>
     <div class='container-fluid'>
         <ul id='ulMenuHorizontal' class='nav navbar-nav'>
             <li><a href='#'>Amigos</a></li>
-            <li><a href='#'>Notificações</a></li>
+            <li><a href='#' id='botaoNotificacoes' class='dropdown-toggle' data-toggle='dropdown'>Notificações   <span id='badgeNotificacao' class='badge'>".$numSolicitacoesRecebidas."</span></a></li>
+            
+            <ul id='ulDropDownNotificacoes' class='dropdown-menu'>
+                <li><h3 id='h3Solicitacoes'>Solicitações Recebidas</h3></li>
+                <li><hr id='hrSolicitacoes'/></li>";
+
+                if($numSolicitacoesRecebidas > 0){
+                    foreach ($solicitacoesRecibidas as $soli) {
+
+                        $userDAO = new UsuarioDAO();
+                        $user = $userDAO->buscarPeloId($soli->idSolicitante);
+
+                        $cidadeDAO = new CidadeDAO();
+                        $cidade = $cidadeDAO->buscarPeloId($user->getCidade());
+
+                        $ufDAO = new UfDAO();
+                        $uf = $ufDAO->buscarPeloId($user->getEstado());
+
+                        echo "<li><div id='DivMediaDropdownSolicitacao' class='col-md-12'>
+                    <div id='divMediaSolicitacao' class='media'>
+                        <div class='media-left media-middle'>";
+                            if($user->getFotoPerfil() == 'perfil.png') {
+                                echo "<a href='../view/perfilUsuario.view.php?userID=".$user->getIdUsuario()."' ><img class='media-object' src='../imagens/perfil.png'
+                             alt='Foto Perfil'/></a>";
+                            }
+                            else {
+                                echo "<a href='../view/perfilUsuario.view.php?userID=".$user->getIdUsuario()."' ><img class='media-object' src='../imagens/Usuario/".$user->getIdUsuario()."/Albuns/Perfil/".$user->getFotoPerfil()."'
+                             alt='Foto Perfil'/></a>";
+                            }
+                        echo"</div>
+                        <div class='media-body'>
+                            <div id='divMediaSolicitacaoDados' class='col-md-8'>
+                            <h5 class='media-heading'>".$user->getNome()." ".$user->getSobrenome()."</h5>
+                                <p>".$cidade->getNomeCidade()." - ".$uf->getSiglaUf()."</p>
+                            </div>
+                            <div id='divMediaSolicitacaoButton' class='col-md-4'>
+                                <div class='row'>
+                                    <form method='post' action='../controller/amizade.action.php'>
+                                        <input type='hidden' name='act' value='aceitar'>
+                                        <input type='hidden' name='idUsuario' value='" . $idUsuario . "'>
+                                        <input type='hidden' name='userID' value='" . $user->getIdUsuario() . "'> 
+                                        <button class='btn btn-primary' title='Aceitar Solicitação de Amizade' type='submit'>
+                                        <i class='glyphicon glyphicon-ok'></i>   Aceitar</button>
+                                    </form>
+                                </div>
+                                <div class='row'>
+                                    <form method='post' action='../controller/amizade.action.php'>
+                                        <input type='hidden' name='act' value='recusar'>
+                                        <input type='hidden' name='idUsuario' value='" . $idUsuario . "'>
+                                        <input type='hidden' name='userID' value='" . $user->getIdUsuario() . "'> 
+                                        <button class='btn btn-primary' title='Recusar Solicitação de Amizade' type='submit'>
+                                        <i class='glyphicon glyphicon-remove'></i>   Recusar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div></li>";
+                    }
+                }
+                else {
+                    echo"<li><h4 id=''><i class='glyphicon glyphicon-bell'></i>   Você não possui solitações no momento.</h4></li>";
+                }
+            
+            echo"<li><h3 id='h3Solicitacoes'>Solicitações Enviadas</h3></li>
+                <li><hr id='hrSolicitacoes'/></li>";
+
+            if(count($solicitacoesEnviadas) > 0){
+                foreach ($solicitacoesEnviadas as $soli) {
+
+                    $userDAO = new UsuarioDAO();
+                    $user = $userDAO->buscarPeloId($soli->idSolicitado);
+
+                    $cidadeDAO = new CidadeDAO();
+                    $cidade = $cidadeDAO->buscarPeloId($user->getCidade());
+
+                    $ufDAO = new UfDAO();
+                    $uf = $ufDAO->buscarPeloId($user->getEstado());
+
+                    echo "<li><div id='DivMediaDropdownSolicitacao' class='col-md-12'>
+                            <div id='divMediaSolicitacao' class='media'>
+                                <div class='media-left media-middle'>";
+                    if($user->getFotoPerfil() == 'perfil.png') {
+                        echo "<a href='../view/perfilUsuario.view.php?userID=".$user->getIdUsuario()."' ><img class='media-object' src='../imagens/perfil.png'
+                                     alt='Foto Perfil'/></a>";
+                    }
+                    else {
+                        echo "<a href='../view/perfilUsuario.view.php?userID=".$user->getIdUsuario()."' ><img class='media-object' src='../imagens/Usuario/".$user->getIdUsuario()."/Albuns/Perfil/".$user->getFotoPerfil()."'
+                                     alt='Foto Perfil'/></a>";
+                    }
+                    echo"</div>
+                                <div class='media-body'>
+                                    <div id='divMediaSolicitacaoDados' class='col-md-8'>
+                                    <h5 class='media-heading'>".$user->getNome()." ".$user->getSobrenome()."</h5>
+                                        <p>".$cidade->getNomeCidade()." - ".$uf->getSiglaUf()."</p>
+                                    </div>
+                                    <div id='divMediaSolicitacaoButtonCancelar' class='col-md-4'>
+                                        <div class='row'>
+                                            <form method='post' action='../controller/amizade.action.php'>
+                                                <input type='hidden' name='act' value='cancelar'>
+                                                <input type='hidden' name='idUsuario' value='" . $idUsuario . "'>
+                                                <input type='hidden' name='userID' value='" . $user->getIdUsuario() . "'> 
+                                                <button class='btn btn-primary' title='Cancelar Solicitação de Amizade' type='submit'>
+                                                <i class='glyphicon glyphicon-remove'></i>   Cancelar</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div></li>";
+                }
+            }
+            else {
+                echo"<li><h4 id=''><i class='glyphicon glyphicon-bell'></i>   Você não possui solitações no momento.</h4></li>";
+            }
+
+            echo"</ul>
+            
             <li><a href='#'>Mensagens</a></li>
-            <li><a href='#'>Meu Perfil</a></li>
+            <li><a href='../view/perfilUsuario.view.php?userID=".$idUsuario."'>Meu Perfil</a></li>
         </ul>
     </div>
 </nav>";

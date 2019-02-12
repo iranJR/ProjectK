@@ -73,6 +73,7 @@ $uf = $ufDAO->buscarPeloId($usuario->getEstado());
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="../javaScript/JSFuncoesAjax.js"></script>
+    <script src="../javaScript/JSFuncoesPaginaInicial.js"></script>
     <title>ProjectK - Perfil</title>
 
 </head>
@@ -85,7 +86,7 @@ atribuidos via sessão ou cookies -->
 <!--Fim do Cabeçalho do site -->
 
 <!--Menu Horizontal de Ações -->
-<?php menuHorizontal(); ?>
+<?php menuHorizontal($idUsuario); ?>
 <!-- Fim do Menu Horizontal de Ações -->
 
 <!-- Inicio da Div Geral da Página -->
@@ -128,23 +129,7 @@ atribuidos via sessão ou cookies -->
                         </div>
                         <div class="col-md-4">
                             <?php
-                                if($userID != $idUsuario){
-                                    echo"<div class='row'>
-                                        <div class='col-md-12'>
-                                            <button id='botaoMensagem' title='Enviar Mensagem' class='btn btn-primary'>
-                                                <i class='glyphicon glyphicon-envelope'></i> Mensagem
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class='row'>
-                                        <div class='col-md-12'>
-                                            <button id='botaoAdicionarPerfil' title='Adicionar aos Amigos' class='btn btn-primary'>
-                                                <i class='glyphicon glyphicon-user'></i> Adicionar
-                                            </button>
-                                        </div>
-                                    </div>";
-                                }
-                                else {
+                                if($userID == $idUsuario){
                                     echo"<div class='row'>
                                         <div class='col-md-12'>
                                             <button id='botaoMensagem' title='Minhas Mensagens' class='btn btn-primary'>
@@ -154,11 +139,118 @@ atribuidos via sessão ou cookies -->
                                     </div>
                                     <div class='row'>
                                         <div class='col-md-12'>
-                                            <button id='botaoAdicionarPerfil' title='Meus Amigos' class='btn btn-primary'>
+                                            <a id='botaoAdicionarPerfil' title='Meus Amigos' class='btn btn-primary'>
                                                 <i class='glyphicon glyphicon-user'></i> Amigos
-                                            </button>
+                                            </a>
                                         </div>
                                     </div>";
+                                }
+                                else {
+
+                                    //Retira as mensagens de notificação de erro do PHP neste contexto da página.
+                                    //Neste ponto estão vindo notificações da DAO.
+                                    error_reporting(E_WARNING);
+                                    require_once ("../model/Amigo.php");
+                                    require_once ("../dao/AmigoDAO.php");
+
+                                    $amigo = new Amigo('','','','','');
+
+                                    $amigoDAO = new AmigoDAO();
+                                    $amigo = $amigoDAO->buscarPorAmizade($idUsuario, $userID);
+                                    if($amigo->getIdSolicitacao() != ""){
+                                        if($amigo->getDataConfirmacao() != null){
+                                            echo "<div class='row'>
+                                            <div class='col-md-12'>
+                                                <button id='botaoMensagem' title='Enviar Mensagem' class='btn btn-primary'>
+                                                    <i class='glyphicon glyphicon-envelope'></i> Mensagem
+                                                </button>
+                                            </div>
+                                            </div>
+                                            <div class='row'>
+                                                <div class='col-md-12'>
+                                                    <form method='post' action='../controller/amizade.action.php'>
+                                                        <input type='hidden' name='act' value='desfazer'>
+                                                        <input type='hidden' name='idUsuario' value='".$idUsuario."'>
+                                                        <input type='hidden' name='userID' value='".$userID."'> 
+                                                        <button id='botaoDesfazerAmizade' type='submit' title='Desfazer a Amizade' class='btn btn-primary'>
+                                                            <i class='glyphicon glyphicon-ban-circle'></i> Desfazer Amizade
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>";
+                                        }
+                                        else if($amigo->getIdSolicitado() == $idUsuario){
+                                            echo"<div class='row'>
+                                                <div class='col-md-12'>
+                                                    <button id='botaoMensagem' title='Enviar Mensagem' class='btn btn-primary'>
+                                                        <i class='glyphicon glyphicon-envelope'></i> Mensagem
+                                                    </button>
+                                                </div>
+                                                </div>
+                                                <div class='row'>
+                                                    <div class='col-md-12'>
+                                                        <form method='post' action='../controller/amizade.action.php'>
+                                                            <input type='hidden' name='act' value='aceitar'>
+                                                            <input type='hidden' name='idUsuario' value='".$idUsuario."'>
+                                                            <input type='hidden' name='userID' value='".$userID."'>                                                
+                                                            <button id='botaoAceitarSolicitacao' type='submit' title='Adicionar aos Meus Amigos' class='btn btn-primary'>
+                                                                <i class='glyphicon glyphicon-ok'></i> Aceitar
+                                                            </button>
+                                                        </form>
+                                                        <form method='post' action='../controller/amizade.action.php'>
+                                                            <input type='hidden' name='act' value='recusar'>
+                                                            <input type='hidden' name='idUsuario' value='".$idUsuario."'>
+                                                            <input type='hidden' name='userID' value='".$userID."'>                                                
+                                                            <button id='botaoRecusarSolicitacao' type='submit' title='Recusar Solicitação de Amizade' class='btn btn-primary'>
+                                                                <i class='glyphicon glyphicon-remove'></i> Recusar
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>";
+                                        }
+                                        else {
+                                            echo "<div class='row'>
+                                            <div class='col-md-12'>
+                                                <button id='botaoMensagem' title='Enviar Mensagem' class='btn btn-primary'>
+                                                    <i class='glyphicon glyphicon-envelope'></i> Mensagem
+                                                </button>
+                                            </div>
+                                            </div>
+                                            <div class='row'>
+                                                <div class='col-md-12'>
+                                                    <form method='post' action='../controller/amizade.action.php'>
+                                                        <input type='hidden' name='act' value='cancelar'>
+                                                        <input type='hidden' name='idUsuario' value='".$idUsuario."'>
+                                                        <input type='hidden' name='userID' value='".$userID."'> 
+                                                        <button id='botaoCancelarSolicitacao' type='submit' title='Cancelar a Solicitação de Amizade' class='btn btn-primary'>
+                                                            <i class='glyphicon glyphicon-remove'></i> Cancelar Solicitação
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>";
+                                        }
+                                    }
+                                    else {
+                                        echo"<div class='row'>
+                                        <div class='col-md-12'>
+                                            <button id='botaoMensagem' title='Enviar Mensagem' class='btn btn-primary'>
+                                                <i class='glyphicon glyphicon-envelope'></i> Mensagem
+                                            </button>
+                                        </div>
+                                        </div>
+                                        <div class='row'>
+                                            <div class='col-md-12'>
+                                                <form method='post' action='../controller/amizade.action.php'>
+                                                    <input type='hidden' name='act' value='add'>
+                                                    <input type='hidden' name='idUsuario' value='".$idUsuario."'>
+                                                    <input type='hidden' name='userID' value='".$userID."'>
+                                                    <button id='botaoAdicionarPerfil' type='submit' title='Adicionar aos Amigos' class='btn btn-primary'>
+                                                        <i class='glyphicon glyphicon-user'></i> Adicionar
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>";
+                                    }
                                 }
                             ?>
                         </div>

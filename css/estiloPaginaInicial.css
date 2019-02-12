@@ -154,6 +154,123 @@
     color: #E5E5E5;
 }
 
+#ulMenuHorizontal li a:focus {
+     background-color: rgba(38, 38, 38, 0.5);
+ }
+
+/* Início das Notificações */
+
+#badgeNotificacao {
+    background-color: #3A3A3A;
+    color: white;
+    font-weight: bold;
+    margin-top: -10%;
+}
+
+#ulDropDownNotificacoes {
+    display: none;
+    margin-left: 25%;
+    margin-top: 0%;
+    width: 35%;
+    height: 270px;
+    background-color: #EEEEEE;
+    overflow: auto;
+}
+
+/*Início da Personalização da Barra de Rolagem*/
+
+#ulDropDownNotificacoes::-webkit-scrollbar{
+    width: 8px;
+}
+
+#ulDropDownNotificacoes::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+#ulDropDownNotificacoes::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+#ulDropDownNotificacoes::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/*Fim da Personalização da Barra de Rolagem*/
+
+#h3Solicitacoes {
+    font-variant: small-caps;
+}
+
+#hrSolicitacoes {
+    height: 3px;
+    background-color: #068DD6;
+    margin-top: 0;
+    margin-left: 0;
+    width: 94%;
+}
+
+#DivMediaDropdownSolicitacao {
+    margin-bottom: 2%;
+    margin-left: -3%;
+}
+
+#divMediaSolicitacao {
+    border: solid;
+    border-radius: 10px;
+    border-color: #E5E5E5;
+    border-width: 1px;
+    background-color: white;
+}
+
+#divMediaSolicitacao div img {
+    width: 80px;
+    height: 80px;
+}
+
+#divMediaSolicitacaoDados {
+    margin-top: 6%;
+}
+
+#divMediaSolicitacaoDados h5 {
+    font-weight: bold;
+}
+
+#DivMediaSolicitacaoP {
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+}
+
+#divMediaSolicitacaoButton button{
+    margin-top: 3%;
+    font-weight: bold;
+    width: 90%;
+    background-color: #3A3A3A;
+    border-color: #3A3A3A;
+}
+
+#divMediaSolicitacaoButton button .glyphicon-ok {
+    color: #37C967;
+}
+
+#divMediaSolicitacaoButton button .glyphicon-remove {
+    color: red;
+}
+
+#divMediaSolicitacaoButtonCancelar button{
+    margin-top: 22%;
+    font-weight: bold;
+    width: 92%;
+    background-color: #3A3A3A;
+    border-color: #3A3A3A;
+}
+
+#divMediaSolicitacaoButtonCancelar button .glyphicon-remove {
+    color: red;
+}
+
+/* Fim das Notificações */
+
 /* Fim do Menu Horizontal de Opções*/
 
 /* Início do Menu Lateral Esquerdo - Opções do Usuário */
@@ -439,6 +556,69 @@ input[type='password']{
 }
 
 #botaoAdicionarPerfil:hover {
+    opacity: 0.8%;
+}
+
+#botaoDesfazerAmizade {
+    margin-left: 32%;
+    margin-top: 5%;
+    font-weight: bold;
+    width: 65%;
+    background-color: crimson;
+    border-color: crimson;
+}
+
+#botaoDesfazerAmizade:hover {
+    opacity: 0.8%;
+}
+
+#botaoAceitarSolicitacao {
+    margin-left: 50%;
+    margin-top: 5%;
+    font-weight: bold;
+    width: 46.5%;
+    background-color: #3A3A3A;
+    border-color: #3A3A3A;
+}
+
+#botaoAceitarSolicitacao i {
+    color: #37C967;
+}
+
+#botaoAceitarSolicitacao:hover {
+    opacity: 0.8%;
+}
+
+#botaoRecusarSolicitacao {
+    margin-top: -23%;
+    font-weight: bold;
+    width: 46.5%;
+    background-color: #3A3A3A;
+    border-color: #3A3A3A;
+}
+
+#botaoRecusarSolicitacao i {
+    color: red;
+}
+
+#botaoRecusarSolicitacao:hover {
+    opacity: 0.8%;
+}
+
+#botaoCancelarSolicitacao {
+    margin-left: 25%;
+    margin-top: 5%;
+    font-weight: bold;
+    width: 72%;
+    background-color: #3A3A3A;
+    border-color: #3A3A3A;
+}
+
+#botaoCancelarSolicitacao i{
+    color: red;
+}
+
+#botaoCancelarSolicitacao:hover {
     opacity: 0.8%;
 }
 
