@@ -12,14 +12,21 @@ $(document).ready(function () {
         theme: 'tooltipster-light'
     });
 
-    // funcao que define o padrão do campo nome
-    jQuery.validator.addMethod("letras", function(value, element) {
+    // funcao que define o padrão do campo nome(nome simples ou composto)
+    /*jQuery.validator.addMethod("letras", function(value, element) {
         return this.optional(element) || /^[A-zÀ-ú]+$/i.test(value);
+    }, "erro");*/
+
+    jQuery.validator.addMethod("letras", function(value, element) {
+        return this.optional(element) || /^[A-zÀ-ú]+\s[A-zÀ-ú]+\s?$/i.test(value) || /^[A-zÀ-ú]+$/i.test(value);
     }, "erro");
 
-    // funcao que define o padrão do campo sobrenome
+
+    // funcao que define o padrão do campo sobrenome(simples ou composto por 2 ou 3 nomes)
     jQuery.validator.addMethod("espacamento", function(value, element) {
-        return this.optional(element) || /^[A-zÀ-ú]+\s[A-zÀ-ú]+\s?$/i.test(value) || /^[A-zÀ-ú]+$/i.test(value);
+        return this.optional(element) || /^[A-zÀ-ú]+\s[A-zÀ-ú]+\s[A-zÀ-ú]+\s?$/i.test(value)
+                                      || /^[A-zÀ-ú]+\s[A-zÀ-ú]+\s?$/i.test(value)
+                                      || /^[A-zÀ-ú]+$/i.test(value);
     }, "erro");
 
     // funcao que define o padrão da senha

@@ -11,6 +11,10 @@ session_name(hash('sha256',$_SERVER['SERVER_ADDR'].$_SERVER['REMOTE_ADDR']));
 /* Iniciando a sessão.*/
 session_start();
 
+$idUsuario=1;
+$nomeUsuario="";
+$fotoPerfil="";
+
 //Verificação de segurança. Se não houver usuário logado, redireciona para a página de login.
 if((empty($_SESSION['idUsuario']) || empty($_SESSION['nomeUsuario']) || empty($_SESSION['fotoPerfil'])) &&
     (empty($_COOKIE[hash('sha256','idUsuario')]) || empty($_COOKIE[hash('sha256','nomeUsuario')]) ||
@@ -40,7 +44,6 @@ if(!empty($_COOKIE[hash('sha256','idUsuario')]) || !empty($_COOKIE[hash('sha256'
 }
 
 require_once ("../view/templatePaginaInicial.php");
-
 ?>
 
 <!DOCTYPE html>
@@ -82,76 +85,98 @@ atribuidos via sessão ou cookies -->
         <!-- Início do Menu Lateral do Usuário -->
 
         <!-- Início da Div Central da Página, Mural de Notícias -->
-        <div id = 'divMural' class='col-sm-8 text-left' style="height: 600px;" >
+        <div id = 'divMural' class='col-sm-8 text-left'>
 
-            <h1>Meus Amigos: </h1>
-            <br>
-            <input type="text" id="pesquisarAmigos" name="busca">
-
-            <?php
-            foreach ($dados as $usuario) {
-                require_once ("../dao/CidadeDAO.php");
-                require_once ("../dao/UfDAO.php");
-
-                $cidadeDao = new CidadeDAO();
-                $cidade = $cidadeDao->buscarPeloId($usuario->cidade);
-
-                $ufDao = new UfDAO();
-                $uf = $ufDao->buscarPeloId($usuario->estado);
-
-                echo "<div class='col-md-8' style='margin-bottom: 2%;'>
-                <div class='media' style='border: solid; border-radius: 10px; border-color: #E5E5E5; border-width: 1px;'>
-                    <div class='media-left media-middle'>";
-                if($usuario->fotoPerfil == 'perfil.png') {
-                    echo "<a href='#'>
-                                <img class='media-object' src='../imagens/Usuario/15/Albuns/Perfil/thor.jpg' 
-                                alt='foto' style='width: 80px; height: 80px;'>
-                            </a>";
-                }else{
-                    echo "<a href='#'><img class='media-object' src='../imagens/Usuario/".$usuario->idUsuario."/Albuns/Perfil/".$usuario->fotoPerfil."' 
-                            alt='Foto Perfil' style='width: 80px; height: 80px;'/></a>";
-                }
-                echo "</div>
-                    <div class='media-body'>
-                        <div class='col-md-7' style='margin-top: 6%'>
-                        <h5 style='font-weight: bold;' class='media-heading'>" . $usuario->nome . " ".$usuario->sobrenome."</h5>
-                            <p>" . $cidade->getNomeCidade() . " - " . $uf->getSiglaUf() . "</p>
-                        </div>
-                        <div class='col-md-5' style='margin-top: 6%'>
-                            <button style='width: 100%; background-color: #37C967; color: white; font-size: 16px; font-weight: bold; border-color: #37C967' class='btn btn-info'>Adicionar</button>
-                        </div>
-                    </div>
+            <!--<div id="verAmigos" class="container">-->
+            <div class="col-md-12" id="verAmigos">
+                <div class='row'>
+                    <h1> Meus Amigos</h1>
+                    <input type="text" placeholder="busque amigo pelo nome...">
+                    <hr>
                 </div>
-                </div>";
-            }
-            ?>
+                <?php
+                for($i=1; $i < 9;$i++) {
+                    echo "<div class='row'>
+                        <div class='col-md-12'>
+                            <div id='divAmigo' class='col-md-5'>
+                                <div class='col-md-2'>
+                                     <a href='#'>
+                                         <img class='media-object' src='' alt='foto'>
+                                     </a>
+                                </div>
+                                <div class='col-md-2' style='margin-top: 2%'>
+                                     <h5 style='font-weight: bold;' class='media-heading'>nome</h5>
+                                     <p>cidade</p>
+                                </div>
+                                <div class='col-md-8' style='margin-top: 2%'>
+                                     <button id='btnMensagem' class='btn btn-info'>
+					                     <i class='glyphicon glyphicon-user'></i>  Mensagem
+                                      </button>
+                                      <button id='btnExcluir' class='btn btn-info'>
+					                     <i class='glyphicon glyphicon-user'></i>  Excluir 
+                                     </button>
+                                </div>
+                                
+                            </div>
+                            <div id='divAmigo' class='col-md-5' >
+                                <div class='col-md-2'>
+                                     <a href='#'>
+                                         <img class='media-object' src='' alt='foto'>
+                                     </a>
+                                </div>
+                                <div class='col-md-2' style='margin-top: 2%'>
+                                     <h5 style='font-weight: bold;' class='media-heading'>nome</h5>
+                                     <p>cidade</p>
+                                </div>
+                                <div class='col-md-8' style='margin-top: 2%'>
+                                     <button id='btnMensagem' class='btn btn-info'>
+					                     <i class='glyphicon glyphicon-user'></i>  Mensagem
+                                     </button>
+                                     <button id='btnExcluir' class='btn btn-info'>
+					                     <i class='glyphicon glyphicon-user'></i>  Excluir 
+                                     </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>";
+                }
+                ?>
+                <nav id='Paginacao' aria-label='Navegacao' class="col-md-10">
+                    <ul id='UlPaginacao' class='pagination pagination-md'>
+                        <li class='page-item'>
 
-            <div class='row'>
-                <!-- Inicio da Lista de paginação -->
-                <ul class="pagination">
-                    <?php
-                        if($pagina_atual != 1 ) {
-                            echo "<li><a href='../view/resultadoBuscaUsuario.view.php?page=$primeira_pagina&palavra=$palavra'>Primeira Página</a></li>
-                              <li><a href='../view/resultadoBuscaUsuario.view.php?page=$pagina_anterior&palavra=$palavra'>&lt;&lt;</a></li>";
-                        }
-                    ?>
-                    <?php
-                        if($valor->total_registros > QTDE_REGISTROS) {
-                            for ($i = $pagina_atual/*$range_inicial*/; $i <= $range_final; $i++) {
-                                echo "<li><a href='../view/resultadoBuscaUsuario.view.php?page=$i&palavra=$palavra'> $i</a></li>";
-                            }
-                        }
-                    ?>
-                    <?php
-                        if($pagina_atual != $range_final) {
-                            echo "<li><a href='../view/resultadoBuscaUsuario.view.php?page=$proxima_pagina&palavra=$palavra'>&gt;&gt;</a></li>
-                                <li><a href='../view/resultadoBuscaUsuario.view.php?page=$ultima_pagina&palavra=$palavra'>Última Página</a></li>";
-                        }
-                    ?>
-                </ul>
-                <!-- Fim da Lista de paginação -->
+                            <?php/*
+                            echo "<a class='page-link $exibir_botao_inicio' href='$endereco?page=$primeira_pagina&busca=$busca[0]' title='Primeira Página'>&laquo; Primeira  </a>";
+                            */?>
+                        </li>
+                        <li class='page-item'>
+                            <?php/*
+                            echo"<a class='page-link $exibir_botao_inicio' href='$endereco?page=$pagina_anterior&busca=$busca[0]' title='Página Anterior'>‹ Anterior  </a>";
+                            */?>
+                        </li>
+                        <?php
+                        /* Loop para montar a páginação central com os números*/
+                        /*for ($i = $range_inicial; $i <= $range_final; $i++):
+                            $destaque = ($i == $pagina_atual) ? 'destaque' : '';
+                            echo "<li class='page-item'>";
+                            echo "<a class='page-link $destaque' href='$endereco?page=$i&busca=$busca[0]'>  $i  </a>";
+                            echo"</li>";
+                        endfor;*/
+                        ?>
+
+                        <li class='page-item'>
+                            <?php/*
+                            echo"<a class='page-link $exibir_botao_final' href='$endereco?page=$proxima_pagina&busca=$busca[0]' title='Próxima Página'> Próxima ›</a>";
+                            */?>
+                        </li>
+                        <li class='page-item'>
+                            <?php/*
+                            echo"<a class='page-link $exibir_botao_final' href='$endereco?page=$ultima_pagina&busca=$busca[0]'  title='Última Página'> Última &raquo;</a>";
+                            */?>
+                        </li>
+                    </ul>
+                </nav>
             </div>
-
         </div>
         <!-- Fim da Div Central da Página, Mural de Notícias -->
 

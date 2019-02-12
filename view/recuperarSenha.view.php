@@ -63,7 +63,7 @@ require_once ("../view/templatePaginaInicial.php");
     <script src='https://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js'></script>
     <script src="../javaScript/JSFuncaoContato.js"></script>
     <script src="../javaScript/JSFuncoesSenha.js"></script>
-    <script src="../javaScript/JSValidationAlterarSenha.js"></script>
+    <script src="../javaScript/JSValidationCadastro.js"></script>
     <script src="../javaScript/JSFuncoesAjax.js"></script>
     <script src="../javaScript/JSFuncoesPaginaInicial.js"></script>
     <title>ProjectK - Alterar Senha</title>
@@ -91,49 +91,44 @@ require_once ("../view/templatePaginaInicial.php");
         <!-- Alterar senha (digita seu cpf, digite sua senha atual, confirme sua senha atual, digite sua nova senha,
         confirme sua nova senha);  -->
 
-        <div id='divMural'>
-            <div id='divAlterarSenha' class="form-group col-md-6">
+        <div id='divMural' class='col-sm-8 text-left'>
+            <div id='divAlterarSenha' class="col-sm-10">
                <form id="formLogin" method="post" action="../controller/recuperarSenha.action.php?act=save">
                    <div class="row">
                        <h4>Alterar Senha</h4>
                        <hr>
-                       <div class="form-group col-md-8">
+                       <div class="form-group col-md-6">
                             <input type="hidden" name="usuario" value="<?= $idUsuario ?>">
                             <label class="labelForm" for="nome">Senha Atual:</label>
-                            <input type="password" name="senhaAtual" id="senhaAtual" placeholder="Digite sua senha atual...">
+                            <input class="form-control" type="password" name="senhaAtual" id="senhaAtual" placeholder="Digite sua senha atual...">
                        </div>
                    </div>
                    <hr>
+
                    <div class="row">
-                       <div class="form-group col-md-8">
-                           <label class="labelForm" for="nome">Nova Senha:</label>
-                           <input type="password" name="senhaNova" id="senhaNova" placeholder="Digite sua senha nova...">
-                              <p>
-                                 <small id="senhaHelp" class="form-text text-muted"><span id="spanSenhaHelp2">*</span> Força da
-                                      Senha : <span id="spanSenhaHelp"> </span>
-                                      <div id="barraForca" class="progress">
-                                          <div id="barra" class="progress-bar" role="progressbar"></div>
-                                      </div>
-                                 </small>
-                              </p>
+                       <div class="form-group col-md-6">
+                           <label for="senha">Senha:</label>
+                           <input type="password" class="form-control" id="senha" name="senha"
+                                  placeholder="Digite aqui sua senha..."
+                                  required passwordCheck="passwordCheck" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                  title="A sua senha deve ter pelo menos 8 caracteres e conter pelo menos: uma letra maiúscula, uma letra minúscula e um dígito. ">
+                           <small id="senhaHelp" class="form-text text-muted"><span id="spanSenhaHelp2">*</span> Força da
+                               Senha : <span id="spanSenhaHelp"></span>
+                               <div id="barraForca" class="progress">
+                                   <div id="barra" class="progress-bar" role="progressbar"></div>
+                               </div>
+                           </small>
+                       </div>
+                       <div class="form-group col-md-6">
+                           <label for="confirmSenha">Confirme sua senha:</label>
+                           <input type="password" class="form-control" id="confirmSenha" name="confirmSenha"
+                                  placeholder="Digite sua senha novamente..." title="As senhas devem ser iguais"
+                                  required>
+                           <small id="confirmSenhaHelp" class="form-text text-muted"><span id="spanSenhaHelp2">*</span>
+                               <span id="spanConfirmSenha">Atenção : </span> <span id="textSpanSenhaHelp">As senhas devem ser iguais ! </span><span
+                                       id="spanSenhaHelp2">*</span></small>
                        </div>
                    </div>
-                   <hr>
-                   <div class="row">
-                       <div class="form-group col-md-10">
-                           <label class="labelForm" for="nome">Confirme a Nova Senha:</label>
-                           <input type="password" name="confirmSenhaNova" id="confirmSenhaNova" placeholder="Confirme sua senha nova...">
-                           <p>
-                              <small id="confirmSenhaHelp" class="form-text text-muted">
-                                 <span id="spanSenhaHelp2">*</span>
-                                 <span id="spanConfirmSenha">Atenção : </span>
-                                 <span id="textSpanSenhaHelp">As senhas devem ser iguais ! </span>
-                                 <span id="spanSenhaHelp2">*</span>
-                              </small>
-                           </p>
-                       </div>
-                   </div>
-                   <hr>
                    <div class="row">
                        <div class="form-group col-md-13">
                             <button id="botaoAlterarSenha" type="submit" class="btn btn-info">Alterar</button>

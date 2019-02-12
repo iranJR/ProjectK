@@ -60,12 +60,12 @@ if(count($dados) > 0){
     }
         if(count($busca) == 2) {
             echo "<li>
-                <a id='divMediaUserVerTodos' class='dropdown-item' href='../view/buscaUsuario.view.php?palavra=$busca[0] $busca[1]'>Ver Todos</a>
+                <a id='divMediaUserVerTodos' class='dropdown-item' href='../view/buscaUsuario.view.php?busca=$busca[0] $busca[1]'>Ver Todos</a>
             </li>";
         }
         else{
             echo "<li>
-                <a id='divMediaUserVerTodos' class='dropdown-item' href='../view/buscaUsuario.view.php?palavra=$busca[0]'>Ver Todos</a>
+                <a id='divMediaUserVerTodos' class='dropdown-item' href='../view/buscaUsuario.view.php?busca=$busca[0]'>Ver Todos</a>
             </li>";
         }
 }

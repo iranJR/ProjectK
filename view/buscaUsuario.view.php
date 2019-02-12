@@ -41,9 +41,9 @@ if(!empty($_COOKIE[hash('sha256','idUsuario')]) || !empty($_COOKIE[hash('sha256'
 
 require_once ("../view/templatePaginaInicial.php");
 
-$busca = $_GET['palavra'];
+$busca = $_GET['busca'];
 $busca = explode(' ', $busca, 2);
-$palavra = $_GET['palavra'];
+
 
 require_once ('../banco/conexao_bd.php');
 
@@ -52,7 +52,7 @@ global $pdo;
 $endereco = $_SERVER ['PHP_SELF'];
 /* Constantes de configuração*/
 define('QTDE_REGISTROS', 1);
-define('RANGE_PAGINAS', 3);
+define('RANGE_PAGINAS', 10);
 /* Recebe o número da página via parâmetro na URL*/
 $pagina_atual = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 /* Calcula a linha inicial da consulta*/
@@ -189,43 +189,25 @@ atribuidos via sessão ou cookies -->
             ?>
 
             <div class='row'>
-<!--                <div class="col-md-12">-->
-<!--                <ul class="pagination">-->
-<!--                    --><?php
-//                        if($pagina_atual != 1 ) {
-//                            echo "<li><a href='../view/buscaUsuario.view.php?page=$primeira_pagina&palavra=$palavra'>Primeira Página</a></li>
-//                              <li><a href='../view/buscaUsuario.view.php?page=$pagina_anterior&palavra=$palavra'>&lt;&lt;</a></li>";
-//                        }
-//                    ?>
-<!--                    --><?php
-//                        if($valor->total_registros > QTDE_REGISTROS) {
-//                            for ($i = $pagina_atual; $i <= $range_final; $i++) {
-//                                if($i != $pagina_atual) {
-//                                    echo "<li><a href='../view/buscaUsuario.view.php?page=$i&palavra=$palavra'> $i</a></li>";
-//                                }
-//                            }
-//                        }
-//                    ?>
-<!--                    --><?php
-//                        if($pagina_atual != $range_final) {
-//                            echo "<li><a href='../view/buscaUsuario.view.php?page=$proxima_pagina&palavra=$palavra'>&gt;&gt;</a></li>
-//                                <li><a href='../view/buscaUsuario.view.php?page=$ultima_pagina&palavra=$palavra'>Última Página</a></li>";
-//                        }
-//                    ?>
-<!--                </ul>-->
-<!--                </div>-->
-
                 <nav id='Paginacao' aria-label='Navegacao' class="col-md-10">
                     <ul id='UlPaginacao' class='pagination pagination-md'>
                         <li class='page-item'>
 
                             <?php
-                                echo "<a class='page-link $exibir_botao_inicio' href='$endereco?page=$primeira_pagina&palavra=$palavra' title='Primeira Página'>&laquo; Primeira  </a>";
-                            ?>
+                                if(count($busca) == 2) {
+                                    echo "<a class='page-link $exibir_botao_inicio' href='$endereco?page=$primeira_pagina&busca=$busca[0] $busca[1]' title='Primeira Página'>&laquo; Primeira  </a>";
+                                }else{
+                                    echo "<a class='page-link $exibir_botao_inicio' href='$endereco?page=$primeira_pagina&busca=$busca[0]' title='Primeira Página'>&laquo; Primeira  </a>";
+                                }
+                             ?>
                         </li>
                         <li class='page-item'>
                             <?php
-                                echo"<a class='page-link $exibir_botao_inicio' href='$endereco?page=$pagina_anterior&palavra=$palavra' title='Página Anterior'>‹ Anterior  </a>";
+                                if(count($busca ) == 2) {
+                                    echo "<a class='page-link $exibir_botao_inicio' href='$endereco?page=$pagina_anterior&busca=$busca[0] $busca[1]' title='Página Anterior'>‹ Anterior  </a>";
+                                }else{
+                                    echo "<a class='page-link $exibir_botao_inicio' href='$endereco?page=$pagina_anterior&busca=$busca[0]' title='Página Anterior'>‹ Anterior  </a>";
+                                }
                             ?>
                         </li>
                         <?php
@@ -233,19 +215,31 @@ atribuidos via sessão ou cookies -->
                         for ($i = $range_inicial; $i <= $range_final; $i++):
                             $destaque = ($i == $pagina_atual) ? 'destaque' : '';
                             echo "<li class='page-item'>";
-                                echo "<a class='page-link $destaque' href='$endereco?page=$i&palavra=$palavra'>  $i  </a>";
+                                if(count($busca) == 2) {
+                                    echo "<a class='page-link $destaque' href='$endereco?page=$i&busca=$busca[0] $busca[1]'>  $i  </a>";
+                                }else{
+                                    echo "<a class='page-link $destaque' href='$endereco?page=$i&busca=$busca[0]'>  $i  </a>";
+                                }
                             echo"</li>";
                         endfor;
                         ?>
 
                         <li class='page-item'>
                             <?php
-                                echo"<a class='page-link $exibir_botao_final' href='$endereco?page=$proxima_pagina&palavra=$palavra' title='Próxima Página'> Próxima ›</a>";
+                                if(count($busca) == 2) {
+                                    echo "<a class='page-link $exibir_botao_final' href='$endereco?page=$proxima_pagina&busca=$busca[0] $busca[1]' title='Próxima Página'> Próxima ›</a>";
+                                }else{
+                                    echo "<a class='page-link $exibir_botao_final' href='$endereco?page=$proxima_pagina&busca=$busca[0]' title='Próxima Página'> Próxima ›</a>";
+                                }
                             ?>
                         </li>
                         <li class='page-item'>
                             <?php
-                                echo"<a class='page-link $exibir_botao_final' href='$endereco?page=$ultima_pagina&palavra=$palavra'  title='Última Página'> Última &raquo;</a>";
+                                if(count($busca) == 2) {
+                                    echo "<a class='page-link $exibir_botao_final' href='$endereco?page=$ultima_pagina&busca=$busca[0] $busca[1]'  title='Última Página'> Última &raquo;</a>";
+                                }else{
+                                    echo "<a class='page-link $exibir_botao_final' href='$endereco?page=$ultima_pagina&busca=$busca[0]'  title='Última Página'> Última &raquo;</a>";
+                                }
                             ?>
                         </li>
                     </ul>
