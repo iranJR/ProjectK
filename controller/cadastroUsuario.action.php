@@ -5,20 +5,16 @@ require_once ("../dao/UsuarioDAO.php");
 require_once ("../model/Album.php");
 require_once ("../dao/AlbumDAO.php");
 
-$nome = $dataNasc = $email = $cpf = $senha = null;
+$dataNasc = $email = $cpf = $senha = null;
 
 $dataMax = date("Y-m-d", strtotime("- 18 years"));
 $dataMin = date("Y-m-d", strtotime("- 90 years"));
 
 if($_GET['act'] == 'save') {
-    if(!empty($_POST['nome']) && !empty($_POST['senha']) && !empty($_POST['email']) && !empty($_POST['cpf'])
+    if(!empty($_POST['senha']) && !empty($_POST['email']) && !empty($_POST['cpf'])
         && !empty($_POST['dataNasc']) && !empty($_POST['cidade']) && !empty($_POST['uf']) && !empty($_POST['senha'])
         && !empty($_POST['confirmSenha']))
     {
-        // verifica se o campo nome possui apenas letras
-        if (preg_match("/^[A-zÀ-ú]+$/", $_POST['nome']))  {
-            $nome = $_POST['nome'];
-        }
         // verifica se a data de nascimento está entre as idades de 18 anos e 90 anos.
         if ($_POST['dataNasc'] < $dataMax && $_POST['dataNasc'] > $dataMin) {
             $dataNasc = $_POST['dataNasc'];
@@ -39,7 +35,7 @@ if($_GET['act'] == 'save') {
             }
         }
 
-        if($nome != null && $dataNasc != null &&  $email != null && $cpf != null && $senha != null){
+        if($dataNasc != null &&  $email != null && $cpf != null && $senha != null){
 
             try {
                 $usuario = new Usuario('', '', '', '', '', '', '', '',

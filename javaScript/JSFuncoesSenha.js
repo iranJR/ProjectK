@@ -135,7 +135,7 @@ $(document).ready(function() {
 
 /* ### Função em JS para medir a força da senha ### */
 
-$(document).ready(function () {
+/*$(document).ready(function () {
 
     $("#senhaNova").keyup( function () {
             senha = $("#senhaNova").val();
@@ -176,9 +176,8 @@ $(document).ready(function () {
                 $("#barra").css("background-color", "green");
 
             }
-
         });
-});
+});*/
 
 /*---------------------------------------------------------------------------------*/
 
