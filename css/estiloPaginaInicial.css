@@ -47,12 +47,19 @@
     font-weight: bold;
     font-size: 16px;
     margin-top: 1%;
-    width: 18%;
+    width: 37%;
+}
+
+#divBemVindoUsuario {
+    margin-right: 0;
+    margin-left: 12%;
+    text-align: right;
+    padding-left: 0;
 }
 
 #divFotoMenuUsuario {
-    margin-top: -3%;
-    margin-right: 5%;
+    margin-top: -1.5%;
+    margin-right: 3%;
 }
 
 #divFotoMenuUsuario img{

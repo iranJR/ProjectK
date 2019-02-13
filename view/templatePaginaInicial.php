@@ -43,8 +43,10 @@ echo"<nav id='cabecalho' class='navbar navbar-inverse'>
         </div>
 
         <div id='divUsuarioCabecalho' class='nav nav-bar navbar-right'>
-            <span class='glyphicon glyphicon-user'></span>
-            <label>Bem vindo, ".$nomeUsuario."</label>
+            <div id='divBemVindoUsuario' class='col-sm-9'>
+                <span class='glyphicon glyphicon-user'></span>
+                <label>Bem vindo, ".$nomeUsuario."</label>
+            </div>
             <div id='divFotoMenuUsuario' class='dropdown nav nav-bar navbar-right'>";
                 if($fotoPerfil == 'perfil.png') {
                     echo "<img class='dropdown-toggle img-circle' data-toggle='dropdown' src='../imagens/perfil.png'
@@ -228,7 +230,6 @@ echo"<div id='divMenuLateralEsquerdo' class='col-sm-2 sidenav'>
         }
         echo"<a>Editar Perfil</a>
     </div>
-        <p>Menu Lateral do Usuário</p>
         <p><a id='BotaoMenuLateral' class='btn btn-info' href='#'>Editar Perfil</a></p>
         <p><a id='BotaoMenuLateral' class='btn btn-info' href='#'>Álbuns</a></p>
         <p><a id='BotaoMenuLateral' class='btn btn-info' href='#'>Demais Opções</a></p>
