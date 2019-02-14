@@ -58,7 +58,7 @@ echo"<nav id='cabecalho' class='navbar navbar-inverse'>
                 }
                 echo"<ul id='dropDownUser' class='dropdown-menu'>
                     <li><a href='../view/perfilUsuario.view.php?userID=".$idUsuario."'>Meu Perfil</a></li>
-                    <li><a href='../view/alterarSenha.view.php'>Configurações</a></li>
+                    <li><a href='../view/configuracoes.view.php'>Configurações</a></li>
                     <li><a href='../controller/logout.action.php'>Sair</a></li>
                 </ul>
             </div>
@@ -147,6 +147,7 @@ echo"<nav id='MenuHorizontal' class='navbar navbar-inverse'>
                             </div>
                         </div>
                     </div>
+                    <small id='smallDataSolicitacao'>Recebida em ".date("d/m/Y" , strtotime($soli->dataSolicitacao))."</small>
                 </div></li>";
                     }
                 }
@@ -199,6 +200,7 @@ echo"<nav id='MenuHorizontal' class='navbar navbar-inverse'>
                                     </div>
                                 </div>
                             </div>
+                            <small id='smallDataSolicitacao'>Solicitado em ".date("d/m/Y" , strtotime($soli->dataSolicitacao))."</small>
                         </div></li>";
                 }
             }

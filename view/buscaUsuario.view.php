@@ -143,7 +143,7 @@ atribuidos via sessão ou cookies -->
         <!-- Início do Menu Lateral do Usuário -->
 
         <!-- Início da Div Central da Página, Mural de Notícias -->
-        <div id = 'divMural' class='col-sm-8 text-left' style="height: 600px;" >
+        <div id = 'divMural' class='col-sm-8 text-left' >
 
             <h1>Resultados da Busca: </h1>
             <br>

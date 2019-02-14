@@ -276,6 +276,11 @@
     color: red;
 }
 
+#smallDataSolicitacao {
+    font-weight: bold;
+    margin-left: 65%;
+}
+
 /* Fim das Notificações */
 
 /* Fim do Menu Horizontal de Opções*/
@@ -356,6 +361,7 @@
 #divMural {
     margin-left: 17%;
     margin-top: 10%;
+    min-height: 500px;
 }
 
 /* Fim da Div Central - Mural de Notícias */
@@ -461,6 +467,30 @@
 
 /* ------------------------------------------------------------------------------------------ */
 
+/* ### Página de Configurações ### */
+
+#divConfiguracoes ul{
+    list-style: none;
+}
+
+#divConfiguracoes ul li{
+    margin-bottom: 1.5%;
+}
+
+#divConfiguracoes ul li a{
+    font-weight: bold;
+    font-size: 16px;
+    color: #068DD6;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#divConfiguracoes ul li a:hover {
+    opacity: 0.8;
+}
+
+/* ------------------------------------------------------------------------------------------ */
+
 /* ### Página de Alterar Senha ### */
 
 #divAlterarSenha {
@@ -541,7 +571,6 @@
 /* Início da Div de Perfil de Usuário */
 
 #divPaginaPerfil {
-    min-height: 500px;
     padding: 2%;
 }
 
@@ -569,6 +598,7 @@
     height: 140px;
     border: #37C967 solid 4px;
     margin-left: 22.5%;
+    cursor: pointer;
 }
 
 #aAlterarFotoPerfil {
@@ -684,6 +714,51 @@
     height: 8px;
     background-color: #3A3A3A;
 }
+
+/* Início do Modal da Foto de Perfil*/
+
+#modalFotoPerfilUsuario {
+    background-color: rgba(0,0,0,0.9);
+}
+
+#modalBodyFotoPerfilUsuario {
+    z-index: -1;
+}
+
+#botaoFecharModalFotoPerfil {
+    color: white;
+    opacity: 1;
+    font-size: 40px;
+    margin-left: 10%;
+}
+
+#botaoFecharModalFotoPerfil:hover {
+    opacity: 0.7;
+}
+
+#modalBodyFotoPerfilUsuario img {
+    width: 540px;
+    height: 500px;
+}
+
+#captionModalFotoPerfil {
+    background-color: rgba(0,0,0,0.9);
+    height: 30px;
+    width: 540px;
+    text-align: center;
+    margin-top: -7.5%;
+    margin-left: 2.5%;
+    font-weight: bold;
+    color: #D2E0E6;
+    font-variant: small-caps;
+    cursor: default;
+}
+
+#captionModalFotoPerfil p {
+    line-height: 30px;
+}
+
+/* Fim do Modal da Foto de Perfil*/
 
 #divAmigosPerfil {
     margin-left: 10%;

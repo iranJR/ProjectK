@@ -18,12 +18,4 @@ $(document).ready(function(){
     );
 });
 
-$(document).ready(function(){
-    $("#ulDropDownNotificacoes").onfocusout(
-        function () {
-            $("#ulDropDownNotificacoes").css("display", "none");
-        }
-    );
-});
-
 /*----------------------------------------------------------------------------*/

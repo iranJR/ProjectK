@@ -114,10 +114,12 @@ atribuidos via sessão ou cookies -->
                         <div class="col-md-4">
                             <?php
                                 if($usuario->getFotoPerfil() == 'perfil.png') {
-                                    echo "<img id='imgFotoPerfilPerfilUsuario' src='../imagens/perfil.png' class='img-circle' alt='Foto Perfil'/>";
+                                    echo "<img id='imgFotoPerfilPerfilUsuario' src='../imagens/perfil.png' class='img-circle' alt='Foto Perfil'
+                                            data-toggle='modal' data-target='#modalFotoPerfilUsuario'/>";
                                 }
                                 else {
-                                    echo "<img id='imgFotoPerfilPerfilUsuario' src='../imagens/Usuario/".$usuario->getIdUsuario()."/Albuns/Perfil/".$usuario->getFotoPerfil()."'' class='img-circle' alt='Foto Perfil'/>";
+                                    echo "<img id='imgFotoPerfilPerfilUsuario' src='../imagens/Usuario/".$usuario->getIdUsuario()."/Albuns/Perfil/".$usuario->getFotoPerfil()."'' class='img-circle' alt='Foto Perfil'
+                                            data-toggle='modal' data-target='#modalFotoPerfilUsuario'/>";
                                 }
 
                                 if($userID == $idUsuario){
@@ -266,6 +268,31 @@ atribuidos via sessão ou cookies -->
                 </div>
 
                 <hr id="hrPaginaPerfil"/>
+
+                <!-- Início do Modal da Foto de Perfil do Usuário -->
+                <div id='modalFotoPerfilUsuario' class='modal fade' role='dialog'>
+                    <div class='modal-dialog'>
+
+                        <div id='modalBodyFotoPerfilUsuario' class='modal-body'>
+                            <button id='botaoFecharModalFotoPerfil' type='button' class='close' data-dismiss='modal' >&times;</button>
+
+                            <?php
+                                if($usuario->getFotoPerfil() == 'perfil.png') {
+                                    echo "<img src='../imagens/perfil.png' alt='Foto Perfil' />";
+                                }
+                                else {
+                                    echo"<img src='../imagens/Usuario/".$usuario->getIdUsuario()."/Albuns/Perfil/".$usuario->getFotoPerfil()."' alt='Foto Perfil' >";
+                                }
+                            ?>
+
+                        </div>
+                        <div id='captionModalFotoPerfil' >
+                            <p >Foto de Perfil</p>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Fim do Modal da Foto de Perfil do Usuário -->
 
                 <div class="row">
                     <div id="divAmigosPerfil" class="col-sm-4">
