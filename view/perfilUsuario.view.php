@@ -151,7 +151,7 @@ atribuidos via sessão ou cookies -->
 
                                     //Retira as mensagens de notificação de erro do PHP neste contexto da página.
                                     //Neste ponto estão vindo notificações da DAO.
-                                    error_reporting(E_WARNING);
+                                    //error_reporting(E_WARNING);
                                     require_once ("../model/Amigo.php");
                                     require_once ("../dao/AmigoDAO.php");
 

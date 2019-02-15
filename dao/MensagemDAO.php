@@ -106,13 +106,15 @@ class MensagemDAO implements GenericsDAO
                 $rs= $statement->fetch(PDO::FETCH_OBJ);
                 $obj = new Mensagem('','','','','','','');
 
-                $obj->setIdMensagem($rs->idMensagem);
-                $obj->setIdConversa($rs->idConversa);
-                $obj->setTextoMsg($rs->textoMsg);
-                $obj->setIdDestinatarioMsg($rs->idDestinatarioMsg);
-                $obj->setIdRemetenteMsg($rs->idRemetenteMsg);
-                $obj->setDataMsg($rs->dataMsg);
-                $obj->setHoraMsg($rs->horaMsg);
+                if($rs != null) {
+                    $obj->setIdMensagem($rs->idMensagem);
+                    $obj->setIdConversa($rs->idConversa);
+                    $obj->setTextoMsg($rs->textoMsg);
+                    $obj->setIdDestinatarioMsg($rs->idDestinatarioMsg);
+                    $obj->setIdRemetenteMsg($rs->idRemetenteMsg);
+                    $obj->setDataMsg($rs->dataMsg);
+                    $obj->setHoraMsg($rs->horaMsg);
+                }
 
                 return $obj;
             }

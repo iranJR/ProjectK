@@ -87,9 +87,10 @@ if(!empty($_COOKIE[hash('sha256','idUsuario')]) || !empty($_COOKIE[hash('sha256'
                 <h2><i class="glyphicon glyphicon-cog"></i>   Configurações</h2>
                 <hr id="hrPaginaPerfil">
                 <ul>
-                    <li><a><i class="glyphicon glyphicon-wrench"></i>   Dados Cadastrais</a></li>
-                    <li><a><i class="glyphicon glyphicon-envelope"></i>   Modificar E-mail</a></li>
-                    <li><a href="../view/recuperarSenha.view.php"><i class="glyphicon glyphicon-lock"></i>   Alterar Senha</a></li>
+                    <li><a href="../view/dadosCadastrais.view.php"><i class="glyphicon glyphicon-wrench"></i>   Dados Cadastrais</a></li>
+                    <li><a href="../view/modificarEmail.view.php"><i class="glyphicon glyphicon-envelope"></i>   Modificar E-mail</a></li>
+                    <li><a href="../view/recuperarSenha.view.php"><i class="glyphicon glyphicon-lock"></i>   Modificar Senha</a></li>
+                    <li><a href="../view/contato.view.php"><i class="glyphicon glyphicon-comment"></i> Fale Conosco</a></li>
                 </ul>
             </div>
         </div>

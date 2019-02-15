@@ -12,7 +12,7 @@ class Mensagem
     private $idConversa;
     private $textoMsg;
     private $idDestinatarioMsg;
-    private $idRemetendeMsg;
+    private $idRemetenteMsg;
     private $dataMsg;
     private $horaMsg;
 
@@ -22,17 +22,17 @@ class Mensagem
      * @param $idConversa
      * @param $textoMsg
      * @param $idDestinatarioMsg
-     * @param $idRemetendeMsg
+     * @param $idRemetenteMsg
      * @param $dataMsg
      * @param $horaMsg
      */
-    public function __construct($idMensagem, $idConversa, $textoMsg, $idDestinatarioMsg, $idRemetendeMsg, $dataMsg, $horaMsg)
+    public function __construct($idMensagem, $idConversa, $textoMsg, $idDestinatarioMsg, $idRemetenteMsg, $dataMsg, $horaMsg)
     {
         $this->idMensagem = $idMensagem;
         $this->idConversa = $idConversa;
         $this->textoMsg = $textoMsg;
         $this->idDestinatarioMsg = $idDestinatarioMsg;
-        $this->idRemetendeMsg = $idRemetendeMsg;
+        $this->idRemetenteMsg = $idRemetenteMsg;
         $this->dataMsg = $dataMsg;
         $this->horaMsg = $horaMsg;
     }
@@ -104,17 +104,17 @@ class Mensagem
     /**
      * @return mixed
      */
-    public function getIdRemetendeMsg()
+    public function getIdRemetenteMsg()
     {
-        return $this->idRemetendeMsg;
+        return $this->idRemetenteMsg;
     }
 
     /**
      * @param mixed $idRemetendeMsg
      */
-    public function setIdRemetendeMsg($idRemetendeMsg)
+    public function setIdRemetenteMsg($idRemetenteMsg)
     {
-        $this->idRemetendeMsg = $idRemetendeMsg;
+        $this->idRemetenteMsg = $idRemetenteMsg;
     }
 
     /**

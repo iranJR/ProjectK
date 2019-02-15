@@ -100,11 +100,13 @@ class AmigoDAO implements GenericsDAO
                 $rs= $statement->fetch(PDO::FETCH_OBJ);
                 $obj = new Amigo('','','','','');
 
-                $obj->setIdSolicitacao($rs->idSolicitacao);
-                $obj->setDataSolicitacao($rs->dataSolicitacao);
-                $obj->setIdSolicitante($rs->idSolicitante);
-                $obj->setIdSolicitado($rs->idSolicitado);
-                $obj->setDataConfirmacao($rs->dataConfirmacao);
+                if($rs != null) {
+                    $obj->setIdSolicitacao($rs->idSolicitacao);
+                    $obj->setDataSolicitacao($rs->dataSolicitacao);
+                    $obj->setIdSolicitante($rs->idSolicitante);
+                    $obj->setIdSolicitado($rs->idSolicitado);
+                    $obj->setDataConfirmacao($rs->dataConfirmacao);
+                }
 
                 return $obj;
             }
@@ -142,11 +144,14 @@ class AmigoDAO implements GenericsDAO
             if($statement->execute()){
                 $rs= $statement->fetch(PDO::FETCH_OBJ);
                 $obj = new Amigo('','','','','');
-                $obj->setIdSolicitacao($rs->idSolicitacao);
-                $obj->setDataSolicitacao($rs->dataSolicitacao);
-                $obj->setIdSolicitante($rs->idSolicitante);
-                $obj->setIdSolicitado($rs->idSolicitado);
-                $obj->setDataConfirmacao($rs->dataConfirmacao);
+
+                if($rs != null) {
+                    $obj->setIdSolicitacao($rs->idSolicitacao);
+                    $obj->setDataSolicitacao($rs->dataSolicitacao);
+                    $obj->setIdSolicitante($rs->idSolicitante);
+                    $obj->setIdSolicitado($rs->idSolicitado);
+                    $obj->setDataConfirmacao($rs->dataConfirmacao);
+                }
 
                 return $obj;
             }

@@ -98,10 +98,12 @@ class ConversaDAO implements GenericsDAO
                 $rs= $statement->fetch(PDO::FETCH_OBJ);
                 $obj = new Conversa('','','','');
 
-                $obj->setIdConversa($rs->idConversa);
-                $obj->setDataConversa($rs->dataConversa);
-                $obj->setIdRemetenteCon($rs->idRemetenteCon);
-                $obj->setIdDestinatarioCon($rs->idDestinatario);
+                if($rs != null) {
+                    $obj->setIdConversa($rs->idConversa);
+                    $obj->setDataConversa($rs->dataConversa);
+                    $obj->setIdRemetenteCon($rs->idRemetenteCon);
+                    $obj->setIdDestinatarioCon($rs->idDestinatario);
+                }
 
                 return $obj;
             }

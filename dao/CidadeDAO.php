@@ -92,9 +92,11 @@ class CidadeDAO implements GenericsDAO
                 $rs = $statement->fetch(PDO::FETCH_OBJ);
                 $obj = new Cidade('','','');
 
-                $obj->setIdCidade($rs->idCidade);
-                $obj->setNomeCidade($rs->nomeCidade);
-                $obj->setIdUf($rs->idUf);
+                if($rs != null) {
+                    $obj->setIdCidade($rs->idCidade);
+                    $obj->setNomeCidade($rs->nomeCidade);
+                    $obj->setIdUf($rs->idUf);
+                }
 
                 return $obj;
             } else {

@@ -117,18 +117,21 @@ class UsuarioDAO implements GenericsDAO
                 $rs = $statement->fetch(PDO::FETCH_OBJ);
                 $obj = new Usuario('','','','','','',
                     '', '', '', '', '','');
-                $obj->setIdUsuario($rs->idUsuario);
-                $obj->setNome($rs->nome);
-                $obj->setSobreNome($rs->sobrenome);
-                $obj->setSenha($rs->senha);
-                $obj->setEmail($rs->email);
-                $obj->setCpf($rs->cpf);
-                $obj->setDataNascimento($rs->dataNascimento);
-                $obj->setSexo($rs->sexo);
-                $obj->setCidade($rs->cidade);
-                $obj->setEstado($rs->estado);
-                $obj->setFotoPerfil($rs->fotoPerfil);
-                $obj->setDataCadastro($rs->dataCadastro);
+
+                if($rs != null) {
+                    $obj->setIdUsuario($rs->idUsuario);
+                    $obj->setNome($rs->nome);
+                    $obj->setSobreNome($rs->sobrenome);
+                    $obj->setSenha($rs->senha);
+                    $obj->setEmail($rs->email);
+                    $obj->setCpf($rs->cpf);
+                    $obj->setDataNascimento($rs->dataNascimento);
+                    $obj->setSexo($rs->sexo);
+                    $obj->setCidade($rs->cidade);
+                    $obj->setEstado($rs->estado);
+                    $obj->setFotoPerfil($rs->fotoPerfil);
+                    $obj->setDataCadastro($rs->dataCadastro);
+                }
 
                 return $obj;
             }
@@ -165,18 +168,21 @@ class UsuarioDAO implements GenericsDAO
                 $rs= $statement->fetch(PDO::FETCH_OBJ);
                 $obj = new Usuario('','','','','','',
                     '', '', '', '', '','');
-                $obj->setIdUsuario($rs->idUsuario);
-                $obj->setNome($rs->nome);
-                $obj->setSobreNome($rs->sobrenome);
-                $obj->setSenha($rs->senha);
-                $obj->setEmail($rs->email);
-                $obj->setCpf($rs->cpf);
-                $obj->setDataNascimento($rs->dataNascimento);
-                $obj->setSexo($rs->sexo);
-                $obj->setCidade($rs->cidade);
-                $obj->setEstado($rs->estado);
-                $obj->setFotoPerfil($rs->fotoPerfil);
-                $obj->setDataCadastro($rs->dataCadastro);
+
+                if($rs != null) {
+                    $obj->setIdUsuario($rs->idUsuario);
+                    $obj->setNome($rs->nome);
+                    $obj->setSobreNome($rs->sobrenome);
+                    $obj->setSenha($rs->senha);
+                    $obj->setEmail($rs->email);
+                    $obj->setCpf($rs->cpf);
+                    $obj->setDataNascimento($rs->dataNascimento);
+                    $obj->setSexo($rs->sexo);
+                    $obj->setCidade($rs->cidade);
+                    $obj->setEstado($rs->estado);
+                    $obj->setFotoPerfil($rs->fotoPerfil);
+                    $obj->setDataCadastro($rs->dataCadastro);
+                }
                 return $obj;
             }
             else {
@@ -197,18 +203,21 @@ class UsuarioDAO implements GenericsDAO
                 $rs= $statement->fetch(PDO::FETCH_OBJ);
                 $obj = new Usuario('','','','','','',
                     '', '', '', '', '','');
-                $obj->setIdUsuario($rs->idUsuario);
-                $obj->setNome($rs->nome);
-                $obj->setSobreNome($rs->sobrenome);
-                $obj->setSenha($rs->senha);
-                $obj->setEmail($rs->email);
-                $obj->setCpf($rs->cpf);
-                $obj->setDataNascimento($rs->dataNascimento);
-                $obj->setSexo($rs->sexo);
-                $obj->setCidade($rs->cidade);
-                $obj->setEstado($rs->estado);
-                $obj->setFotoPerfil($rs->fotoPerfil);
-                $obj->setDataCadastro($rs->dataCadastro);
+
+                if($rs != null) {
+                    $obj->setIdUsuario($rs->idUsuario);
+                    $obj->setNome($rs->nome);
+                    $obj->setSobreNome($rs->sobrenome);
+                    $obj->setSenha($rs->senha);
+                    $obj->setEmail($rs->email);
+                    $obj->setCpf($rs->cpf);
+                    $obj->setDataNascimento($rs->dataNascimento);
+                    $obj->setSexo($rs->sexo);
+                    $obj->setCidade($rs->cidade);
+                    $obj->setEstado($rs->estado);
+                    $obj->setFotoPerfil($rs->fotoPerfil);
+                    $obj->setDataCadastro($rs->dataCadastro);
+                }
                 return $obj;
             }
             else {

@@ -92,9 +92,11 @@ class UfDAO implements GenericsDAO
                 $rs = $statement->fetch(PDO::FETCH_OBJ);
                 $obj = new Uf('','','');
 
-                $obj->setIdUf($rs->idUf);
-                $obj->setNomeUf($rs->nomeUf);
-                $obj->setSiglaUf($rs->siglaUf);
+                if($rs != null) {
+                    $obj->setIdUf($rs->idUf);
+                    $obj->setNomeUf($rs->nomeUf);
+                    $obj->setSiglaUf($rs->siglaUf);
+                }
 
                 return $obj;
             } else {

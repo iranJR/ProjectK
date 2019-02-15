@@ -100,11 +100,13 @@ emailRecuperacao = :emailRecuperacao, cpfRecuperacao = :cpfRecuperacao WHERE idR
                 $rs= $statement->fetch(PDO::FETCH_OBJ);
                 $obj = new RecuperarSenha('','','','','');
 
-                $obj->setIdRecuperarSenha($rs->idRecuperarSenha);
-                $obj->setCodigoRecuperacao($rs->codigoRecuperacao);
-                $obj->setDataExpiracao($rs->dataExpiracao);
-                $obj->setEmailRecuperacao($rs->emailRecuperacao);
-                $obj->setCpfRecuperacao($rs->cpfRecuperacao);
+                if($rs != null) {
+                    $obj->setIdRecuperarSenha($rs->idRecuperarSenha);
+                    $obj->setCodigoRecuperacao($rs->codigoRecuperacao);
+                    $obj->setDataExpiracao($rs->dataExpiracao);
+                    $obj->setEmailRecuperacao($rs->emailRecuperacao);
+                    $obj->setCpfRecuperacao($rs->cpfRecuperacao);
+                }
 
                 return $obj;
             }
@@ -142,11 +144,13 @@ emailRecuperacao = :emailRecuperacao, cpfRecuperacao = :cpfRecuperacao WHERE idR
                 $rs= $statement->fetch(PDO::FETCH_OBJ);
                 $obj = new RecuperarSenha('','','','','');
 
-                $obj->setIdRecuperarSenha($rs->idRecuperarSenha);
-                $obj->setCodigoRecuperacao($rs->codigoRecuperacao);
-                $obj->setDataExpiracao($rs->dataExpiracao);
-                $obj->setEmailRecuperacao($rs->emailRecuperacao);
-                $obj->setCpfRecuperacao($rs->cpfRecuperacao);
+                if($rs != null) {
+                    $obj->setIdRecuperarSenha($rs->idRecuperarSenha);
+                    $obj->setCodigoRecuperacao($rs->codigoRecuperacao);
+                    $obj->setDataExpiracao($rs->dataExpiracao);
+                    $obj->setEmailRecuperacao($rs->emailRecuperacao);
+                    $obj->setCpfRecuperacao($rs->cpfRecuperacao);
+                }
 
                 return $obj;
             }

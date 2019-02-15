@@ -97,10 +97,12 @@ class AlbumDAO implements GenericsDAO
                 $rs= $statement->fetch(PDO::FETCH_OBJ);
                 $obj = new Album('','','','');
 
-                $obj->setIdAlbum($rs->idAlbum);
-                $obj->setNomeAlbum($rs->nomeAlbum);
-                $obj->setDataAlbum($rs->dataAlbum);
-                $obj->setIdUsuario($rs->idUsuario);
+                if($rs != null) {
+                    $obj->setIdAlbum($rs->idAlbum);
+                    $obj->setNomeAlbum($rs->nomeAlbum);
+                    $obj->setDataAlbum($rs->dataAlbum);
+                    $obj->setIdUsuario($rs->idUsuario);
+                }
 
                 return $obj;
             }

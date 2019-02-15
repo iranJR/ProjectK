@@ -101,12 +101,15 @@ class PostDAO implements GenericsDAO
             if($statement->execute()){
                 $rs= $statement->fetch(PDO::FETCH_OBJ);
                 $obj = new Post('','','','','','');
-                $obj->setIdPost($rs->idPost);
-                $obj->setIdUsuario($rs->idUsuario);
-                $obj->setTextoPost($rs->textoPost);
-                $obj->setDataPost($rs->dataPost);
-                $obj->setHoraPost($rs->horaPost);
-                $obj->setTipoPost($rs->cpf);
+
+                if($rs != null) {
+                    $obj->setIdPost($rs->idPost);
+                    $obj->setIdUsuario($rs->idUsuario);
+                    $obj->setTextoPost($rs->textoPost);
+                    $obj->setDataPost($rs->dataPost);
+                    $obj->setHoraPost($rs->horaPost);
+                    $obj->setTipoPost($rs->cpf);
+                }
 
                 return $obj;
             }

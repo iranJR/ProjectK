@@ -100,11 +100,13 @@ class FotoDAO implements GenericsDAO
                 $rs= $statement->fetch(PDO::FETCH_OBJ);
                 $obj = new Foto('','','','', '');
 
-                $obj->setIdFoto($rs->idFoto);
-                $obj->setIdAlbum($rs->idAlbum);
-                $obj->setLegendaFoto($rs->legendaFoto);
-                $obj->setNomeFoto($rs->nomeFoto);
-                $obj->setDataFoto($rs->dataFoto);
+                if($rs != null) {
+                    $obj->setIdFoto($rs->idFoto);
+                    $obj->setIdAlbum($rs->idAlbum);
+                    $obj->setLegendaFoto($rs->legendaFoto);
+                    $obj->setNomeFoto($rs->nomeFoto);
+                    $obj->setDataFoto($rs->dataFoto);
+                }
 
                 return $obj;
             }

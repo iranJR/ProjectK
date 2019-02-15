@@ -491,6 +491,80 @@
 
 /* ------------------------------------------------------------------------------------------ */
 
+/* ### Página de Modificar o E-mail ### */
+
+/*Início Div de Contato*/
+
+#divEmail{
+    background-color: #4c4c4c;
+    padding: 3%;
+    color: white;
+    border-radius: 20px;
+    margin-left: 9%;
+}
+
+#divEmail h2{
+    font-weight: bold;
+    text-align: center;
+    font-size: 26px;
+    margin-right: 1%;
+}
+
+#divEmail h2 i {
+    font-size: 20px;
+}
+
+#divEmail h4{
+    font-weight: bold;
+    text-align: center;
+}
+
+#divEmail button{
+    background-color: crimson;
+    border-color: crimson;
+    font-weight: bold;
+    width: 30%;
+    font-size: 18px;
+    margin-left: 35%;
+}
+
+#divEmail button:hover{
+    opacity: 0.8;
+}
+
+/* ------------------------------------------------------------------------------------------ */
+
+/* ### Página de Dados Cadastrais ### */
+
+#divDadosCadastrais {
+    font-size: 16px;
+}
+
+#divDadosCadastrais span {
+    font-weight: bold;
+}
+
+#divDadosCadastrais p {
+    margin-left: 6%;
+}
+
+#smallDadosCadastraisEditar {
+    margin-left: 88%;
+}
+
+#smallDadosCadastraisEditar a {
+    font-weight: bold;
+    color: #068DD6;
+    font-size: 12px;
+}
+
+#smallDadosCadastraisEditar a:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+/* ------------------------------------------------------------------------------------------ */
+
 /* ### Página de Alterar Senha ### */
 
 #divAlterarSenha {
