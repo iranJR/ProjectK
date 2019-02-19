@@ -24,12 +24,11 @@ $(document).ready(function () {
                 minlength:8,
                 passwordCheck:true,
             },
-            senhaNova:{
+            senha:{
                 required:true,
                 minlength:8,
                 passwordCheck:true,
             },
-            confirmSenhaNova:{},
         },
         messages:{
             senhaAtual:{
@@ -37,13 +36,12 @@ $(document).ready(function () {
                 minlength: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   A senha deve conter pelo menos 8 caracteres.</p>",
                 passwordCheck: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   A senha deve conter pelo menos: uma letra maiúscula, uma letra minúscula e um dígito.</p>",
             },
-            senhaNova:{
+            senha:{
                 required: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   Preencha este campo.</p>",
                 minlength: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   A senha deve conter pelo menos 8 caracteres.</p>",
                 passwordCheck: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   A senha deve conter pelo menos: uma letra maiúscula, uma letra minúscula e um dígito.</p>",
             },
-            confirmSenhaNova:{},
-        }
+        },
     });
 
     $("#formCodigoVerificacao").validate({

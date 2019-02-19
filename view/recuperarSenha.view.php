@@ -12,10 +12,6 @@ session_name(hash('sha256',$_SERVER['SERVER_ADDR'].$_SERVER['REMOTE_ADDR']));
 /* Iniciando a sessão.*/
 session_start();
 
-$idUsuario = 1;
-$nomeUsuario = "ciro";
-$fotoPerfil = "";
-
 //Verificação de segurança. Se não houver usuário logado, redireciona para a página de login.
 if((empty($_SESSION['idUsuario']) || empty($_SESSION['nomeUsuario']) || empty($_SESSION['fotoPerfil'])) &&
     (empty($_COOKIE[hash('sha256','idUsuario')]) || empty($_COOKIE[hash('sha256','nomeUsuario')]) ||
@@ -23,7 +19,7 @@ if((empty($_SESSION['idUsuario']) || empty($_SESSION['nomeUsuario']) || empty($_
         empty($_COOKIE[hash('sha256','email')]))){
 
     $msg = "É necessário estar logado para acessar esta página !";
-    // echo "<script>window.location.href='../view/login.view.php?msg=".$msg."'</script>";
+    //echo "<script>window.location.href='../view/login.view.php?msg=".$msg."'</script>";
 }
 
 // Verificação se usuário está logado via sessão.
@@ -63,7 +59,7 @@ require_once ("../view/templatePaginaInicial.php");
     <script src='https://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js'></script>
     <script src="../javaScript/JSFuncaoContato.js"></script>
     <script src="../javaScript/JSFuncoesSenha.js"></script>
-    <script src="../javaScript/JSValidationCadastro.js"></script>
+    <script src="../javaScript/JSValidationAlterarSenha.js"></script>
     <script src="../javaScript/JSFuncoesAjax.js"></script>
     <script src="../javaScript/JSFuncoesPaginaInicial.js"></script>
     <title>ProjectK - Alterar Senha</title>
@@ -129,10 +125,9 @@ require_once ("../view/templatePaginaInicial.php");
                                        id="spanSenhaHelp2">*</span></small>
                        </div>
                    </div>
+                   <hr>
                    <div class="row">
-                       <div class="form-group col-md-13">
-                            <button id="botaoAlterarSenha" type="submit" class="btn btn-info">Alterar</button>
-                       </div>
+                       <button id="botaoAlterarSenha" style="margin-left: 40%" type="submit" class="btn btn-info">Alterar</button>
                    </div>
                </form>
             </div>

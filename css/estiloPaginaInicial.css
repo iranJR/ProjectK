@@ -635,7 +635,6 @@
     width: 0%;
 }
 
-
 /* Fim da Div alterar Senha */
 
 /* ------------------------------------------------------------------------------------------ */
@@ -860,8 +859,8 @@
 
 /*Paginação*/
 #UlPaginacao li a{
-    background-color: #3EC374;
-    color: white;
+    /*background-color: #3EC374;*/
+    /*color: white;*/
     font-weight: bold;
 }
 
@@ -900,7 +899,7 @@
     width:100%;
 }
 
-#divAmigo {
+/*#divAmigo {
     padding: 2%;
     margin-left: 2%;
     margin-bottom: 1%;
@@ -908,42 +907,17 @@
     border-radius: 5%;
     border: 1px solid #E5E5E5;
     height: 80px;
-}
-
-#verAmigos img {
-    width: 80px;
-    height: 80px;
-}
-
-#btnMensagem{
-    width: 46%;
-    background-color: #37C967;
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    border-color: #37C967;
-    margin-left: 10%;
-}
-
-#btnExcluir{
-    width: 40%;
-    background-color: #37C967;
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    border-color: #37C967;
-    margin-left: 2%;
-}
+}*/
 
 #verAmigos input[type='text']{
-    margin-left: 64%;
+    margin-left: 63.5%;
     width: 250px;
     border-radius: 5px;
     border: 1px solid #999999;
 }
 
-#fotoAmigo{
+/*#fotoAmigo{
     margin-left:0%;
-}
+}*/
 
 /* Fim da Página de ver todos Amigos */

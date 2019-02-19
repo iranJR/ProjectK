@@ -316,7 +316,7 @@ atribuidos via sessão ou cookies -->
                                 <td><img src='../imagens/thor.jpg' class='img-rounded'></td>
                             </tr>
                             <tr>
-                                <th scope='col' colspan='4'><a id='aVerTodos'> Ver Todos </a></th>
+                                <th scope='col' colspan='4'><a id='aVerTodos' href="../view/verAmigos.view.php?userID=<?php echo $userID ?>"> Ver Todos </a></th>
                             </tr>
                             </tbody>
                         </table>

@@ -89,7 +89,7 @@ function menuHorizontal($idUsuario) {
 echo"<nav id='MenuHorizontal' class='navbar navbar-inverse'>
     <div class='container-fluid'>
         <ul id='ulMenuHorizontal' class='nav navbar-nav'>
-            <li><a href='../view/verAmigos.view.php'>Amigos</a></li>
+            <li><a href='../view/verAmigos.view.php?userID=".$idUsuario."'>Amigos</a></li>
             <li><a href='#' id='botaoNotificacoes' class='dropdown-toggle' data-toggle='dropdown'>Notificações   <span id='badgeNotificacao' class='badge'>".$numSolicitacoesRecebidas."</span></a></li>
             
             <ul id='ulDropDownNotificacoes' class='dropdown-menu'>

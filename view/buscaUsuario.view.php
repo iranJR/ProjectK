@@ -44,15 +44,14 @@ require_once ("../view/templatePaginaInicial.php");
 $busca = $_GET['busca'];
 $busca = explode(' ', $busca, 2);
 
-
 require_once ('../banco/conexao_bd.php');
 
 global $pdo;
 /*endereço atual da página*/
 $endereco = $_SERVER ['PHP_SELF'];
 /* Constantes de configuração*/
-define('QTDE_REGISTROS', 1);
-define('RANGE_PAGINAS', 10);
+define('QTDE_REGISTROS', 10);
+define('RANGE_PAGINAS', 1);
 /* Recebe o número da página via parâmetro na URL*/
 $pagina_atual = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 /* Calcula a linha inicial da consulta*/
@@ -100,7 +99,6 @@ $range_final = (($pagina_atual + RANGE_PAGINAS) <= $ultima_pagina) ? $pagina_atu
 $exibir_botao_inicio = ($range_inicial < $pagina_atual) ? 'mostrar' : 'esconder';
 /* Verifica se vai exibir o botão "Anterior" e "Último"*/
 $exibir_botao_final = ($range_final > $pagina_atual) ? 'mostrar' : 'esconder';
-
 
 ?>
 
