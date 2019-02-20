@@ -5,6 +5,7 @@
  * Date: 12/01/2019
  * Time: 11:29
  */
+
 /*Nomeclaturando sessão*/
 session_name(hash('sha256',$_SERVER['SERVER_ADDR'].$_SERVER['REMOTE_ADDR']));
 
@@ -58,12 +59,12 @@ $pagina_atual = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['pag
 $linha_inicial = ($pagina_atual - 1) * QTDE_REGISTROS;
 /* Instrução de consulta para paginação com MySQL*/
 if(count($busca) == 2) {
-    $sql = "SELECT * FROM usuario where nome like :busca && sobrenome like :busca2 LIMIT {$linha_inicial}, " . QTDE_REGISTROS;
+    $sql = "SELECT * FROM usuario where nome like :busca && sobrenome like :busca2 order by nome, sobrenome LIMIT {$linha_inicial}, " . QTDE_REGISTROS;
     $statement = $pdo->prepare($sql);
     $statement->bindValue(':busca',  $busca[0] . '%');
     $statement->bindValue(':busca2',  $busca[1] . '%');
 }else{
-    $sql = "SELECT * FROM usuario where nome like :busca LIMIT {$linha_inicial}, " . QTDE_REGISTROS;
+    $sql = "SELECT * FROM usuario where nome like :busca order by nome, sobrenome LIMIT {$linha_inicial}, " . QTDE_REGISTROS;
     $statement = $pdo->prepare($sql);
     $statement->bindValue(':busca',  $busca[0] . '%');
 }
@@ -114,7 +115,7 @@ $exibir_botao_final = ($range_final > $pagina_atual) ? 'mostrar' : 'esconder';
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="../javaScript/JSFuncoesAjax.js"></script>
     <script src="../javaScript/JSFuncoesPaginaInicial.js"></script>
-    <title>ProjectK - Página Inicial</title>
+    <title>ProjectK - Pesquisa</title>
 
 </head>
 <body>
@@ -247,7 +248,7 @@ atribuidos via sessão ou cookies -->
         <!-- Fim da Div Central da Página, Mural de Notícias -->
 
         <!-- Início do Menu Lateral Direito, Menu de Amigos -->
-        <?php menuLateralDireitoAmigos(); ?>
+        <?php menuLateralDireitoAmigos($idUsuario); ?>
         <!-- Fim do Menu Lateral Direito, Menu de Amigos -->
 
         <!-- Retorno da Pausa na Div Geral da Página -->

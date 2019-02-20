@@ -38,15 +38,14 @@ if(count($dados) > 0){
         $uf = $ufDao->buscarPeloId($usuario->estado);
 
         echo"<li><div id='DivMediaDropdownUser' class='col-md-12'>
+            <a href='../view/perfilUsuario.view.php?userID=".$usuario->idUsuario."' >
             <div id='divMediaUser' class='media'>
                 <div class='media-left media-middle'>";
                     if($usuario->fotoPerfil == 'perfil.png') {
-                    echo "<a href='../view/perfilUsuario.view.php?userID=".$usuario->idUsuario."' ><img class='media-object' src='../imagens/perfil.png''
-                     alt='Foto Perfil'/></a>";
+                    echo "<img class='media-object' src='../imagens/perfil.png' alt='Foto Perfil'/>";
                 }
                 else {
-                    echo "<a href='../view/perfilUsuario.view.php?userID=".$usuario->idUsuario."'><img class='media-object' src='../imagens/Usuario/".$usuario->idUsuario."/Albuns/Perfil/".$usuario->fotoPerfil."' 
-                    alt='Foto Perfil'/></a>";
+                    echo "<img class='media-object' src='../imagens/Usuario/".$usuario->idUsuario."/Albuns/Perfil/".$usuario->fotoPerfil."' alt='Foto Perfil' />";
                 }
                 echo"</div>
                 <div class='media-body'>
@@ -56,7 +55,8 @@ if(count($dados) > 0){
                     </div>
                 </div>
             </div>
-            </div></a></li>";
+            </a>
+            </div></li>";
     }
         if(count($busca) == 2) {
             echo "<li>

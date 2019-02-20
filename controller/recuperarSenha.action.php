@@ -12,7 +12,8 @@ require_once ('../model/Usuario.php');
 $senhaAtual = $senhaNova = null;
 
 if($_GET['act'] == 'save') {
-    if (!empty($_POST['senhaAtual']) && !empty($_POST['senhaNova'])) {
+    if (!empty($_POST['senhaAtual']) && !empty($_POST['senha']) && !empty($_POST['confirmSenha'])
+    && !empty($_POST['usuario'])) {
         // verifica se a senha atual está no formato correto
         if (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$/", $_POST['senhaAtual'])) {
             try{
@@ -25,15 +26,15 @@ if($_GET['act'] == 'save') {
                     $senhaAtual = $_POST['senhaAtual'];
                 }
             }catch(PDOException $erro){
-                $msg = "Senha atual está errada: " . $erro->getMessage();
-                echo "<script>window.location.href='../view/alterarSenha.view.php?msg=".$msg."'</script>";
+                $msg = "A senha atual está errada: " . $erro->getMessage();
+                echo "<script>window.location.href='../view/recuperarSenha.view.php?msg=".$msg."'</script>";
             }
         }
         // verifica se a senha nova está no formato correto
-        if (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$/", $_POST['senhaNova'])) {
+        if (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$/", $_POST['senha'])) {
             // confirmação de senha nova
-            if ($_POST['senhaNova'] == $_POST['confirmSenhaNova']) {
-                $senhaNova = $_POST['senhaNova'];
+            if ($_POST['senha'] == $_POST['confirmSenha']) {
+                $senhaNova = $_POST['senha'];
             }
         }
         // verifica se todos os dados estão de acordo com o formato correto e inicia a alteração da senha
@@ -47,19 +48,19 @@ if($_GET['act'] == 'save') {
                 $dao->alterar($usuario);
 
                 $msg = "Sua senha foi alterada com sucesso !";
-                echo "<script>window.location.href='../view/alterarSenha.view.php?msg=".$msg."'</script>";
+                echo "<script>window.location.href='../view/recuperarSenha.view.php?msg=".$msg."'</script>";
 
             } catch (PDOException $erro) {
                 $msg = "Erro ao alterar senha: " . $erro->getMessage();
-                echo "<script>window.location.href='../view/alterarSenha.view.php?msg=".$msg."'</script>";
+                echo "<script>window.location.href='../view/recuperarSenha.view.php?msg=".$msg."'</script>";
             }
         } else {
-            $msg = "Aviso: Navegação suspeita, para um navegação segura verifique se todos os plugins estão ativados !";
-            echo "<script>window.location.href='../view/alterarSenha.view.php?msg=".$msg."'</script>";
+            $msg = "Aviso: Navegação suspeita, para uma navegação segura verifique se todos os plugins estão ativados !";
+            echo "<script>window.location.href='../view/recuperarSenha.view.php?msg=".$msg."'</script>";
         }
     } else {
         $msg = "Preencha todos os campos obrigatórios !";
-        echo "<script>window.location.href='../view/alterarSenha.view.php?msg=".$msg."'</script>";
+        echo "<script>window.location.href='../view/recuperarSenha.view.php?msg=".$msg."'</script>";
     }
 }
 

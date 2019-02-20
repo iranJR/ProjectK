@@ -139,7 +139,7 @@ date_default_timezone_set('America/Sao_Paulo');
         <!-- Fim da Div Central da Página, Mural de Notícias -->
 
         <!-- Início do Menu Lateral Direito, Menu de Amigos -->
-        <?php menuLateralDireitoAmigos(); ?>
+        <?php menuLateralDireitoAmigos($idUsuario); ?>
         <!-- Fim do Menu Lateral Direito, Menu de Amigos -->
 
         <!-- Retorno da Pausa na Div Geral da Página -->
