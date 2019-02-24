@@ -167,7 +167,7 @@ class AmigoDAO implements GenericsDAO
     {
         global $pdo;
         try{
-            $statement= $pdo->prepare("SELECT * FROM amigo WHERE idSolicitante = :id AND dataConfirmacao != null OR idSolicitado = :id AND dataConfirmacao != null ");
+            $statement= $pdo->prepare("SELECT * FROM amigo WHERE idSolicitante = :id AND dataConfirmacao in not null OR idSolicitado = :id AND dataConfirmacao is not null ");
             $statement->bindValue(":id",$idUsuario);
             if($statement->execute()){
                 $result = $statement->fetchAll(PDO::FETCH_OBJ);
