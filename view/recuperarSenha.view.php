@@ -62,7 +62,7 @@ require_once ("../view/templatePaginaInicial.php");
     <script src="../javaScript/JSValidationAlterarSenha.js"></script>
     <script src="../javaScript/JSFuncoesAjax.js"></script>
     <script src="../javaScript/JSFuncoesPaginaInicial.js"></script>
-    <title>ProjectK - Alterar Senha</title>
+    <title>ProjectK - Modificar Senha</title>
 </head>
 <body>
 
@@ -90,9 +90,15 @@ require_once ("../view/templatePaginaInicial.php");
         <div id='divMural' class='col-sm-8 text-left'>
             <div id='divAlterarSenha' class="col-sm-10">
                <form id="formLogin" method="post" action="../controller/recuperarSenha.action.php?act=save">
+                   <h2><i class='glyphicon glyphicon-pencil'></i>   Modificar Senha</h2>
+                   <h4>Confirme sua senha atual, para alterar a senha</h4>
+                   <hr>
+                   <p>
+                       <?php if (isset($_GET['msg'])) {
+                           echo "<p id='mensagemContato'><span id='spanMensagemContato'>* </span>" . $_GET['msg'] . "<span id='spanMensagemContato'> *</span></p>";
+                       } ?>
+                   </p>
                    <div class="row">
-                       <h4>Alterar Senha</h4>
-                       <hr>
                        <div class="form-group col-md-6">
                             <input type="hidden" name="usuario" value="<?= $idUsuario ?>">
                             <label class="labelForm" for="nome">Senha Atual:</label>
@@ -103,9 +109,9 @@ require_once ("../view/templatePaginaInicial.php");
 
                    <div class="row">
                        <div class="form-group col-md-6">
-                           <label for="senha">Senha:</label>
+                           <label for="senha">Nova Senha:</label>
                            <input type="password" class="form-control" id="senha" name="senha"
-                                  placeholder="Digite aqui sua senha..."
+                                  placeholder="Digite aqui sua nova senha..."
                                   required passwordCheck="passwordCheck" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                                   title="A sua senha deve ter pelo menos 8 caracteres e conter pelo menos: uma letra maiúscula, uma letra minúscula e um dígito. ">
                            <small id="senhaHelp" class="form-text text-muted"><span id="spanSenhaHelp2">*</span> Força da
@@ -127,7 +133,7 @@ require_once ("../view/templatePaginaInicial.php");
                    </div>
                    <hr>
                    <div class="row">
-                       <button id="botaoAlterarSenha" style="margin-left: 40%" type="submit" class="btn btn-info">Alterar</button>
+                       <button id="botaoAlterarSenha" type="submit" class="btn btn-info">Alterar   <i class='glyphicon glyphicon-ok'></i></button>
                    </div>
                </form>
             </div>
@@ -135,7 +141,7 @@ require_once ("../view/templatePaginaInicial.php");
         <!-- Fim da Div Central da Página, Alterar Senha -->
 
         <!-- Início do Menu Lateral Direito, Menu de Amigos -->
-        <?php menuLateralDireitoAmigos(); ?>
+        <?php menuLateralDireitoAmigos($idUsuario); ?>
         <!-- Fim do Menu Lateral Direito, Menu de Amigos -->
 
         <!-- Retorno da Pausa na Div Geral da Página -->

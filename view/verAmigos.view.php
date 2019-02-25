@@ -50,7 +50,7 @@ $valor="";
 /*endereço atual da página*/
 $endereco = $_SERVER ['PHP_SELF'];
 /* Constantes de configuração*/
-define('QTDE_REGISTROS', 1);
+define('QTDE_REGISTROS', 20);
 define('RANGE_PAGINAS', 1);
 /* Recebe o número da página via parâmetro na URL*/
 $pagina_atual = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
@@ -60,7 +60,7 @@ $linha_inicial = ($pagina_atual - 1) * QTDE_REGISTROS;
 
 if(empty($_GET['busca'])) {
     $sql = "SELECT * from usuario as u, amigo as a where a.dataConfirmacao is not null and a.idSolicitado = :id
-    and a.idSolicitante = u.idUsuario or a.idSolicitante = :id and a.idSolicitado = u.idUsuario LIMIT {$linha_inicial}, " . QTDE_REGISTROS;
+    and a.idSolicitante = u.idUsuario or a.idSolicitante = :id and a.idSolicitado = u.idUsuario order by u.nome, u.sobrenome LIMIT {$linha_inicial}, " . QTDE_REGISTROS;
     $statement = $pdo->prepare($sql);
     $statement->bindValue(':id', $userId . '');
     $statement->execute();
@@ -80,7 +80,7 @@ if(empty($_GET['busca'])) {
     if (count($busca) == 2) {
         $sql = "SELECT * from usuario as u, amigo as a where a.dataConfirmacao is not null and a.idSolicitado = :id
         and a.idSolicitante = u.idUsuario and u.nome like :busca or a.idSolicitante = :id and a.idSolicitado = u.idUsuario 
-        and u.nome like :busca && sobrenome like :busca2 LIMIT {$linha_inicial}, " . QTDE_REGISTROS;
+        and u.nome like :busca && u.sobrenome like :busca2 order by u.nome, u.sobrenome LIMIT {$linha_inicial}, " . QTDE_REGISTROS;
         $statement = $pdo->prepare($sql);
         $statement->bindValue(':id', $userId . '');
         $statement->bindValue(':busca', $busca[0] . '%');
@@ -88,7 +88,7 @@ if(empty($_GET['busca'])) {
     } else {
         $sql = "SELECT * from usuario as u, amigo as a where a.dataConfirmacao is not null and a.idSolicitado = :id
         and a.idSolicitante = u.idUsuario and u.nome like :busca or a.idSolicitante = :id and a.idSolicitado = u.idUsuario 
-        and u.nome like :busca LIMIT {$linha_inicial}, " . QTDE_REGISTROS;
+        and u.nome like :busca order by u.nome, u.sobrenome LIMIT {$linha_inicial}, " . QTDE_REGISTROS;
         $statement = $pdo->prepare($sql);
         $statement->bindValue(':id', $userId . '');
         $statement->bindValue(':busca', $busca[0] . '%');
@@ -99,7 +99,7 @@ if(empty($_GET['busca'])) {
     if (count($busca) == 2) {
         $sqlContador = "SELECT COUNT(*) AS total_registros from usuario as u, amigo as a where a.dataConfirmacao is not null and a.idSolicitado = :id
         and a.idSolicitante = u.idUsuario and u.nome like :busca or a.idSolicitante = :id and a.idSolicitado = u.idUsuario 
-        and u.nome like :busca && sobrenome like :busca2";
+        and u.nome like :busca && u.sobrenome like :busca2";
         $statement = $pdo->prepare($sqlContador);
         $statement->bindValue(':id', $userId . '');
         $statement->bindValue(':busca', $busca[0] . '%');
@@ -147,7 +147,7 @@ $exibir_botao_final = ($range_final > $pagina_atual) ? 'mostrar' : 'esconder';
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="../javaScript/JSFuncoesAjax.js"></script>
     <script src="../javaScript/JSFuncoesPaginaInicial.js"></script>
-    <title>ProjectK - Meus Amigos</title>
+    <title>ProjectK - Amigos</title>
 
 </head>
 <body>
@@ -346,7 +346,7 @@ atribuidos via sessão ou cookies -->
         <!-- Fim da Div Central da Página, Mural de Notícias -->
 
         <!-- Início do Menu Lateral Direito, Menu de Amigos -->
-        <?php menuLateralDireitoAmigos(); ?>
+        <?php menuLateralDireitoAmigos($idUsuario); ?>
         <!-- Fim do Menu Lateral Direito, Menu de Amigos -->
 
         <!-- Retorno da Pausa na Div Geral da Página -->
