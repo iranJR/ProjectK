@@ -84,7 +84,7 @@ if($_GET['act'] == 'save') {
                 echo "<script>window.location.href='../view/cadastroUsuario.view.php?msg=".$msg."'</script>";
             }
         }else{
-            $msg = "Aviso: Navegação suspeita, para um navegação segura verifique se todos os plugins estão ativados !";
+            $msg = "Aviso: Navegação suspeita, para uma navegação segura verifique se todos os plugins estão ativados !";
             echo "<script>window.location.href='../view/cadastroUsuario.view.php?msg=".$msg."'</script>";
         }
     }else{

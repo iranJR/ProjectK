@@ -404,6 +404,19 @@ atribuidos via sessão ou cookies -->
                 </div>
                 <!-- Fim da Área de Postagem  -->
 
+
+                <!-- Início do Mural de Notícias -->
+                <h3 id="h3MuralPerilUsuario"><i class="glyphicon glyphicon-bullhorn"></i>   Mural de Notícias</h3>
+                <br/>
+                <div class="row">
+                    <div id="divPostagemMuralPerfilUsuario" class="col-md-10">
+                        <h1>Oi</h1>
+                        <h1>Oi</h1>
+                        <h1>Oi</h1>
+                        <h1>Oi</h1>
+                    </div>
+                </div>
+                <!-- Fim do Mural de Notícias -->
             </div>
         </div>
         <!-- Fim da Div Central da Página, Mural de Notícias -->

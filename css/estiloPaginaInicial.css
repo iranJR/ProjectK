@@ -940,6 +940,25 @@
 
 /* Fim da Parte de Postagens da Página de Perfil do Usuário */
 
+/* Início da Parte do Mural de Notícias da Página de Perfil do Usuário */
+
+#h3MuralPerilUsuario{
+    font-weight: bold;
+    margin-left: 4%;
+}
+
+#h3MuralPerilUsuario i {
+    font-size: 22px;
+}
+
+#divPostagemMuralPerfilUsuario {
+    margin-left: 9%;
+    border-radius: 10px;
+    background-color: black;
+}
+
+/* Início da Parte do Mural de Notícias da Página de Perfil do Usuário */
+
 /* Fim da Div de Perfil de Usuário */
 
 /* ------------------------------------------------------------------------------------------ */

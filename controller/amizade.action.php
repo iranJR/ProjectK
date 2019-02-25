@@ -54,7 +54,7 @@ if($_POST['act'] == 'add') {
             }
         }
         else{
-            $msg = "Aviso: Navegação suspeita, para um navegação segura verifique se todos os plugins estão ativados !";
+            $msg = "Aviso: Navegação suspeita, para uma navegação segura verifique se todos os plugins estão ativados !";
             echo "<script>window.location.href='../view/paginaInicial.view.php?msg=".$msg."'</script>";
         }
     }
@@ -121,7 +121,7 @@ if($_POST['act'] == 'cancelar' || $_POST['act'] == 'desfazer' || $_POST['act'] =
             }
         }
         else{
-            $msg = "Aviso: Navegação suspeita, para um navegação segura verifique se todos os plugins estão ativados !";
+            $msg = "Aviso: Navegação suspeita, para uma navegação segura verifique se todos os plugins estão ativados !";
             echo "<script>window.location.href='../view/paginaInicial.view.php?msg=".$msg."'</script>";
         }
     }
@@ -175,7 +175,7 @@ if($_POST['act'] == 'aceitar') {
             }
         }
         else{
-            $msg = "Aviso: Navegação suspeita, para um navegação segura verifique se todos os plugins estão ativados !";
+            $msg = "Aviso: Navegação suspeita, para uma navegação segura verifique se todos os plugins estão ativados !";
             echo "<script>window.location.href='../view/paginaInicial.view.php?msg=".$msg."'</script>";
         }
     }
