@@ -19,3 +19,19 @@ $(document).ready(function(){
 });
 
 /*----------------------------------------------------------------------------*/
+
+/* ## Página de Perfil do Usuário ## */
+
+<!--Início da Função para Contagem de Caracteres Restantes do Input do Formulário de Postagem.-->
+
+$(document).ready(function(){
+    $("#inputPostagemPerfilUsuario").keyup(
+        function () {
+            $("#contMensagemPostagem").text(500 - $("#inputPostagemPerfilUsuario").val().length +" caracteres restantes.")
+        }
+    );
+});
+
+<!--Fim da Função para Contagem de Caracteres Restantes do Input do Formulário de Postagem.-->
+
+/*----------------------------------------------------------------------------*/

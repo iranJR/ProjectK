@@ -304,7 +304,7 @@ echo "<div id = 'divMenuLateralDireito' class='col-sm-2 sidenav' >
             <td ><img src = '../imagens/thor.jpg' class='img-rounded' ></td >
         </tr >
         <tr >
-        <th scope = 'col' colspan = '3' ><a id = 'aVerTodos' href='verAmigos.view.php?userID=".$idUsuario."'> Ver Todos </a ></th >
+        <th scope = 'col' colspan = '3' ><a id = 'aVerTodos' href='../view/verAmigos.view.php?userID=".$idUsuario."'> Ver Todos </a ></th >
         </tr >
         </tbody >
     </table >

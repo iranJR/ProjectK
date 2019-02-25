@@ -70,5 +70,5 @@ if(count($dados) > 0){
         }
 }
 else {
-    echo "<li><p id='DivMediaUserP'>Nenhum resultado encontrado.</p></li>";
+    echo "<li><p id='DivMediaUserP'><i class='glyphicon glyphicon-alert'></i>   Nenhum resultado encontrado.</p></li>";
 }

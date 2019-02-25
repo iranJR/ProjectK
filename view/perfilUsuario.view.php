@@ -141,8 +141,8 @@ atribuidos via sessão ou cookies -->
                                     </div>
                                     <div class='row'>
                                         <div class='col-md-12'>
-                                            <a id='botaoAdicionarPerfil' title='Meus Amigos' class='btn btn-primary'>
-                                                <i class='glyphicon glyphicon-user'></i> Amigos
+                                            <a href='../view/verAmigos.view.php?userID=".$idUsuario."' id='botaoAdicionarPerfil' title='Meus Amigos' class='btn btn-primary'>
+                                                <i class='glyphicon glyphicon-user'></i>   Amigos
                                             </a>
                                         </div>
                                     </div>";
@@ -349,6 +349,60 @@ atribuidos via sessão ou cookies -->
                         </table>
                     </div>
                 </div>
+
+                <hr id="hrPaginaPerfil2"/>
+
+                <!-- Inicío da Área de Postagem -->
+                <div class="row">
+                    <form id='formPostagemPerfilUsuario' class='navbar-form navbar-left' method='post' action='#'>
+                        <div class="col-md-12">
+
+                            <div class="col-md-2">
+                                <?php
+                                if($fotoPerfil == 'perfil.png') {
+                                    echo "<img id='imgFotoPerfilPostagem' src='../imagens/perfil.png' alt='Foto Perfil' class='img-circle' />";
+                                }
+                                else {
+                                    echo"<img id='imgFotoPerfilPostagem' src='../imagens/Usuario/".$idUsuario."/Albuns/Perfil/".$fotoPerfil."' alt='Foto Perfil' 
+                                    class='img-circle' >";
+                                }
+                                ?>
+                            </div>
+
+                            <div class="col-md-10">
+                                <div id='divInputPostagemPerfilUsuario' class='input-group'>
+                                    <input hidden value="<?=$idUsuario ?>" name="idRemetente">
+                                    <input hidden value="<?=$usuario->getIdUsuario() ?>" name="idDestinatario">
+                                    <input hidden value="texto" name="tipoPost">
+                                    <input id='inputPostagemPerfilUsuario' name='textoPostagem' type='text' class='form-control' autocomplete='off' placeholder='<?php
+                                    if($userID == $idUsuario){
+                                        echo $nomeUsuario." escreva algo para que seus amigos vejam...";
+                                    }
+                                    else {
+                                        echo $nomeUsuario." escreva algo para ".$usuario->getNome()."...";
+                                    }?>' maxlength='500'>
+                                    <div class='input-group-btn' >
+                                        <button id='botaoPostarPerfilUsuario' title="Postar" class='btn btn-warning' type='submit'>
+                                            <i class='glyphicon glyphicon-send'></i>
+                                        </button>
+                                        <button id='botaoPostarImgPerfilUsuario' title="Postar Imagem" class='btn btn-warning'>
+                                            <i class='glyphicon glyphicon-camera'></i>
+                                        </button>
+                                        <button id='botaoPostarVideoPerfilUsuario' title="Postar Vídeo" class='btn btn-warning'>
+                                            <i class='glyphicon glyphicon-facetime-video'></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </form>
+                    <div class="col-md-12">
+                        <small id="contMensagemPostagem" class="form-text text-muted">500 caracteres restantes.</small>
+                    </div>
+                </div>
+                <!-- Fim da Área de Postagem  -->
 
             </div>
         </div>

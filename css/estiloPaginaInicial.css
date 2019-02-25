@@ -134,6 +134,10 @@
     text-align: center;
 }
 
+#DivMediaUserP i {
+    font-size: 14px;
+}
+
 /* Fim do Menu DropDown de Pesquisa por Usuário */
 
 /* Fim do Cabeçalho Principal */
@@ -874,11 +878,200 @@
     font-size: 16px;
     font-variant: small-caps;
 }
+
+/* Inicío da Parte de Postagens da Página de Perfil do Usuário */
+
+#hrPaginaPerfil2 {
+    height: 3px;
+    background-color: #37C967;
+}
+
+#formPostagemPerfilUsuario {
+     font-weight: bold;
+ }
+
+#imgFotoPerfilPostagem {
+    width: 34px;
+    height: 34px;
+}
+
+#divInputPostagemPerfilUsuario {
+    width: 275%;
+    z-index: 0;
+}
+
+#inputPostagemPerfilUsuario {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+#botaoPostarPerfilUsuario {
+    background-color: #068DD6;
+    border-color: #068DD6;
+}
+
+#botaoPostarPerfilUsuario:hover {
+    opacity: 0.9;
+}
+
+#botaoPostarImgPerfilUsuario {
+    background-color: #3A3A3A;
+    border-color: #3A3A3A;
+}
+
+#botaoPostarImgPerfilUsuario:hover {
+    opacity: 0.7;
+}
+
+#botaoPostarVideoPerfilUsuario {
+    background-color: #4c4c4c;
+    border-color: #4c4c4c;
+}
+
+#botaoPostarVideoPerfilUsuario:hover {
+    opacity: 0.9;
+}
+
+#contMensagemPostagem {
+     color: #3A3A3A;
+     font-weight: bold;
+     margin-left: 78.5%;
+ }
+
+/* Fim da Parte de Postagens da Página de Perfil do Usuário */
+
 /* Fim da Div de Perfil de Usuário */
 
 /* ------------------------------------------------------------------------------------------ */
 
 /* ### Página de Busca de Usuário ### */
+
+#divBuscaUsuario{
+    margin-left: 7%;
+}
+
+#divBuscaUsuario h2 {
+    font-weight: bold;
+    margin-left: -5%;
+}
+
+#divBuscaUsuario h2 i{
+    font-size: 24px;
+}
+
+#divBuscaUsuario h4 {
+    margin-left: -5%;
+}
+
+#hrBuscaUsuario {
+    height: 3px;
+    background-color: #068DD6;
+    margin-left: -5%;
+    margin-top: 0;
+    width: 94%;
+}
+
+#divMediaBuscarUsuario {
+    margin-bottom: 2%;
+}
+
+#divMediaClassBuscarUsuario{
+    border: solid;
+    border-radius: 10px;
+    border-color: #E5E5E5;
+    border-width: 1px;
+}
+
+#divMediaClassBuscarUsuario img {
+    width: 82px;
+    height: 82px;
+}
+
+#divMediaBodyBuscarUsuario{
+    margin-top: 6%;
+}
+
+#botaoAdicionarBuscarUsuario {
+    width: 100%;
+    background-color: #37C967;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-color: #37C967;
+    margin-top: 15%;
+}
+
+#botaoAdicionarBuscarUsuario:hover{
+    opacity: 0.9;
+}
+
+#botaoCancelarBuscarUsuario {
+    width: 100%;
+    background-color: #3A3A3A;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-color: #3A3A3A;
+    margin-top: 15%;
+}
+
+#botaoCancelarBuscarUsuario i {
+    color: red;
+}
+
+#botaoCancelarBuscarUsuario:hover{
+    opacity: 0.9;
+}
+
+#botaoDesfazerBuscarUsuario {
+    width: 100%;
+    background-color: crimson;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-color: crimson;
+    margin-top: 15%;
+}
+
+#botaoDesfazerBuscarUsuario:hover {
+    opacity: 0.9;
+}
+
+#botaoAceitarBuscarUsuario {
+    width: 100%;
+    background-color: #3A3A3A;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border-color: #3A3A3A;
+    margin-top: 3%;
+}
+
+#botaoAceitarBuscarUsuario i{
+    color: #37C967;
+}
+
+#botaoAceitarBuscarUsuario:hover {
+    opacity: 0.9;
+}
+
+#botaoRecusarBuscarUsuario {
+    width: 100%;
+    background-color: #3A3A3A;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border-color: #3A3A3A;
+    margin-top: 3%;
+}
+
+#botaoRecusarBuscarUsuario i {
+    color: red;
+}
+
+#botaoRecusarBuscarUsuario:hover {
+    opacity: 0.9;
+}
 
 /*Paginação*/
 #UlPaginacao li a{
@@ -904,22 +1097,105 @@
 }
 /*Fim da Paginação*/
 
+#h3BuscarUsuarioSemResultado {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+#h3BuscarUsuarioSemResultado i{
+    font-size: 18px;
+    color: #F0BE00;
+}
+
 /* -------------------------------------------------------------------------------------------- */
 
 /* ### Página de Ver todos Amigos ### */
-#verAmigos h1{
-    margin-left: 4%;
+
+#divVerAmigos{
+    margin-left: 1%;
+    margin-top: 1%;
 }
 
-#verAmigos h5{
-    font-size: 16px;
+#divVerAmigos h2 {
+    margin-left: 4%;
     font-weight: bold;
 }
 
-#verAmigos{
-    margin-left: 1%;
-    margin-top: 1%;
-    width:100%;
+#divVerAmigos h2 i {
+    font-size: 24px;
+}
+
+#divInputPesquisarAmigos {
+    width: 160%;
+    margin-left: 108%;
+    z-index: 0;
+}
+
+#inputPesquisarAmigos {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+#BotaoPesquisarAmigos {
+    background-color: crimson;
+    border-color: crimson;
+}
+
+#hrVerAmigos {
+    height: 3px;
+    background-color: #068DD6;
+    margin-left: -2%;
+    margin-top: 0.5%;
+    width: 104%;
+}
+
+#divVerAmigos h4 {
+    margin-left: -2%;
+}
+
+#divMediaClassVerAmigos {
+    margin-bottom: 1%;
+    padding: 1%;
+}
+
+#divDivMediaClassVerAmigos {
+    border: solid;
+    border-radius: 10px;
+    border-color: #E5E5E5;
+    border-width: 1px;
+}
+
+#divDivMediaClassVerAmigos img {
+    width: 82px;
+    height: 82px;
+}
+
+#divMediaBodyVerAmigos h5{
+    margin-top: 10%;
+    font-weight: bold;
+}
+
+#divMediaBodyVerAmigos button{
+    margin-top: 6%;
+    width: 110%;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+#divMediaBodyVerAmigos button:hover {
+    opacity: 0.9;
+}
+
+#botaoMensagemVerAmigos {
+    background-color: #068DD6;
+    color: white;
+    border-color: #068DD6;
+}
+
+#botaoDesfazerVerAmigos {
+    background-color: crimson;
+    color: white;
+    border-color: crimson;
 }
 
 /*#divAmigo {
@@ -937,6 +1213,10 @@
     width: 250px;
     border-radius: 5px;
     border: 1px solid #999999;
+}
+
+#divVerAmigos #UlPaginacao{
+    margin-left: 15%;
 }
 
 /*#fotoAmigo{

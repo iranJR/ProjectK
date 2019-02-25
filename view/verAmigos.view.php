@@ -60,7 +60,8 @@ $linha_inicial = ($pagina_atual - 1) * QTDE_REGISTROS;
 
 if(empty($_GET['busca'])) {
     $sql = "SELECT * from usuario as u, amigo as a where a.dataConfirmacao is not null and a.idSolicitado = :id
-    and a.idSolicitante = u.idUsuario or a.idSolicitante = :id and a.idSolicitado = u.idUsuario order by u.nome, u.sobrenome LIMIT {$linha_inicial}, " . QTDE_REGISTROS;
+    and a.idSolicitante = u.idUsuario or a.dataConfirmacao is not null and a.idSolicitante = :id 
+    and a.idSolicitado = u.idUsuario order by u.nome, u.sobrenome LIMIT {$linha_inicial}, " . QTDE_REGISTROS;
     $statement = $pdo->prepare($sql);
     $statement->bindValue(':id', $userId . '');
     $statement->execute();
@@ -68,7 +69,7 @@ if(empty($_GET['busca'])) {
     /* Conta quantos registos existem na tabela*/
 
     $sqlContador = "SELECT COUNT(*) AS total_registros from usuario as u, amigo as a where a.dataConfirmacao is not null and a.idSolicitado = :id
-    and a.idSolicitante = u.idUsuario or a.idSolicitante = :id and a.idSolicitado = u.idUsuario";
+    and a.idSolicitante = u.idUsuario or a.dataConfirmacao is not null and a.idSolicitante = :id and a.idSolicitado = u.idUsuario";
     $statement = $pdo->prepare($sqlContador);
     $statement->bindValue(':id', $userId . '');
     $statement->execute();
@@ -79,7 +80,7 @@ if(empty($_GET['busca'])) {
 
     if (count($busca) == 2) {
         $sql = "SELECT * from usuario as u, amigo as a where a.dataConfirmacao is not null and a.idSolicitado = :id
-        and a.idSolicitante = u.idUsuario and u.nome like :busca or a.idSolicitante = :id and a.idSolicitado = u.idUsuario 
+        and a.idSolicitante = u.idUsuario and u.nome like :busca or a.dataConfirmacao is not null and a.idSolicitante = :id and a.idSolicitado = u.idUsuario 
         and u.nome like :busca && u.sobrenome like :busca2 order by u.nome, u.sobrenome LIMIT {$linha_inicial}, " . QTDE_REGISTROS;
         $statement = $pdo->prepare($sql);
         $statement->bindValue(':id', $userId . '');
@@ -87,7 +88,7 @@ if(empty($_GET['busca'])) {
         $statement->bindValue(':busca2', $busca[1] . '%');
     } else {
         $sql = "SELECT * from usuario as u, amigo as a where a.dataConfirmacao is not null and a.idSolicitado = :id
-        and a.idSolicitante = u.idUsuario and u.nome like :busca or a.idSolicitante = :id and a.idSolicitado = u.idUsuario 
+        and a.idSolicitante = u.idUsuario and u.nome like :busca or a.dataConfirmacao is not null and a.idSolicitante = :id and a.idSolicitado = u.idUsuario 
         and u.nome like :busca order by u.nome, u.sobrenome LIMIT {$linha_inicial}, " . QTDE_REGISTROS;
         $statement = $pdo->prepare($sql);
         $statement->bindValue(':id', $userId . '');
@@ -98,7 +99,7 @@ if(empty($_GET['busca'])) {
     /* Conta quantos registos existem na tabela*/
     if (count($busca) == 2) {
         $sqlContador = "SELECT COUNT(*) AS total_registros from usuario as u, amigo as a where a.dataConfirmacao is not null and a.idSolicitado = :id
-        and a.idSolicitante = u.idUsuario and u.nome like :busca or a.idSolicitante = :id and a.idSolicitado = u.idUsuario 
+        and a.idSolicitante = u.idUsuario and u.nome like :busca or a.dataConfirmacao is not null and a.idSolicitante = :id and a.idSolicitado = u.idUsuario 
         and u.nome like :busca && u.sobrenome like :busca2";
         $statement = $pdo->prepare($sqlContador);
         $statement->bindValue(':id', $userId . '');
@@ -106,7 +107,7 @@ if(empty($_GET['busca'])) {
         $statement->bindValue(':busca2', $busca[1] . '%');
     } else {
         $sqlContador = "SELECT COUNT(*) AS total_registros from usuario as u, amigo as a where a.dataConfirmacao is not null and a.idSolicitado = :id
-        and a.idSolicitante = u.idUsuario and u.nome like :busca or a.idSolicitante = :id and a.idSolicitado = u.idUsuario 
+        and a.idSolicitante = u.idUsuario and u.nome like :busca or a.dataConfirmacao is not null and a.idSolicitante = :id and a.idSolicitado = u.idUsuario 
         and u.nome like :busca";
         $statement = $pdo->prepare($sqlContador);
         $statement->bindValue(':id', $userId . '');
@@ -177,46 +178,44 @@ atribuidos via sessão ou cookies -->
         <div id = 'divMural' class='col-sm-8 text-left'>
 
             <!--<div id="verAmigos" class="container">-->
-            <div class="col-md-12" id="verAmigos">
+            <div class="col-md-12" id="divVerAmigos">
                 <div class='row'>
                     <?php
                         if($userId == $idUsuario) {
-                            echo "<h1> Meus Amigos</h1>";
+                            echo "<h2><i class='glyphicon glyphicon-user'></i>   Meus Amigos</h2>";
                         }else{
-                            require_once ("../dao/UsuarioDAO.php");
-                            require_once ("../model/Usuario.php");
-
-                            $dao = new UsuarioDAO();
-                            $user = new Usuario('','','','','','','','','','','','');
-                            $user = $dao->buscarPeloId($userId);
-                            if($user->getSexo() == "masculino") {
-                                echo "<h1> Amigos do " . $user->getNome() . "</h1>";
-                            }else{
-                                echo "<h1> Amigos da " . $user->getNome() . "</h1>";
-                            }
+                            echo "<h2><i class='glyphicon glyphicon-user'></i>   Amigos</h2>";
                         }
                     ?>
+
                     <form id='formPesquisar' class='navbar-form navbar-left' method='get' action='../view/verAmigos.view.php?'>
-                        <div id='divInputPesquisar' class='input-group'>
+                        <div id='divInputPesquisarAmigos' class='input-group'>
                             <input hidden value="<?=$userId ?>" name="userID">
-                            <input id='inputPesquisar' style='margin-left:80%; border-top-right-radius: 0px; border-bottom-right-radius: 0px' name='busca' type='text' class='form-control' autocomplete='off' placeholder='Pesquisar...'>
+                            <input id='inputPesquisarAmigos' name='busca' type='text' class='form-control' autocomplete='off' placeholder='Pesquisar nos amigos...'>
                             <div class='input-group-btn' >
-                                <button id='BotaoPesquisar' style='margin-left:210%' class='btn btn-warning' type='submit'>
+                                <button id='BotaoPesquisarAmigos' class='btn btn-warning' type='submit'>
                                     <i class='glyphicon glyphicon-search'></i>
                                 </button>
                             </div>
                         </div>
                     </form>
+
                 </div>
-                <hr>
+                <hr id="hrVerAmigos">
                 <?php
 
-                foreach ($dados as $amigo) {
+                if (count($dados) > 0) {
+                    echo "<h4>" . count($dados) . " amigo(s) encontrado(s).</h4>";
+                }
+
+                if(count($dados) > 0) {
+
+                    foreach ($dados as $amigo) {
 
                         if ($amigo->nome != "" || $amigo->nome != null) {
 
-                            require_once ("../dao/CidadeDAO.php");
-                            require_once ("../dao/UfDAO.php");
+                            require_once("../dao/CidadeDAO.php");
+                            require_once("../dao/UfDAO.php");
 
                             $cidadeDao = new CidadeDAO();
                             $cidade = $cidadeDao->buscarPeloId($amigo->cidade);
@@ -224,37 +223,45 @@ atribuidos via sessão ou cookies -->
                             $ufDao = new UfDAO();
                             $uf = $ufDao->buscarPeloId($amigo->estado);
 
-                            echo "<div class='col-md-6' style='margin-bottom: 2%;'>
-                                <div class='media' style='border: solid; border-radius: 10px; border-color: #E5E5E5; border-width: 1px;'>
+                            echo "<div id='divMediaClassVerAmigos' class='col-md-6'>
+                                <div id='divDivMediaClassVerAmigos' class='media'>
                                     <div class='media-left media-middle'>";
-                            if($amigo->fotoPerfil == 'perfil.png') {
-                                echo "<a href='#'>
-                                                <img class='media-object' src='../imagens/Usuario/15/Albuns/Perfil/thor.jpg' 
-                                                alt='foto' style='width: 80px; height: 80px;'>
-                                            </a>";
-                            }else{
-                                echo "<a href='#'><img class='media-object' src='../imagens/Usuario/".$amigo->idUsuario."/Albuns/Perfil/".$amigo->fotoPerfil."' 
-                                            alt='Foto Perfil' style='width: 80px; height: 80px;'/></a>";
+                            if ($amigo->fotoPerfil == 'perfil.png') {
+                                echo "<a href='../view/perfilUsuario.view.php?userID=" .$amigo->idUsuario. "'>
+                                                <img class='media-object' src='../imagens/perfil.png' alt='foto' /></a>";
+                            } else {
+                                echo "<a href='../view/perfilUsuario.view.php?userID=" .$amigo->idUsuario. "'>
+                                    <img class='media-object' src='../imagens/Usuario/" . $amigo->idUsuario . "/Albuns/Perfil/" . $amigo->fotoPerfil . "' 
+                                            alt='Foto Perfil' /></a>";
                             }
                             echo "</div>
-                                    <div class='media-body'>
-                                        <div class='col-md-7' style='margin-top: 6%'>
-                                        <h5 style='font-weight: bold;' class='media-heading'>" . $amigo->nome . " ".$amigo->sobrenome."</h5>
+                                    <div id='divMediaBodyVerAmigos' class='media-body'>
+                                        <div class='col-md-7'>
+                                        <h5 class='media-heading'>" . $amigo->nome . " " . $amigo->sobrenome . "</h5>
                                             <p>" . $cidade->getNomeCidade() . " - " . $uf->getSiglaUf() . "</p>
                                         </div>
-                                        <div class='col-md-5' style='margin-top: 4%'>
-                                            <button style='width:115%; margin-bottom: 4px; background-color: #37C967; color: white; font-size: 12px; font-weight: bold; border-color: #37C967' class='btn btn-info'>
-                                                         <i class='glyphicon glyphicon-user'></i>  Mensagem
+                                        <div class='col-md-5'>
+                                            <button id='botaoMensagemVerAmigos' class='btn btn-info' title='Enviar Mensagem'>
+                                                         <i class='	glyphicon glyphicon-envelope'></i>  Mensagem
                                             </button>
-                                            <button style='width: 115%; background-color: #37C967; color: white; font-size: 12px; font-weight: bold; border-color: #37C967' class='btn btn-info'>
-                                                <i class='glyphicon glyphicon-user'></i>   Desfazer
-                                            </button>
+                                            <form method='post' action='../controller/amizade.action.php'>
+                                                <input type='hidden' name='act' value='desfazer'>
+                                                <input type='hidden' name='idUsuario' value='" . $idUsuario . "'>
+                                                <input type='hidden' name='userID' value='" . $amigo->idUsuario . "'> 
+                                                <button id='botaoDesfazerVerAmigos' type='submit' title='Desfazer a Amizade' class='btn btn-info'>
+                                                <i class='glyphicon glyphicon-ban-circle'></i>   Desfazer
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                               </div>";
                         }
 
+                    }
+                }
+                else {
+                    echo"<h3 id='h3BuscarUsuarioSemResultado'><i class='glyphicon glyphicon-alert'></i>   Usuário ainda não possui amigos.</h3>";
                 }
 
                 ?>

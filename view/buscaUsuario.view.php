@@ -7,23 +7,23 @@
  */
 
 /*Nomeclaturando sessão*/
-session_name(hash('sha256',$_SERVER['SERVER_ADDR'].$_SERVER['REMOTE_ADDR']));
+session_name(hash('sha256', $_SERVER['SERVER_ADDR'] . $_SERVER['REMOTE_ADDR']));
 
 /* Iniciando a sessão.*/
 session_start();
 
 //Verificação de segurança. Se não houver usuário logado, redireciona para a página de login.
-if((empty($_SESSION['idUsuario']) || empty($_SESSION['nomeUsuario']) || empty($_SESSION['fotoPerfil'])) &&
-    (empty($_COOKIE[hash('sha256','idUsuario')]) || empty($_COOKIE[hash('sha256','nomeUsuario')]) ||
-        empty($_COOKIE[hash('sha256','fotoPerfil')]) || empty($_COOKIE[hash('sha256','senha')]) ||
-        empty($_COOKIE[hash('sha256','email')]))){
+if ((empty($_SESSION['idUsuario']) || empty($_SESSION['nomeUsuario']) || empty($_SESSION['fotoPerfil'])) &&
+    (empty($_COOKIE[hash('sha256', 'idUsuario')]) || empty($_COOKIE[hash('sha256', 'nomeUsuario')]) ||
+        empty($_COOKIE[hash('sha256', 'fotoPerfil')]) || empty($_COOKIE[hash('sha256', 'senha')]) ||
+        empty($_COOKIE[hash('sha256', 'email')]))) {
 
     $msg = "É necessário estar logado para acessar esta página !";
     //echo "<script>window.location.href='../view/login.view.php?msg=".$msg."'</script>";
 }
 
 // Verificação se usuário está logado via sessão.
-if(!empty($_SESSION['idUsuario']) || !empty($_SESSION['nomeUsuario']) || !empty($_SESSION['fotoPerfil'])) {
+if (!empty($_SESSION['idUsuario']) || !empty($_SESSION['nomeUsuario']) || !empty($_SESSION['fotoPerfil'])) {
 
     $idUsuario = $_SESSION['idUsuario'];
     $nomeUsuario = $_SESSION['nomeUsuario'];
@@ -31,21 +31,21 @@ if(!empty($_SESSION['idUsuario']) || !empty($_SESSION['nomeUsuario']) || !empty(
 }
 
 // Verificação se usuário está logado via cookie.
-if(!empty($_COOKIE[hash('sha256','idUsuario')]) || !empty($_COOKIE[hash('sha256','nomeUsuario')]) ||
-    !empty($_COOKIE[hash('sha256','fotoPerfil')]) || !empty($_COOKIE[hash('sha256','senha')]) ||
-    !empty($_COOKIE[hash('sha256','email')])){
+if (!empty($_COOKIE[hash('sha256', 'idUsuario')]) || !empty($_COOKIE[hash('sha256', 'nomeUsuario')]) ||
+    !empty($_COOKIE[hash('sha256', 'fotoPerfil')]) || !empty($_COOKIE[hash('sha256', 'senha')]) ||
+    !empty($_COOKIE[hash('sha256', 'email')])) {
 
-    $idUsuario = base64_decode($_COOKIE[hash('sha256','idUsuario')]);
-    $nomeUsuario = base64_decode($_COOKIE[hash('sha256','nomeUsuario')]);
-    $fotoPerfil = base64_decode($_COOKIE[hash('sha256','fotoPerfil')]);
+    $idUsuario = base64_decode($_COOKIE[hash('sha256', 'idUsuario')]);
+    $nomeUsuario = base64_decode($_COOKIE[hash('sha256', 'nomeUsuario')]);
+    $fotoPerfil = base64_decode($_COOKIE[hash('sha256', 'fotoPerfil')]);
 }
 
-require_once ("../view/templatePaginaInicial.php");
+require_once("../view/templatePaginaInicial.php");
 
 $busca = $_GET['busca'];
 $busca = explode(' ', $busca, 2);
 
-require_once ('../banco/conexao_bd.php');
+require_once('../banco/conexao_bd.php');
 
 global $pdo;
 /*endereço atual da página*/
@@ -58,28 +58,28 @@ $pagina_atual = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['pag
 /* Calcula a linha inicial da consulta*/
 $linha_inicial = ($pagina_atual - 1) * QTDE_REGISTROS;
 /* Instrução de consulta para paginação com MySQL*/
-if(count($busca) == 2) {
+if (count($busca) == 2) {
     $sql = "SELECT * FROM usuario where nome like :busca && sobrenome like :busca2 order by nome, sobrenome LIMIT {$linha_inicial}, " . QTDE_REGISTROS;
     $statement = $pdo->prepare($sql);
-    $statement->bindValue(':busca',  $busca[0] . '%');
-    $statement->bindValue(':busca2',  $busca[1] . '%');
-}else{
+    $statement->bindValue(':busca', $busca[0] . '%');
+    $statement->bindValue(':busca2', $busca[1] . '%');
+} else {
     $sql = "SELECT * FROM usuario where nome like :busca order by nome, sobrenome LIMIT {$linha_inicial}, " . QTDE_REGISTROS;
     $statement = $pdo->prepare($sql);
-    $statement->bindValue(':busca',  $busca[0] . '%');
+    $statement->bindValue(':busca', $busca[0] . '%');
 }
 $statement->execute();
 $dados = $statement->fetchAll(PDO::FETCH_OBJ);
 /* Conta quantos registos existem na tabela*/
-if(count($busca) == 2) {
+if (count($busca) == 2) {
     $sqlContador = "SELECT COUNT(*) AS total_registros FROM usuario where nome like :busca && sobrenome like :busca2";
     $statement = $pdo->prepare($sqlContador);
-    $statement->bindValue(':busca',  $busca[0] . '%');
+    $statement->bindValue(':busca', $busca[0] . '%');
     $statement->bindValue(':busca2', $busca[1] . '%');
-}else{
+} else {
     $sqlContador = "SELECT COUNT(*) AS total_registros FROM usuario where nome like :busca";
     $statement = $pdo->prepare($sqlContador);
-    $statement->bindValue(':busca',  $busca[0] . '%');
+    $statement->bindValue(':busca', $busca[0] . '%');
 }
 $statement->execute();
 $valor = $statement->fetch(PDO::FETCH_OBJ);
@@ -142,107 +142,188 @@ atribuidos via sessão ou cookies -->
         <!-- Início do Menu Lateral do Usuário -->
 
         <!-- Início da Div Central da Página, Mural de Notícias -->
-        <div id = 'divMural' class='col-sm-8 text-left' >
+        <div id='divMural' class='col-sm-8 text-left'>
 
-            <h1>Resultados da Busca: </h1>
-            <br>
-
-            <?php
-            foreach ($dados as $usuario) {
-                require_once ("../dao/CidadeDAO.php");
-                require_once ("../dao/UfDAO.php");
-
-                $cidadeDao = new CidadeDAO();
-                $cidade = $cidadeDao->buscarPeloId($usuario->cidade);
-
-                $ufDao = new UfDAO();
-                $uf = $ufDao->buscarPeloId($usuario->estado);
-
-                echo "<div class='col-md-8' style='margin-bottom: 2%;'>
-                <div class='media' style='border: solid; border-radius: 10px; border-color: #E5E5E5; border-width: 1px;'>
-                    <div class='media-left media-middle'>";
-                if($usuario->fotoPerfil == 'perfil.png') {
-                    echo "<a href='#'>
-                                <img class='media-object' src='../imagens/Usuario/15/Albuns/Perfil/thor.jpg' 
-                                alt='foto' style='width: 80px; height: 80px;'>
-                            </a>";
-                }else{
-                    echo "<a href='#'><img class='media-object' src='../imagens/Usuario/".$usuario->idUsuario."/Albuns/Perfil/".$usuario->fotoPerfil."' 
-                            alt='Foto Perfil' style='width: 80px; height: 80px;'/></a>";
+            <div id="divBuscaUsuario" class="col-md-12">
+                <h2><i class="glyphicon glyphicon-list"></i> Resultados da Busca: </h2>
+                <hr id="hrBuscaUsuario"/>
+                <?php
+                if (count($dados) > 0) {
+                    echo "<h4>" . count($dados) . " resultado(s) encontrado(s).</h4>";
                 }
-                echo "</div>
+                ?>
+
+                <br/>
+
+                <?php
+                if (count($dados) > 0) {
+                    foreach ($dados as $usuario) {
+                        require_once("../dao/CidadeDAO.php");
+                        require_once("../dao/UfDAO.php");
+
+                        $cidadeDao = new CidadeDAO();
+                        $cidade = $cidadeDao->buscarPeloId($usuario->cidade);
+
+                        $ufDao = new UfDAO();
+                        $uf = $ufDao->buscarPeloId($usuario->estado);
+
+                        echo "<div id='divMediaBuscarUsuario' class='col-md-8'>
+                <div id='divMediaClassBuscarUsuario' class='media'>
+                    <div class='media-left media-middle'>";
+                        if ($usuario->fotoPerfil == 'perfil.png') {
+                            echo "<a href='../view/perfilUsuario.view.php?userID=" . $usuario->idUsuario . "'>
+                                <img class='media-object' src='../imagens/perfil.png' 
+                                alt='foto'/></a>";
+                        } else {
+                            echo "<a href='../view/perfilUsuario.view.php?userID=" . $usuario->idUsuario . "'><img class='media-object' src='../imagens/Usuario/" . $usuario->idUsuario . "/Albuns/Perfil/" . $usuario->fotoPerfil . "' 
+                            alt='Foto Perfil' /></a>";
+                        }
+                        echo "</div>
                     <div class='media-body'>
-                        <div class='col-md-7' style='margin-top: 6%'>
-                        <h5 style='font-weight: bold;' class='media-heading'>" . $usuario->nome . " ".$usuario->sobrenome."</h5>
+                        <div id='divMediaBodyBuscarUsuario' class='col-md-7'>
+                        <h5 style='font-weight: bold;' class='media-heading'>" . $usuario->nome . " " . $usuario->sobrenome . "</h5>
                             <p>" . $cidade->getNomeCidade() . " - " . $uf->getSiglaUf() . "</p>
                         </div>
-                        <div class='col-md-5' style='margin-top: 6%'>
-                            <button style='width: 100%; background-color: #37C967; color: white; font-size: 16px; font-weight: bold; border-color: #37C967' class='btn btn-info'>
-                                <i class='glyphicon glyphicon-user'></i>   Adicionar
-                            </button>
-                        </div>
+                        <div class='col-md-5'>";
+
+                        /*Mudança dos Botões de Acordo com a Amizade*/
+                        if ($idUsuario == $usuario->idUsuario) {
+                            echo "<a href='../view/verAmigos.view.php?userID=" . $idUsuario . "' id='botaoAdicionarBuscarUsuario' title='Ver Meus Amigos' class='btn btn-info'>
+                                <i class='glyphicon glyphicon-user'></i>   Meus Amigos
+                            </a>";
+                        } else {
+                            require_once("../model/Amigo.php");
+                            require_once("../dao/AmigoDAO.php");
+
+                            $amigo = new Amigo('', '', '', '', '');
+
+                            $amigoDAO = new AmigoDAO();
+                            $amigo = $amigoDAO->buscarPorAmizade($idUsuario, $usuario->idUsuario);
+
+                            if ($amigo->getIdSolicitacao() != "") {
+
+                                if ($amigo->getDataConfirmacao() != null) {
+                                    echo "<form method='post' action='../controller/amizade.action.php'>
+                                            <input type='hidden' name='act' value='desfazer'>
+                                            <input type='hidden' name='idUsuario' value='" . $idUsuario . "'>
+                                            <input type='hidden' name='userID' value='" . $usuario->idUsuario . "'> 
+                                            <button id='botaoDesfazerBuscarUsuario' type='submit' title='Desfazer a Amizade' class='btn btn-primary'>
+                                            <i class='glyphicon glyphicon-ban-circle'></i>   Desfazer
+                                            </button>
+                                        </form>";
+                                } else if ($amigo->getIdSolicitado() == $idUsuario) {
+                                    echo "<div class='row'>
+                                            <div class='col-md-12'>
+                                                <form method='post' action='../controller/amizade.action.php'>
+                                                    <input type='hidden' name='act' value='aceitar'>
+                                                    <input type='hidden' name='idUsuario' value='".$idUsuario."'>
+                                                    <input type='hidden' name='userID' value='".$usuario->idUsuario."'>                                                
+                                                    <button id='botaoAceitarBuscarUsuario' type='submit' title='Adicionar aos Meus Amigos' class='btn btn-primary'>
+                                                        <i class='glyphicon glyphicon-ok'></i> Aceitar
+                                                    </button>
+                                                </form>
+                                                <form method='post' action='../controller/amizade.action.php'>
+                                                    <input type='hidden' name='act' value='recusar'>
+                                                    <input type='hidden' name='idUsuario' value='".$idUsuario."'>
+                                                    <input type='hidden' name='userID' value='".$usuario->idUsuario."'>                                                
+                                                    <button id='botaoRecusarBuscarUsuario' type='submit' title='Recusar Solicitação de Amizade' class='btn btn-primary'>
+                                                        <i class='glyphicon glyphicon-remove'></i> Recusar
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>";
+                                }
+                                else {
+                                    echo"<form method='post' action='../controller/amizade.action.php'>
+                                            <input type='hidden' name='act' value='cancelar'>
+                                            <input type='hidden' name='idUsuario' value='".$idUsuario."'>
+                                            <input type='hidden' name='userID' value='".$usuario->idUsuario."'> 
+                                            <button id='botaoCancelarBuscarUsuario' type='submit' title='Cancelar a Solicitação de Amizade' class='btn btn-primary'>
+                                                <i class='glyphicon glyphicon-remove'></i> Cancelar
+                                            </button>
+                                        </form>";
+                                }
+                            } else {
+                                echo "<form method='post' action='../controller/amizade.action.php'>
+                                        <input type='hidden' name='act' value='add'>
+                                        <input type='hidden' name='idUsuario' value='" . $idUsuario . "'>
+                                        <input type='hidden' name='userID' value='" . $usuario->idUsuario . "'>
+                                        <button id='botaoAdicionarBuscarUsuario' title='Adicionar aos Amigos' type='submit' class='btn btn-info'>
+                                        <i class='glyphicon glyphicon-user'></i>   Adicionar
+                                        </button>         
+                                     </form>";
+                            }
+                        }
+
+                        echo "</div>
                     </div>
                 </div>
                 </div>";
-            }
-            ?>
+                    }
+                    ?>
 
-            <div class='row'>
-                <nav id='Paginacao' aria-label='Navegacao' class="col-md-10">
-                    <ul id='UlPaginacao' class='pagination pagination-md'>
-                        <li class='page-item'>
+                    <div class='row'>
+                        <nav id='Paginacao' aria-label='Navegacao' class="col-md-10">
+                            <ul id='UlPaginacao' class='pagination pagination-md'>
+                                <li class='page-item'>
 
-                            <?php
-                                if(count($busca) == 2) {
-                                    echo "<a class='page-link $exibir_botao_inicio' href='$endereco?page=$primeira_pagina&busca=$busca[0] $busca[1]' title='Primeira Página'>&laquo; Primeira  </a>";
-                                }else{
-                                    echo "<a class='page-link $exibir_botao_inicio' href='$endereco?page=$primeira_pagina&busca=$busca[0]' title='Primeira Página'>&laquo; Primeira  </a>";
-                                }
-                             ?>
-                        </li>
-                        <li class='page-item'>
-                            <?php
-                                if(count($busca ) == 2) {
-                                    echo "<a class='page-link $exibir_botao_inicio' href='$endereco?page=$pagina_anterior&busca=$busca[0] $busca[1]' title='Página Anterior'>‹ Anterior  </a>";
-                                }else{
-                                    echo "<a class='page-link $exibir_botao_inicio' href='$endereco?page=$pagina_anterior&busca=$busca[0]' title='Página Anterior'>‹ Anterior  </a>";
-                                }
-                            ?>
-                        </li>
-                        <?php
-                        /* Loop para montar a páginação central com os números*/
-                        for ($i = $range_inicial; $i <= $range_final; $i++):
-                            $destaque = ($i == $pagina_atual) ? 'destaque' : '';
-                            echo "<li class='page-item'>";
-                                if(count($busca) == 2) {
-                                    echo "<a class='page-link $destaque' href='$endereco?page=$i&busca=$busca[0] $busca[1]'>  $i  </a>";
-                                }else{
-                                    echo "<a class='page-link $destaque' href='$endereco?page=$i&busca=$busca[0]'>  $i  </a>";
-                                }
-                            echo"</li>";
-                        endfor;
-                        ?>
+                                    <?php
+                                    if (count($busca) == 2) {
+                                        echo "<a class='page-link $exibir_botao_inicio' href='$endereco?page=$primeira_pagina&busca=$busca[0] $busca[1]' title='Primeira Página'>&laquo; Primeira  </a>";
+                                    } else {
+                                        echo "<a class='page-link $exibir_botao_inicio' href='$endereco?page=$primeira_pagina&busca=$busca[0]' title='Primeira Página'>&laquo; Primeira  </a>";
+                                    }
+                                    ?>
+                                </li>
+                                <li class='page-item'>
+                                    <?php
+                                    if (count($busca) == 2) {
+                                        echo "<a class='page-link $exibir_botao_inicio' href='$endereco?page=$pagina_anterior&busca=$busca[0] $busca[1]' title='Página Anterior'>‹ Anterior  </a>";
+                                    } else {
+                                        echo "<a class='page-link $exibir_botao_inicio' href='$endereco?page=$pagina_anterior&busca=$busca[0]' title='Página Anterior'>‹ Anterior  </a>";
+                                    }
+                                    ?>
+                                </li>
+                                <?php
+                                /* Loop para montar a páginação central com os números*/
+                                for ($i = $range_inicial; $i <= $range_final; $i++):
+                                    $destaque = ($i == $pagina_atual) ? 'destaque' : '';
+                                    echo "<li class='page-item'>";
+                                    if (count($busca) == 2) {
+                                        echo "<a class='page-link $destaque' href='$endereco?page=$i&busca=$busca[0] $busca[1]'>  $i  </a>";
+                                    } else {
+                                        echo "<a class='page-link $destaque' href='$endereco?page=$i&busca=$busca[0]'>  $i  </a>";
+                                    }
+                                    echo "</li>";
+                                endfor;
+                                ?>
 
-                        <li class='page-item'>
-                            <?php
-                                if(count($busca) == 2) {
-                                    echo "<a class='page-link $exibir_botao_final' href='$endereco?page=$proxima_pagina&busca=$busca[0] $busca[1]' title='Próxima Página'> Próxima ›</a>";
-                                }else{
-                                    echo "<a class='page-link $exibir_botao_final' href='$endereco?page=$proxima_pagina&busca=$busca[0]' title='Próxima Página'> Próxima ›</a>";
-                                }
-                            ?>
-                        </li>
-                        <li class='page-item'>
-                            <?php
-                                if(count($busca) == 2) {
-                                    echo "<a class='page-link $exibir_botao_final' href='$endereco?page=$ultima_pagina&busca=$busca[0] $busca[1]'  title='Última Página'> Última &raquo;</a>";
-                                }else{
-                                    echo "<a class='page-link $exibir_botao_final' href='$endereco?page=$ultima_pagina&busca=$busca[0]'  title='Última Página'> Última &raquo;</a>";
-                                }
-                            ?>
-                        </li>
-                    </ul>
-                </nav>
+                                <li class='page-item'>
+                                    <?php
+                                    if (count($busca) == 2) {
+                                        echo "<a class='page-link $exibir_botao_final' href='$endereco?page=$proxima_pagina&busca=$busca[0] $busca[1]' title='Próxima Página'> Próxima ›</a>";
+                                    } else {
+                                        echo "<a class='page-link $exibir_botao_final' href='$endereco?page=$proxima_pagina&busca=$busca[0]' title='Próxima Página'> Próxima ›</a>";
+                                    }
+                                    ?>
+                                </li>
+                                <li class='page-item'>
+                                    <?php
+                                    if (count($busca) == 2) {
+                                        echo "<a class='page-link $exibir_botao_final' href='$endereco?page=$ultima_pagina&busca=$busca[0] $busca[1]'  title='Última Página'> Última &raquo;</a>";
+                                    } else {
+                                        echo "<a class='page-link $exibir_botao_final' href='$endereco?page=$ultima_pagina&busca=$busca[0]'  title='Última Página'> Última &raquo;</a>";
+                                    }
+                                    ?>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <?php
+                } else {
+                    echo "<h3 id='h3BuscarUsuarioSemResultado'><i class='glyphicon glyphicon-alert'></i>   Nenhum resultado foi encontrado.</h3>";
+                }
+                ?>
             </div>
         </div>
         <!-- Fim da Div Central da Página, Mural de Notícias -->
