@@ -15,18 +15,19 @@ if($_GET['act'] == 'save') {
     if (!empty($_POST['senhaAtual']) && !empty($_POST['senhaNova'])) {
         // verifica se a senha atual está no formato correto
         if (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$/", $_POST['senhaAtual'])) {
-            try{
-                $dao = new UsuarioDAO();
-                $usuario = new Usuario('','','','','','','','',
+
+            $dao = new UsuarioDAO();
+            $usuario = new Usuario('','','','','','','','',
                     '','','','');
-                $usuario = $dao->buscarPeloId($_POST['usuario']); // $_POST['usuario']
+            $usuario = $dao->buscarPeloId($_POST['usuario']); // $_POST['usuario']
+            if($usuario->getIdUsuario() != "" || $usuario->getIdUsuario() != null) {
                 $senha = $usuario->getSenha();
-                if(hash('sha256',$_POST['senhaAtual']) == $senha){
+                if (hash('sha256', $_POST['senhaAtual']) == $senha) {
                     $senhaAtual = $_POST['senhaAtual'];
                 }
-            }catch(PDOException $erro){
-                $msg = "Senha atual está errada: " . $erro->getMessage();
-                echo "<script>window.location.href='../view/alterarSenha.view.php?msg=".$msg."'</script>";
+            }else {
+                $msg = "Senha atual está errada: ";
+                echo "<script>window.location.href='../view/alterarSenha.view.php?msg=" . $msg . "'</script>";
             }
         }
         // verifica se a senha nova está no formato correto
@@ -38,20 +39,21 @@ if($_GET['act'] == 'save') {
         }
         // verifica se todos os dados estão de acordo com o formato correto e inicia a alteração da senha
         if ($senhaAtual != null && $senhaNova != null) {
-            try {
-                $dao = new UsuarioDAO();
-                $usuario = new Usuario('','','','','','','','',
+
+            $dao = new UsuarioDAO();
+            $usuario = new Usuario('','','','','','','','',
                     '','','','');
-                $usuario = $dao->buscarPeloId($_POST['usuario']); // $_POST['usuario']
-                $usuario->setSenha(hash('sha256',$senhaNova));
+            $usuario = $dao->buscarPeloId($_POST['usuario']); // $_POST['usuario']
+            if($usuario->getIdUsuario() != "" || $usuario->getIdUsuario() != null) {
+
+                $usuario->setSenha(hash('sha256', $senhaNova));
                 $dao->alterar($usuario);
 
                 $msg = "Sua senha foi alterada com sucesso !";
-                echo "<script>window.location.href='../view/alterarSenha.view.php?msg=".$msg."'</script>";
-
-            } catch (PDOException $erro) {
-                $msg = "Erro ao alterar senha: " . $erro->getMessage();
-                echo "<script>window.location.href='../view/alterarSenha.view.php?msg=".$msg."'</script>";
+                echo "<script>window.location.href='../view/alterarSenha.view.php?msg=" . $msg . "'</script>";
+            }else {
+                $msg = "Erro ao alterar senha: ";
+                echo "<script>window.location.href='../view/alterarSenha.view.php?msg=" . $msg . "'</script>";
             }
         } else {
             $msg = "Aviso: Navegação suspeita, para um navegação segura verifique se todos os plugins estão ativados !";

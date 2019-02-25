@@ -17,7 +17,7 @@ if(count($busca) == 2) {
     $sql = "SELECT * FROM usuario where nome like :busca && sobrenome like :busca2 order by nome, sobrenome LIMIT 5";
     $statement = $pdo->prepare($sql);
     $statement->bindValue(':busca', $busca[0] . '%');
-    $statement->bindValue(':busca2', $busca[1] . '%');
+    $statement->bindValue(':busca2', '%'. $busca[1] . '%');
 }else{
     $sql = "SELECT * FROM usuario where nome like :busca order by nome, sobrenome LIMIT 5";
     $statement = $pdo->prepare($sql);
