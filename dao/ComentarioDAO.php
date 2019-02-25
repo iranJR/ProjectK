@@ -2,38 +2,36 @@
 /**
  * Created by PhpStorm.
  * User: ciro gustavo
- * Date: 22/12/2018
- * Time: 15:58
+ * Date: 20/02/2019
+ * Time: 15:59
  */
 
 require_once ("../banco/conexao_bd.php");
 require_once ("../dao/GenericsDAO.php");
-require_once ("../model/Post.php");
+require_once ("../model/Comentario.php");
 
-class PostDAO implements GenericsDAO
+
+class ComentarioDAO implements GenericsDAO
 {
 
     public function salvar($obj)
     {
         global $pdo;
         try{
-            $statement = $pdo->prepare("INSERT INTO post (idRemetente, idDestinatario, textoPost, dataPost, tipoPost, linkPost) VALUES
-           (:idRemetente, :idDestinatario, :textoPost, :dataPost, :tipoPost, :linkPost)");
+            $statement = $pdo->prepare("INSERT INTO comentario (idPost, idUsuario, textoComentario, dataComentario) VALUES
+           (:idPost, :idUsuario, :textoComentario, :dataComentario)");
 
-            $statement->bindValue(":idRemetente",$obj->getIdRemetente());
-            $statement->bindValue(":idDestinatario",$obj->getIdDestinatario());
-            $statement->bindValue(":textoPost",$obj->getTextoPost());
-            $statement->bindValue(":dataPost",$obj->getDataPost());
-            $statement->bindValue(":tipoPost",$obj->getTipoPost());
-            $statement->bindValue(":linkPost",$obj->getLinkPost());
-
+            $statement->bindValue(":idPost",$obj->getIdPost());
+            $statement->bindValue(":idUsuario",$obj->getIdUsuario());
+            $statement->bindValue(":textoComentario",$obj->getTextoComentario());
+            $statement->bindValue(":dataComentario",$obj->getDataComentario());
 
             if($statement->execute()){
                 if($statement->rowCount()>0){
-                    return"<script>alert('Post realizado com sucesso !');</script>";
+                    return"<script>alert('Comentário realizado com sucesso !');</script>";
                 }
                 else{
-                    return"<script>alert('Não foi possível realizar o post !');</script>";
+                    return"<script>alert('Não foi possível realizar o comentário !');</script>";
                 }
             }
             else{
@@ -49,23 +47,21 @@ class PostDAO implements GenericsDAO
     {
         global $pdo;
         try{
-            $statement = $pdo->prepare("UPDATE post SET idRemetente = :idRemetente, idDestinatario = :idDestinatario , textoPost = :textoPost, 
-           dataPost = :dataPost, tipoPost = :tipoPost, linkPost = :linkPost WHERE idPost = :id");
+            $statement = $pdo->prepare("UPDATE comentario SET idPost = :idPost, idUsuario = :idUsuario , textoComentario = :textoComentario, 
+           dataComentario = :dataComentario WHERE idComentario = :id");
 
-            $statement->bindValue(":idRemetente",$obj->getIdRemetente());
-            $statement->bindValue(":idDestinatario",$obj->getIdDestinatario());
-            $statement->bindValue(":textoPost",$obj->getTextoPost());
-            $statement->bindValue(":dataPost",$obj->getDataPost());
-            $statement->bindValue(":tipoPost",$obj->getTipoPost());
-            $statement->bindValue(":linkPost",$obj->getLinkPost());
-            $statement->bindValue(":id",$obj->getIdPost());
+            $statement->bindValue(":idPost",$obj->getIdPost());
+            $statement->bindValue(":idUsuario",$obj->getIdUsuario());
+            $statement->bindValue(":textoComentario",$obj->getTextoComentario());
+            $statement->bindValue(":dataComentario",$obj->getDataComentario());
+            $statement->bindValue(":id",$obj->getIdComentario());
 
             if($statement->execute()){
                 if($statement->rowCount()>0){
-                    return"<script>alert('Post alterado com sucesso !');</script>";
+                    return"<script>alert('Comentário alterado com sucesso !');</script>";
                 }
                 else{
-                    return"<script>alert('Não foi possível alterar o post !');</script>";
+                    return"<script>alert('Não foi possível alterar o comentário !');</script>";
                 }
             }
             else{
@@ -81,10 +77,10 @@ class PostDAO implements GenericsDAO
     {
         global $pdo;
         try{
-            $statement = $pdo->prepare("DELETE FROM post WHERE idPost = :id");
-            $statement->bindValue(":id",$obj->getIdPost());
+            $statement = $pdo->prepare("DELETE FROM comentario WHERE idComentario = :id");
+            $statement->bindValue(":id",$obj->getIdComentario());
             if($statement->execute()) {
-                return "<script>alert('Post apagado com sucesso !');</script>";
+                return "<script>alert('Comentário apagado com sucesso !');</script>";
             }
             else{
                 throw new PDOException("<script>alert('Não foi possível executar o código SQL');</script>");
@@ -99,20 +95,18 @@ class PostDAO implements GenericsDAO
     {
         global $pdo;
         try{
-            $statement = $pdo->prepare("SELECT * FROM post WHERE idPost = :id ");
+            $statement = $pdo->prepare("SELECT * FROM comentario WHERE idComentario = :id ");
             $statement->bindValue(":id",$id);
             if($statement->execute()){
                 $rs= $statement->fetch(PDO::FETCH_OBJ);
-                $obj = new Post('','','','','','','');
+                $obj = new Comentario('','','','','');
 
                 if($rs != null) {
+                    $obj->setIdComentario($rs->idComentario);
                     $obj->setIdPost($rs->idPost);
-                    $obj->setIdRemetente($rs->idRemetente);
-                    $obj->setIdDestinatario($rs->idDestinatario);
-                    $obj->setTextoPost($rs->textoPost);
-                    $obj->setDataPost($rs->dataPost);
-                    $obj->setTipoPost($rs->tipoPost);
-                    $obj->setLinkPost($rs->linkPost);
+                    $obj->setIdUsuario($rs->idUsuario);
+                    $obj->setTextoComentario($rs->textoComentario);
+                    $obj->setDataComentario($rs->dataComentario);
                 }
 
                 return $obj;
@@ -129,7 +123,7 @@ class PostDAO implements GenericsDAO
     {
         global $pdo;
         try{
-            $statement= $pdo->prepare("SELECT * FROM post ");
+            $statement= $pdo->prepare("SELECT * FROM comentario ");
             if($statement->execute()){
                 $result = $statement->fetchAll(PDO::FETCH_OBJ);
                 return $result;

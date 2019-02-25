@@ -9,29 +9,32 @@
 class Post
 {
     private $idPost;
-    private $idUsuario;
+    private $idRemetente;
+    private $idDestinatario;
     private $textoPost;
     private $dataPost;
-    private $horaPost;
     private $tipoPost;
+    private $linkPost;
 
     /**
      * Post constructor.
      * @param $idPost
-     * @param $idUsuario
+     * @param $idRemetente
+     * @param $idDestinatario
      * @param $textoPost
      * @param $dataPost
-     * @param $horaPost
      * @param $tipoPost
+     * @param $linkPost
      */
-    public function __construct($idPost, $idUsuario, $textoPost, $dataPost, $horaPost, $tipoPost)
+    public function __construct($idPost, $idRemetente, $idDestinatario, $textoPost, $dataPost, $tipoPost, $linkPost)
     {
         $this->idPost = $idPost;
-        $this->idUsuario = $idUsuario;
+        $this->idRemetente = $idRemetente;
+        $this->idDestinatario = $idDestinatario;
         $this->textoPost = $textoPost;
         $this->dataPost = $dataPost;
-        $this->horaPost = $horaPost;
         $this->tipoPost = $tipoPost;
+        $this->linkPost = $linkPost;
     }
 
     /**
@@ -45,7 +48,7 @@ class Post
     /**
      * @param mixed $idPost
      */
-    public function setIdPost($idPost)
+    public function setIdPost($idPost): void
     {
         $this->idPost = $idPost;
     }
@@ -53,17 +56,33 @@ class Post
     /**
      * @return mixed
      */
-    public function getIdUsuario()
+    public function getIdRemetente()
     {
-        return $this->idUsuario;
+        return $this->idRemetente;
     }
 
     /**
-     * @param mixed $idUsuario
+     * @param mixed $idRemetente
      */
-    public function setIdUsuario($idUsuario)
+    public function setIdRemetente($idRemetente): void
     {
-        $this->idUsuario = $idUsuario;
+        $this->idRemetente = $idRemetente;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdDestinatario()
+    {
+        return $this->idDestinatario;
+    }
+
+    /**
+     * @param mixed $idDestinatario
+     */
+    public function setIdDestinatario($idDestinatario): void
+    {
+        $this->idDestinatario = $idDestinatario;
     }
 
     /**
@@ -77,7 +96,7 @@ class Post
     /**
      * @param mixed $textoPost
      */
-    public function setTextoPost($textoPost)
+    public function setTextoPost($textoPost): void
     {
         $this->textoPost = $textoPost;
     }
@@ -93,25 +112,9 @@ class Post
     /**
      * @param mixed $dataPost
      */
-    public function setDataPost($dataPost)
+    public function setDataPost($dataPost): void
     {
         $this->dataPost = $dataPost;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getHoraPost()
-    {
-        return $this->horaPost;
-    }
-
-    /**
-     * @param mixed $horaPost
-     */
-    public function setHoraPost($horaPost)
-    {
-        $this->horaPost = $horaPost;
     }
 
     /**
@@ -125,10 +128,27 @@ class Post
     /**
      * @param mixed $tipoPost
      */
-    public function setTipoPost($tipoPost)
+    public function setTipoPost($tipoPost): void
     {
         $this->tipoPost = $tipoPost;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getLinkPost()
+    {
+        return $this->linkPost;
+    }
+
+    /**
+     * @param mixed $linkPost
+     */
+    public function setLinkPost($linkPost): void
+    {
+        $this->linkPost = $linkPost;
+    }
+
 
 
 }

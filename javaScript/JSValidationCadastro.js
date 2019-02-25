@@ -12,18 +12,17 @@ $(document).ready(function () {
         theme: 'tooltipster-light'
     });
 
-    // funcao que define o padrão do campo nome(nome simples ou composto)
-    /*jQuery.validator.addMethod("letras", function(value, element) {
-        return this.optional(element) || /^[A-zÀ-ú]+$/i.test(value);
-    }, "erro");*/
+    jQuery.validator.addMethod("numeros", function(value, element) {
+        return this.optional(element) || /^([^0-9]*)$/i.test(value);
+    }, "erro");
 
-    jQuery.validator.addMethod("letras", function(value, element) {
+    jQuery.validator.addMethod("nomeComposto", function(value, element) {
         return this.optional(element) || /^[A-zÀ-ú]+\s[A-zÀ-ú]+\s?$/i.test(value) || /^[A-zÀ-ú]+$/i.test(value);
     }, "erro");
 
 
     // funcao que define o padrão do campo sobrenome(simples ou composto por 2 ou 3 nomes)
-    jQuery.validator.addMethod("espacamento", function(value, element) {
+    jQuery.validator.addMethod("sobrenomes", function(value, element) {
         return this.optional(element) || /^[A-zÀ-ú]+\s[A-zÀ-ú]+\s[A-zÀ-ú]+\s?$/i.test(value)
                                       || /^[A-zÀ-ú]+\s[A-zÀ-ú]+\s?$/i.test(value)
                                       || /^[A-zÀ-ú]+$/i.test(value);
@@ -50,13 +49,15 @@ $(document).ready(function () {
         rules : {
             nome:{
                 required:true,
-                letras:true,
+                numeros:true,
+                nomeComposto:true,
                 minlength:3,
                 maxlength: 20,
             },
             sobrenome:{
                 required:true,
-                espacamento:true,
+                numeros: true,
+                sobrenomes:true,
                 minlength:2,
                 maxlength: 45,
             },
@@ -92,16 +93,17 @@ $(document).ready(function () {
         messages:{
             nome:{
                 required: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   Preencha este campo.</p>",
-                letras: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   Digite apenas o primeiro nome. Ou nome composto, se for o caso.</p>",
+                nomeComposto: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   Digite apenas o primeiro nome. Ou nome composto, se for o caso.</p>",
                 minlength:"<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   O nome deve conter no mínimo 3 letras.</p>",
                 maxlength: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   O nome deve conter no máximo 20 letras.</p>",
+                numeros: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   Digite apenas letras.</p>",
             },
             sobrenome:{
                 required: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   Preencha este campo.</p>",
-                espacamento: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   Digite no máximo 3 nomes para o sobrenome.</p>",
+                sobrenomes: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   Digite no máximo 3 nomes para o sobrenome.</p>",
                 minlength:"<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   O sobrenome deve conter no mínimo 2 letras.</p>",
                 maxlength: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   O sobrenome deve conter no máximo 45 letras.</p>",
-
+                numeros: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   Digite apenas letras.</p>",
             },
             email:{
                 required: "<p style='font-size: 12px; margin-bottom: 0;'><i class='glyphicon glyphicon-exclamation-sign' style='color: yellow'/>   Preencha este campo.</p>",

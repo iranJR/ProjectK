@@ -85,7 +85,7 @@ if(empty($_GET['busca'])) {
         $statement = $pdo->prepare($sql);
         $statement->bindValue(':id', $userId . '');
         $statement->bindValue(':busca', $busca[0] . '%');
-        $statement->bindValue(':busca2', $busca[1] . '%');
+        $statement->bindValue(':busca2', '%' . $busca[1] . '%');
     } else {
         $sql = "SELECT * from usuario as u, amigo as a where a.dataConfirmacao is not null and a.idSolicitado = :id
         and a.idSolicitante = u.idUsuario and u.nome like :busca or a.dataConfirmacao is not null and a.idSolicitante = :id and a.idSolicitado = u.idUsuario 
@@ -104,7 +104,7 @@ if(empty($_GET['busca'])) {
         $statement = $pdo->prepare($sqlContador);
         $statement->bindValue(':id', $userId . '');
         $statement->bindValue(':busca', $busca[0] . '%');
-        $statement->bindValue(':busca2', $busca[1] . '%');
+        $statement->bindValue(':busca2', '%'. $busca[1] . '%');
     } else {
         $sqlContador = "SELECT COUNT(*) AS total_registros from usuario as u, amigo as a where a.dataConfirmacao is not null and a.idSolicitado = :id
         and a.idSolicitante = u.idUsuario and u.nome like :busca or a.dataConfirmacao is not null and a.idSolicitante = :id and a.idSolicitado = u.idUsuario 

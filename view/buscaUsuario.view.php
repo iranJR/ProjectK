@@ -61,9 +61,9 @@ $linha_inicial = ($pagina_atual - 1) * QTDE_REGISTROS;
 if (count($busca) == 2) {
     $sql = "SELECT * FROM usuario where nome like :busca && sobrenome like :busca2 order by nome, sobrenome LIMIT {$linha_inicial}, " . QTDE_REGISTROS;
     $statement = $pdo->prepare($sql);
-    $statement->bindValue(':busca', $busca[0] . '%');
-    $statement->bindValue(':busca2', $busca[1] . '%');
-} else {
+    $statement->bindValue(':busca',  $busca[0] . '%');
+    $statement->bindValue(':busca2',  '%'. $busca[1] . '%');
+}else{
     $sql = "SELECT * FROM usuario where nome like :busca order by nome, sobrenome LIMIT {$linha_inicial}, " . QTDE_REGISTROS;
     $statement = $pdo->prepare($sql);
     $statement->bindValue(':busca', $busca[0] . '%');
@@ -74,9 +74,9 @@ $dados = $statement->fetchAll(PDO::FETCH_OBJ);
 if (count($busca) == 2) {
     $sqlContador = "SELECT COUNT(*) AS total_registros FROM usuario where nome like :busca && sobrenome like :busca2";
     $statement = $pdo->prepare($sqlContador);
-    $statement->bindValue(':busca', $busca[0] . '%');
-    $statement->bindValue(':busca2', $busca[1] . '%');
-} else {
+    $statement->bindValue(':busca',  $busca[0] . '%');
+    $statement->bindValue(':busca2', '%'. $busca[1] . '%');
+}else{
     $sqlContador = "SELECT COUNT(*) AS total_registros FROM usuario where nome like :busca";
     $statement = $pdo->prepare($sqlContador);
     $statement->bindValue(':busca', $busca[0] . '%');
