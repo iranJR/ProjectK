@@ -171,11 +171,11 @@ atribuidos via sessão ou cookies -->
                 <div id='divMediaClassBuscarUsuario' class='media'>
                     <div class='media-left media-middle'>";
                         if ($usuario->fotoPerfil == 'perfil.png') {
-                            echo "<a href='../view/perfilUsuario.view.php?userID=" . $usuario->idUsuario . "'>
+                            echo "<a href='../view/perfilUsuario.view.php?userID=" . base64_encode($usuario->idUsuario) . "'>
                                 <img class='media-object' src='../imagens/perfil.png' 
                                 alt='foto'/></a>";
                         } else {
-                            echo "<a href='../view/perfilUsuario.view.php?userID=" . $usuario->idUsuario . "'><img class='media-object' src='../imagens/Usuario/" . $usuario->idUsuario . "/Albuns/Perfil/" . $usuario->fotoPerfil . "' 
+                            echo "<a href='../view/perfilUsuario.view.php?userID=" . base64_encode($usuario->idUsuario) . "'><img class='media-object' src='../imagens/Usuario/" . $usuario->idUsuario . "/Albuns/Perfil/" . $usuario->fotoPerfil . "' 
                             alt='Foto Perfil' /></a>";
                         }
                         echo "</div>
@@ -188,7 +188,7 @@ atribuidos via sessão ou cookies -->
 
                         /*Mudança dos Botões de Acordo com a Amizade*/
                         if ($idUsuario == $usuario->idUsuario) {
-                            echo "<a href='../view/verAmigos.view.php?userID=" . $idUsuario . "' id='botaoAdicionarBuscarUsuario' title='Ver Meus Amigos' class='btn btn-info'>
+                            echo "<a href='../view/verAmigos.view.php?userID=" . base64_encode($idUsuario) . "' id='botaoAdicionarBuscarUsuario' title='Ver Meus Amigos' class='btn btn-info'>
                                 <i class='glyphicon glyphicon-user'></i>   Meus Amigos
                             </a>";
                         } else {

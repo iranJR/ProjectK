@@ -57,7 +57,7 @@ echo"<nav id='cabecalho' class='navbar navbar-inverse'>
                      alt='Foto Perfil'/>";
                 }
                 echo"<ul id='dropDownUser' class='dropdown-menu'>
-                    <li><a href='../view/perfilUsuario.view.php?userID=".$idUsuario."'>Meu Perfil</a></li>
+                    <li><a href='../view/perfilUsuario.view.php?userID=".base64_encode($idUsuario)."'>Meu Perfil</a></li>
                     <li><a href='../view/configuracoes.view.php'>Configurações</a></li>
                     <li><a href='../controller/logout.action.php'>Sair</a></li>
                 </ul>
@@ -89,7 +89,7 @@ function menuHorizontal($idUsuario) {
 echo"<nav id='MenuHorizontal' class='navbar navbar-inverse'>
     <div class='container-fluid'>
         <ul id='ulMenuHorizontal' class='nav navbar-nav'>
-            <li><a href='../view/verAmigos.view.php?userID=".$idUsuario."'>Amigos</a></li>
+            <li><a href='../view/verAmigos.view.php?userID=".base64_encode($idUsuario)."'>Amigos</a></li>
             <li><a href='#' id='botaoNotificacoes' class='dropdown-toggle' data-toggle='dropdown'>Notificações   <span id='badgeNotificacao' class='badge'>".$numSolicitacoesRecebidas."</span></a></li>
             
             <ul id='ulDropDownNotificacoes' class='dropdown-menu'>
@@ -112,11 +112,11 @@ echo"<nav id='MenuHorizontal' class='navbar navbar-inverse'>
                     <div id='divMediaSolicitacao' class='media'>
                         <div class='media-left media-middle'>";
                             if($user->getFotoPerfil() == 'perfil.png') {
-                                echo "<a href='../view/perfilUsuario.view.php?userID=".$user->getIdUsuario()."' ><img class='media-object' src='../imagens/perfil.png'
+                                echo "<a href='../view/perfilUsuario.view.php?userID=".base64_encode($user->getIdUsuario())."' ><img class='media-object' src='../imagens/perfil.png'
                              alt='Foto Perfil'/></a>";
                             }
                             else {
-                                echo "<a href='../view/perfilUsuario.view.php?userID=".$user->getIdUsuario()."' ><img class='media-object' src='../imagens/Usuario/".$user->getIdUsuario()."/Albuns/Perfil/".$user->getFotoPerfil()."'
+                                echo "<a href='../view/perfilUsuario.view.php?userID=".base64_encode($user->getIdUsuario())."' ><img class='media-object' src='../imagens/Usuario/".$user->getIdUsuario()."/Albuns/Perfil/".$user->getFotoPerfil()."'
                              alt='Foto Perfil'/></a>";
                             }
                         echo"</div>
@@ -174,11 +174,11 @@ echo"<nav id='MenuHorizontal' class='navbar navbar-inverse'>
                             <div id='divMediaSolicitacao' class='media'>
                                 <div class='media-left media-middle'>";
                     if($user->getFotoPerfil() == 'perfil.png') {
-                        echo "<a href='../view/perfilUsuario.view.php?userID=".$user->getIdUsuario()."' ><img class='media-object' src='../imagens/perfil.png'
+                        echo "<a href='../view/perfilUsuario.view.php?userID=".base64_encode($user->getIdUsuario())."' ><img class='media-object' src='../imagens/perfil.png'
                                      alt='Foto Perfil'/></a>";
                     }
                     else {
-                        echo "<a href='../view/perfilUsuario.view.php?userID=".$user->getIdUsuario()."' ><img class='media-object' src='../imagens/Usuario/".$user->getIdUsuario()."/Albuns/Perfil/".$user->getFotoPerfil()."'
+                        echo "<a href='../view/perfilUsuario.view.php?userID=".base64_encode($user->getIdUsuario())."' ><img class='media-object' src='../imagens/Usuario/".$user->getIdUsuario()."/Albuns/Perfil/".$user->getFotoPerfil()."'
                                      alt='Foto Perfil'/></a>";
                     }
                     echo"</div>
@@ -211,7 +211,7 @@ echo"<nav id='MenuHorizontal' class='navbar navbar-inverse'>
             echo"</ul>
             
             <li><a href='#'>Mensagens</a></li>
-            <li><a href='../view/perfilUsuario.view.php?userID=".$idUsuario."'>Meu Perfil</a></li>
+            <li><a href='../view/perfilUsuario.view.php?userID=".base64_encode($idUsuario)."'>Meu Perfil</a></li>
         </ul>
     </div>
 </nav>";
@@ -304,7 +304,7 @@ echo "<div id = 'divMenuLateralDireito' class='col-sm-2 sidenav' >
             <td ><img src = '../imagens/thor.jpg' class='img-rounded' ></td >
         </tr >
         <tr >
-        <th scope = 'col' colspan = '3' ><a id = 'aVerTodos' href='../view/verAmigos.view.php?userID=".$idUsuario."'> Ver Todos </a ></th >
+        <th scope = 'col' colspan = '3' ><a id = 'aVerTodos' href='../view/verAmigos.view.php?userID=".base64_encode($idUsuario)."'> Ver Todos </a ></th >
         </tr >
         </tbody >
     </table >

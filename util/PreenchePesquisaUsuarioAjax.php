@@ -38,7 +38,7 @@ if(count($dados) > 0){
         $uf = $ufDao->buscarPeloId($usuario->estado);
 
         echo"<li><div id='DivMediaDropdownUser' class='col-md-12'>
-            <a href='../view/perfilUsuario.view.php?userID=".$usuario->idUsuario."' >
+            <a href='../view/perfilUsuario.view.php?userID=".base64_encode($usuario->idUsuario)."' >
             <div id='divMediaUser' class='media'>
                 <div class='media-left media-middle'>";
                     if($usuario->fotoPerfil == 'perfil.png') {

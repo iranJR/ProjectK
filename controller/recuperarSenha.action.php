@@ -36,7 +36,7 @@ if($_GET['act'] == 'save') {
             }
         }
         // verifica se a senha nova está no formato correto
-        if (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$/", $_POST['senhaNova'])) {
+        if (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$/", $_POST['senha'])) {
             // confirmação de senha nova
             if ($_POST['senha'] == $_POST['confirmSenha']) {
                 $senhaNova = $_POST['senha'];

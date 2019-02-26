@@ -43,7 +43,7 @@ if (!empty($_COOKIE[hash('sha256', 'idUsuario')]) || !empty($_COOKIE[hash('sha25
     $fotoPerfil = base64_decode($_COOKIE[hash('sha256', 'fotoPerfil')]);
 }
 
-$userID = $_GET['userID'];
+$userID = base64_decode($_GET['userID']);
 
 require_once ("../model/Usuario.php");
 require_once ("../dao/UsuarioDAO.php");
@@ -141,7 +141,7 @@ atribuidos via sessão ou cookies -->
                                     </div>
                                     <div class='row'>
                                         <div class='col-md-12'>
-                                            <a href='../view/verAmigos.view.php?userID=".$idUsuario."' id='botaoAdicionarPerfil' title='Meus Amigos' class='btn btn-primary'>
+                                            <a href='../view/verAmigos.view.php?userID=".base64_encode($idUsuario)."' id='botaoAdicionarPerfil' title='Meus Amigos' class='btn btn-primary'>
                                                 <i class='glyphicon glyphicon-user'></i>   Amigos
                                             </a>
                                         </div>
@@ -316,7 +316,7 @@ atribuidos via sessão ou cookies -->
                                 <td><img src='../imagens/thor.jpg' class='img-rounded'></td>
                             </tr>
                             <tr>
-                                <th scope='col' colspan='4'><a id='aVerTodos' href="../view/verAmigos.view.php?userID=<?php echo $userID ?>"> Ver Todos </a></th>
+                                <th scope='col' colspan='4'><a id='aVerTodos' href="../view/verAmigos.view.php?userID=<?php echo base64_encode($userID); ?>"> Ver Todos </a></th>
                             </tr>
                             </tbody>
                         </table>
