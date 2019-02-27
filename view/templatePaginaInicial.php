@@ -285,28 +285,73 @@ function menuLateralDireitoAmigos($idUsuario)
 {
 //Início do Menu Lateral Direito, Menu de Amigos
 
+$amigoDAO = new AmigoDAO();
+$amigos = $amigoDAO->buscarTodosAmigos($idUsuario);
+shuffle($amigos);
 echo "<div id = 'divMenuLateralDireito' class='col-sm-2 sidenav' >
     <table id = 'tableAmigos' class='table' >
         <thead >
-        <tr >
-            <th scope = 'col' colspan = '3' > Meus Amigos </th >
-        </tr >
+        <tr >";
+        if(count($amigos) > 0) {
+            echo "<th scope = 'col' colspan = '3' > Meus Amigos (".count($amigos).")</th >";
+        }
+        else {
+            echo "<th scope = 'col' colspan = '3' > Meus Amigos</th >";
+        }
+        echo"</tr >
         </thead >
-        <tbody >
-        <tr >
-            <td ><img src = '../imagens/thor.jpg' class='img-rounded' ></td >
-            <td ><img src = '../imagens/thor.jpg' class='img-rounded' ></td >
-            <td ><img src = '../imagens/thor.jpg' class='img-rounded' ></td >
-        </tr >
-        <tr >
-            <td ><img src = '../imagens/thor.jpg' class='img-rounded' ></td >
-            <td ><img src = '../imagens/thor.jpg' class='img-rounded' ></td >
-            <td ><img src = '../imagens/thor.jpg' class='img-rounded' ></td >
-        </tr >
-        <tr >
-        <th scope = 'col' colspan = '3' ><a id = 'aVerTodos' href='../view/verAmigos.view.php?userID=".base64_encode($idUsuario)."'> Ver Todos </a ></th >
-        </tr >
-        </tbody >
+        <tbody >";
+
+        if(count($amigos) > 0) {
+            $i = $j = 0;
+            foreach ($amigos as $amigo) {
+
+                $usuario = new Usuario('', '', '', '', '',
+                    '', '', '', '', '', '', '');
+
+                $usuarioDAO = new UsuarioDAO();
+                if ($amigo->idSolicitante == $idUsuario) {
+                    $usuario = $usuarioDAO->buscarPeloId($amigo->idSolicitado);
+                } else {
+                    $usuario = $usuarioDAO->buscarPeloId($amigo->idSolicitante);
+                }
+
+                if ($i < 3) {
+                    if ($i == 0) {
+                        echo "<tr>";
+                    }
+                    if ($usuario->getFotoPerfil() == "perfil.png") {
+                        echo "<td ><a href='../view/perfilUsuario.view.php?userID=" . base64_encode($usuario->getIdUsuario()) . "'><img src = '../imagens/perfil.png' class='img-rounded' alt='Foto Perfil' ></a></td >";
+                    } else {
+                        echo "<td ><a href='../view/perfilUsuario.view.php?userID=" . base64_encode($usuario->getIdUsuario()) . "'><img src = '../imagens/Usuario/" . $usuario->getIdUsuario() . "/Albuns/Perfil/" . $usuario->getFotoPerfil() . "' class='img-rounded' alt='Foto Perfil' ></a></td >";
+                    }
+                    $i++;
+                } else if ($i < 6) {
+                    if ($j == 0) {
+                        echo "</tr>";
+                        echo "<tr>";
+                        $j++;
+                    }
+                    if ($usuario->getFotoPerfil() == "perfil.png") {
+                        echo "<td ><a href='../view/perfilUsuario.view.php?userID=" . base64_encode($usuario->getIdUsuario()) . "'><img src = '../imagens/perfil.png' class='img-rounded' alt='Foto Perfil' ></a></td >";
+                    } else {
+                        echo "<td ><a href='../view/perfilUsuario.view.php?userID=" . base64_encode($usuario->getIdUsuario()) . "'><img src = '../imagens/Usuario/" . $usuario->getIdUsuario() . "/Albuns/Perfil/" . $usuario->getFotoPerfil() . "' class='img-rounded' alt='Foto Perfil' ></a></td >";
+                    }
+                    $i++;
+                } else {
+                    echo "</tr>";
+                    break;
+                }
+
+            }
+            echo "<tr >
+        <th scope = 'col' colspan = '3' ><a id = 'aVerTodos' href='../view/verAmigos.view.php?userID=" . base64_encode($idUsuario) . "'> Ver Todos </a ></th >
+        </tr >";
+        }
+        else {
+            echo"<tr><td id='tableAmigosPerfilSemAmigos' colspan='3'><i class='	glyphicon glyphicon-warning-sign'></i>   Você ainda não possui amigos.</td></tr>";
+        }
+        echo"</tbody >
     </table >
 
     <table id = 'tableAmigos' class='table' >

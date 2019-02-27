@@ -367,6 +367,14 @@
     opacity: 0.9;
 }
 
+#tableAmigosPerfilSemAmigos {
+    font-weight: bold;
+}
+
+#tableAmigosPerfilSemAmigos i{
+    color: #F0BE00;
+}
+
 /* Início do Menu Lateral Direito - Menu de Amigos */
 
 /* Início da Div Central - Mural de Notícias */
@@ -954,7 +962,64 @@
 #divPostagemMuralPerfilUsuario {
     margin-left: 9%;
     border-radius: 10px;
-    background-color: black;
+    border: solid;
+    border-color: #c2ccd1;
+    border-width: 1px;
+    background-color: #EEEEEE;
+    padding-top: 2%;
+}
+
+#nomeUsuarioPostagemMural {
+    margin-top: 1%;
+}
+
+#nomeUsuarioPostagemMural a {
+    font-weight: bold;
+    color: #3A3A3A;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#smallDataPostagemMural {
+    font-weight: bold;
+    margin-left: 9%;
+}
+
+#divConteudoPostagemMural {
+    background-color: white;
+    margin-top: 3%;
+    margin-left: 2%;
+    width: 96%;
+}
+
+#divRodapePostagemMural {
+    background-color: white;
+    margin-bottom: 0;
+    margin-top: 4%;
+    margin-left: -2%;
+    width: 104%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-style: solid;
+    border-top-color: #c2ccd1;
+    border-top-width: 1px;
+    padding: 1.5%;
+}
+
+#divRecaoPostagemMural a {
+    margin-left: 7%;
+    color: #3A3A3A;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#divComentariosPostagemMural a {
+    font-weight: bold;
+    color: #068DD6;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 50%;
 }
 
 /* Início da Parte do Mural de Notícias da Página de Perfil do Usuário */

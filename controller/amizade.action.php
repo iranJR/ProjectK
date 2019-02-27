@@ -41,16 +41,16 @@ if($_POST['act'] == 'add') {
 
                 if ($solicitacao->getIdSolicitacao() != '') {
                     $msg = "Solicitação de Amizade Enviada !";
-                    echo "<script>window.location.href='../view/perfilUsuario.view.php?userID=".$_POST['userID']."&msg=".$msg."'</script>";
+                    echo "<script>window.location.href='../view/perfilUsuario.view.php?userID=".base64_encode($_POST['userID'])."&msg=".$msg."'</script>";
                 }
                 else {
                     $msg = "Não foi possível enviar sua solicitação !";
-                    echo "<script>window.location.href='../view/perfilUsuario.view.php?userID=".$_POST['userID']."&msg=".$msg."'</script>";
+                    echo "<script>window.location.href='../view/perfilUsuario.view.php?userID=".base64_encode($_POST['userID'])."&msg=".$msg."'</script>";
                 }
             }
             else {
                 $msg = "Esta ação já foi executada !";
-                echo "<script>window.location.href='../view/perfilUsuario.view.php?userID".$_POST['userID']."&msg=".$msg."'</script>";
+                echo "<script>window.location.href='../view/perfilUsuario.view.php?userID".base64_encode($_POST['userID'])."&msg=".$msg."'</script>";
             }
         }
         else{
@@ -99,7 +99,7 @@ if($_POST['act'] == 'cancelar' || $_POST['act'] == 'desfazer' || $_POST['act'] =
                     else {
                         $msg = "Amizade desfeita !";
                     }
-                    echo "<script>window.location.href='../view/perfilUsuario.view.php?userID=".$_POST['userID']."&msg=".$msg."'</script>";
+                    echo "<script>window.location.href='../view/perfilUsuario.view.php?userID=".base64_encode($_POST['userID'])."&msg=".$msg."'</script>";
                 }
                 else {
                     if($_POST['act'] == 'cancelar'){
@@ -111,13 +111,13 @@ if($_POST['act'] == 'cancelar' || $_POST['act'] == 'desfazer' || $_POST['act'] =
                     else {
                         $msg = "Não foi possível desfazer a amizade !";
                     }
-                    echo "<script>window.location.href='../view/perfilUsuario.view.php?userID=".$_POST['userID']."&msg=".$msg."'</script>";
+                    echo "<script>window.location.href='../view/perfilUsuario.view.php?userID=".base64_encode($_POST['userID'])."&msg=".$msg."'</script>";
                 }
 
             }
             else {
                 $msg = "Solicitação Não Encontrada !";
-                echo "<script>window.location.href='../view/perfilUsuario.view.php?userID".$_POST['userID']."&msg=".$msg."'</script>";
+                echo "<script>window.location.href='../view/perfilUsuario.view.php?userID".base64_encode($_POST['userID'])."&msg=".$msg."'</script>";
             }
         }
         else{
@@ -160,18 +160,18 @@ if($_POST['act'] == 'aceitar') {
                 if($solicitacao->getIdSolicitacao() != null && $solicitacao->getDataConfirmacao() != null){
 
                     $msg = "Solicitação aceita, agora vocês são amigos !";
-                    echo "<script>window.location.href='../view/perfilUsuario.view.php?userID=".$_POST['userID']."&msg=".$msg."'</script>";
+                    echo "<script>window.location.href='../view/perfilUsuario.view.php?userID=".base64_encode($_POST['userID'])."&msg=".$msg."'</script>";
                 }
                 else {
 
                     $msg = "Não foi possível aceitar a solicitação no momento !";
-                    echo "<script>window.location.href='../view/perfilUsuario.view.php?userID=".$_POST['userID']."&msg=".$msg."'</script>";
+                    echo "<script>window.location.href='../view/perfilUsuario.view.php?userID=".base64_encode($_POST['userID'])."&msg=".$msg."'</script>";
                 }
 
             }
             else {
                 $msg = "Solicitação Não Encontrada !";
-                echo "<script>window.location.href='../view/perfilUsuario.view.php?userID".$_POST['userID']."&msg=".$msg."'</script>";
+                echo "<script>window.location.href='../view/perfilUsuario.view.php?userID".base64_encode($_POST['userID'])."&msg=".$msg."'</script>";
             }
         }
         else{

@@ -45,12 +45,17 @@ if (!empty($_COOKIE[hash('sha256', 'idUsuario')]) || !empty($_COOKIE[hash('sha25
 
 $userID = base64_decode($_GET['userID']);
 
-require_once ("../model/Usuario.php");
-require_once ("../dao/UsuarioDAO.php");
-require_once ("../model/Cidade.php");
-require_once ("../dao/CidadeDAO.php");
-require_once ("../model/Uf.php");
-require_once ("../dao/UfDAO.php");
+require_once("../model/Usuario.php");
+require_once("../dao/UsuarioDAO.php");
+require_once("../model/Cidade.php");
+require_once("../dao/CidadeDAO.php");
+require_once("../model/Uf.php");
+require_once("../dao/UfDAO.php");
+//Retira as mensagens de notificação de erro do PHP neste contexto da página.
+//Neste ponto estão vindo notificações da DAO.
+//error_reporting(E_WARNING);
+require_once("../model/Amigo.php");
+require_once("../dao/AmigoDAO.php");
 
 $usuarioDAO = new UsuarioDAO();
 $usuario = $usuarioDAO->buscarPeloId($userID);
@@ -107,32 +112,31 @@ atribuidos via sessão ou cookies -->
                     <div class="row">
                         <div id="divDadosUsuario" class="col-md-4">
                             <h4><?= $usuario->getNome() ?> <?= $usuario->getSobrenome() ?></h4>
-                            <h5 >Aniversário: <?= date("d/m/Y", strtotime($usuario->getDataNascimento())) ?></h5>
-                            <h5 ><?= $cidade->getNomeCidade() ?> - <?= $uf->getSiglaUf() ?></h5>
-                            <h5 >Membro desde <?= date("Y", strtotime($usuario->getDataCadastro())) ?></h5>
+                            <h5>Aniversário: <?= date("d/m/Y", strtotime($usuario->getDataNascimento())) ?></h5>
+                            <h5><?= $cidade->getNomeCidade() ?> - <?= $uf->getSiglaUf() ?></h5>
+                            <h5>Membro desde <?= date("Y", strtotime($usuario->getDataCadastro())) ?></h5>
                         </div>
                         <div class="col-md-4">
                             <?php
-                                if($usuario->getFotoPerfil() == 'perfil.png') {
-                                    echo "<img id='imgFotoPerfilPerfilUsuario' src='../imagens/perfil.png' class='img-circle' alt='Foto Perfil'
+                            if ($usuario->getFotoPerfil() == 'perfil.png') {
+                                echo "<img id='imgFotoPerfilPerfilUsuario' src='../imagens/perfil.png' class='img-circle' alt='Foto Perfil'
                                             data-toggle='modal' data-target='#modalFotoPerfilUsuario'/>";
-                                }
-                                else {
-                                    echo "<img id='imgFotoPerfilPerfilUsuario' src='../imagens/Usuario/".$usuario->getIdUsuario()."/Albuns/Perfil/".$usuario->getFotoPerfil()."'' class='img-circle' alt='Foto Perfil'
+                            } else {
+                                echo "<img id='imgFotoPerfilPerfilUsuario' src='../imagens/Usuario/" . $usuario->getIdUsuario() . "/Albuns/Perfil/" . $usuario->getFotoPerfil() . "'' class='img-circle' alt='Foto Perfil'
                                             data-toggle='modal' data-target='#modalFotoPerfilUsuario'/>";
-                                }
+                            }
 
-                                if($userID == $idUsuario){
-                                    echo"<a id='aAlterarFotoPerfil'><i class='glyphicon glyphicon-pencil'></i>
+                            if ($userID == $idUsuario) {
+                                echo "<a id='aAlterarFotoPerfil'><i class='glyphicon glyphicon-pencil'></i>
                                     Alterar Foto</a>";
-                                }
+                            }
 
                             ?>
                         </div>
                         <div class="col-md-4">
                             <?php
-                                if($userID == $idUsuario){
-                                    echo"<div class='row'>
+                            if ($userID == $idUsuario) {
+                                echo "<div class='row'>
                                         <div class='col-md-12'>
                                             <button id='botaoMensagem' title='Minhas Mensagens' class='btn btn-primary'>
                                                 <i class='glyphicon glyphicon-envelope'></i> Mensagens
@@ -146,22 +150,15 @@ atribuidos via sessão ou cookies -->
                                             </a>
                                         </div>
                                     </div>";
-                                }
-                                else {
+                            } else {
 
-                                    //Retira as mensagens de notificação de erro do PHP neste contexto da página.
-                                    //Neste ponto estão vindo notificações da DAO.
-                                    //error_reporting(E_WARNING);
-                                    require_once ("../model/Amigo.php");
-                                    require_once ("../dao/AmigoDAO.php");
+                                $amigo = new Amigo('', '', '', '', '');
 
-                                    $amigo = new Amigo('','','','','');
-
-                                    $amigoDAO = new AmigoDAO();
-                                    $amigo = $amigoDAO->buscarPorAmizade($idUsuario, $userID);
-                                    if($amigo->getIdSolicitacao() != ""){
-                                        if($amigo->getDataConfirmacao() != null){
-                                            echo "<div class='row'>
+                                $amigoDAO = new AmigoDAO();
+                                $amigo = $amigoDAO->buscarPorAmizade($idUsuario, $userID);
+                                if ($amigo->getIdSolicitacao() != "") {
+                                    if ($amigo->getDataConfirmacao() != null) {
+                                        echo "<div class='row'>
                                             <div class='col-md-12'>
                                                 <button id='botaoMensagem' title='Enviar Mensagem' class='btn btn-primary'>
                                                     <i class='glyphicon glyphicon-envelope'></i> Mensagem
@@ -172,17 +169,16 @@ atribuidos via sessão ou cookies -->
                                                 <div class='col-md-12'>
                                                     <form method='post' action='../controller/amizade.action.php'>
                                                         <input type='hidden' name='act' value='desfazer'>
-                                                        <input type='hidden' name='idUsuario' value='".$idUsuario."'>
-                                                        <input type='hidden' name='userID' value='".$userID."'> 
+                                                        <input type='hidden' name='idUsuario' value='" . $idUsuario . "'>
+                                                        <input type='hidden' name='userID' value='" . $userID . "'> 
                                                         <button id='botaoDesfazerAmizade' type='submit' title='Desfazer a Amizade' class='btn btn-primary'>
                                                             <i class='glyphicon glyphicon-ban-circle'></i> Desfazer Amizade
                                                         </button>
                                                     </form>
                                                 </div>
                                             </div>";
-                                        }
-                                        else if($amigo->getIdSolicitado() == $idUsuario){
-                                            echo"<div class='row'>
+                                    } else if ($amigo->getIdSolicitado() == $idUsuario) {
+                                        echo "<div class='row'>
                                                 <div class='col-md-12'>
                                                     <button id='botaoMensagem' title='Enviar Mensagem' class='btn btn-primary'>
                                                         <i class='glyphicon glyphicon-envelope'></i> Mensagem
@@ -193,25 +189,24 @@ atribuidos via sessão ou cookies -->
                                                     <div class='col-md-12'>
                                                         <form method='post' action='../controller/amizade.action.php'>
                                                             <input type='hidden' name='act' value='aceitar'>
-                                                            <input type='hidden' name='idUsuario' value='".$idUsuario."'>
-                                                            <input type='hidden' name='userID' value='".$userID."'>                                                
+                                                            <input type='hidden' name='idUsuario' value='" . $idUsuario . "'>
+                                                            <input type='hidden' name='userID' value='" . $userID . "'>                                                
                                                             <button id='botaoAceitarSolicitacao' type='submit' title='Adicionar aos Meus Amigos' class='btn btn-primary'>
                                                                 <i class='glyphicon glyphicon-ok'></i> Aceitar
                                                             </button>
                                                         </form>
                                                         <form method='post' action='../controller/amizade.action.php'>
                                                             <input type='hidden' name='act' value='recusar'>
-                                                            <input type='hidden' name='idUsuario' value='".$idUsuario."'>
-                                                            <input type='hidden' name='userID' value='".$userID."'>                                                
+                                                            <input type='hidden' name='idUsuario' value='" . $idUsuario . "'>
+                                                            <input type='hidden' name='userID' value='" . $userID . "'>                                                
                                                             <button id='botaoRecusarSolicitacao' type='submit' title='Recusar Solicitação de Amizade' class='btn btn-primary'>
                                                                 <i class='glyphicon glyphicon-remove'></i> Recusar
                                                             </button>
                                                         </form>
                                                     </div>
                                                 </div>";
-                                        }
-                                        else {
-                                            echo "<div class='row'>
+                                    } else {
+                                        echo "<div class='row'>
                                             <div class='col-md-12'>
                                                 <button id='botaoMensagem' title='Enviar Mensagem' class='btn btn-primary'>
                                                     <i class='glyphicon glyphicon-envelope'></i> Mensagem
@@ -222,18 +217,17 @@ atribuidos via sessão ou cookies -->
                                                 <div class='col-md-12'>
                                                     <form method='post' action='../controller/amizade.action.php'>
                                                         <input type='hidden' name='act' value='cancelar'>
-                                                        <input type='hidden' name='idUsuario' value='".$idUsuario."'>
-                                                        <input type='hidden' name='userID' value='".$userID."'> 
+                                                        <input type='hidden' name='idUsuario' value='" . $idUsuario . "'>
+                                                        <input type='hidden' name='userID' value='" . $userID . "'> 
                                                         <button id='botaoCancelarSolicitacao' type='submit' title='Cancelar a Solicitação de Amizade' class='btn btn-primary'>
                                                             <i class='glyphicon glyphicon-remove'></i> Cancelar Solicitação
                                                         </button>
                                                     </form>
                                                 </div>
                                             </div>";
-                                        }
                                     }
-                                    else {
-                                        echo"<div class='row'>
+                                } else {
+                                    echo "<div class='row'>
                                         <div class='col-md-12'>
                                             <button id='botaoMensagem' title='Enviar Mensagem' class='btn btn-primary'>
                                                 <i class='glyphicon glyphicon-envelope'></i> Mensagem
@@ -244,26 +238,26 @@ atribuidos via sessão ou cookies -->
                                             <div class='col-md-12'>
                                                 <form method='post' action='../controller/amizade.action.php'>
                                                     <input type='hidden' name='act' value='add'>
-                                                    <input type='hidden' name='idUsuario' value='".$idUsuario."'>
-                                                    <input type='hidden' name='userID' value='".$userID."'>
+                                                    <input type='hidden' name='idUsuario' value='" . $idUsuario . "'>
+                                                    <input type='hidden' name='userID' value='" . $userID . "'>
                                                     <button id='botaoAdicionarPerfil' type='submit' title='Adicionar aos Amigos' class='btn btn-primary'>
                                                         <i class='glyphicon glyphicon-user'></i> Adicionar
                                                     </button>
                                                 </form>
                                             </div>
                                         </div>";
-                                    }
                                 }
+                            }
                             ?>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <?php
-                        if($userID == $idUsuario){
-                            echo"<a id='aEditarPerfilPerfil'><i
+                    if ($userID == $idUsuario) {
+                        echo "<a id='aEditarPerfilPerfil'><i
                                 class='glyphicon glyphicon-pencil'></i> Editar Perfil</a>";
-                        }
+                    }
                     ?>
                 </div>
 
@@ -274,20 +268,21 @@ atribuidos via sessão ou cookies -->
                     <div class='modal-dialog'>
 
                         <div id='modalBodyFotoPerfilUsuario' class='modal-body'>
-                            <button id='botaoFecharModalFotoPerfil' type='button' class='close' data-dismiss='modal' >&times;</button>
+                            <button id='botaoFecharModalFotoPerfil' type='button' class='close' data-dismiss='modal'>
+                                &times;
+                            </button>
 
                             <?php
-                                if($usuario->getFotoPerfil() == 'perfil.png') {
-                                    echo "<img src='../imagens/perfil.png' alt='Foto Perfil' />";
-                                }
-                                else {
-                                    echo"<img src='../imagens/Usuario/".$usuario->getIdUsuario()."/Albuns/Perfil/".$usuario->getFotoPerfil()."' alt='Foto Perfil' >";
-                                }
+                            if ($usuario->getFotoPerfil() == 'perfil.png') {
+                                echo "<img src='../imagens/perfil.png' alt='Foto Perfil' />";
+                            } else {
+                                echo "<img src='../imagens/Usuario/" . $usuario->getIdUsuario() . "/Albuns/Perfil/" . $usuario->getFotoPerfil() . "' alt='Foto Perfil' >";
+                            }
                             ?>
 
                         </div>
-                        <div id='captionModalFotoPerfil' >
-                            <p >Foto de Perfil</p>
+                        <div id='captionModalFotoPerfil'>
+                            <p>Foto de Perfil</p>
                         </div>
 
                     </div>
@@ -299,25 +294,72 @@ atribuidos via sessão ou cookies -->
                         <table id='tableAmigosPerfil' class='table'>
                             <thead>
                             <tr>
-                                <th scope='col' colspan='4'>Amigos</th>
+                                <?php
+                                $amigoDAO = new AmigoDAO();
+                                $amigos = $amigoDAO->buscarTodosAmigos($usuario->getIdUsuario());
+                                shuffle($amigos);
+
+                                if(count($amigos) > 0) {
+                                    echo "<th scope = 'col' colspan = '4' > Amigos (".count($amigos).")</th >";
+                                }
+                                else {
+                                    echo "<th scope = 'col' colspan = '4' > Amigos</th >";
+                                }
+                                ?>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td><img src='../imagens/thor.jpg' class='img-rounded'></td>
-                                <td><img src='../imagens/thor.jpg' class='img-rounded'></td>
-                                <td><img src='../imagens/thor.jpg' class='img-rounded'></td>
-                                <td><img src='../imagens/thor.jpg' class='img-rounded'></td>
-                            </tr>
-                            <tr>
-                                <td><img src='../imagens/thor.jpg' class='img-rounded'></td>
-                                <td><img src='../imagens/thor.jpg' class='img-rounded'></td>
-                                <td><img src='../imagens/thor.jpg' class='img-rounded'></td>
-                                <td><img src='../imagens/thor.jpg' class='img-rounded'></td>
-                            </tr>
-                            <tr>
-                                <th scope='col' colspan='4'><a id='aVerTodos' href="../view/verAmigos.view.php?userID=<?php echo base64_encode($userID); ?>"> Ver Todos </a></th>
-                            </tr>
+                            <?php
+                            if(count($amigos) > 0) {
+                                $i = $j = 0;
+                                foreach ($amigos as $amigo) {
+
+                                    $usuarioAmigo = new Usuario('', '', '', '', '',
+                                        '', '', '', '', '', '', '');
+
+                                    $usuarioDAO = new UsuarioDAO();
+                                    if ($amigo->idSolicitante == $userID) {
+                                        $usuarioAmigo = $usuarioDAO->buscarPeloId($amigo->idSolicitado);
+                                    } else {
+                                        $usuarioAmigo = $usuarioDAO->buscarPeloId($amigo->idSolicitante);
+                                    }
+
+                                    if ($i < 4) {
+                                        if ($i == 0) {
+                                            echo "<tr>";
+                                        }
+                                        if ($usuarioAmigo->getFotoPerfil() == "perfil.png") {
+                                            echo "<td ><a href='../view/perfilUsuario.view.php?userID=" . base64_encode($usuarioAmigo->getIdUsuario()) . "'><img src = '../imagens/perfil.png' class='img-rounded' alt='Foto Perfil' ></a></td >";
+                                        } else {
+                                            echo "<td ><a href='../view/perfilUsuario.view.php?userID=" . base64_encode($usuarioAmigo->getIdUsuario()) . "'><img src = '../imagens/Usuario/" . $usuarioAmigo->getIdUsuario() . "/Albuns/Perfil/" . $usuarioAmigo->getFotoPerfil() . "' class='img-rounded' alt='Foto Perfil' ></a></td >";
+                                        }
+                                        $i++;
+                                    } else if ($i < 7) {
+                                        if ($j == 0) {
+                                            echo "</tr>";
+                                            echo "<tr>";
+                                            $j++;
+                                        }
+                                        if ($usuarioAmigo->getFotoPerfil() == "perfil.png") {
+                                            echo "<td ><a href='../view/perfilUsuario.view.php?userID=" . base64_encode($usuarioAmigo->getIdUsuario()) . "'><img src = '../imagens/perfil.png' class='img-rounded' alt='Foto Perfil' ></a></td >";
+                                        } else {
+                                            echo "<td ><a href='../view/perfilUsuario.view.php?userID=" . base64_encode($usuarioAmigo->getIdUsuario()) . "'><img src = '../imagens/Usuario/" . $usuarioAmigo->getIdUsuario() . "/Albuns/Perfil/" . $usuarioAmigo->getFotoPerfil() . "' class='img-rounded' alt='Foto Perfil' ></a></td >";
+                                        }
+                                        $i++;
+                                    } else {
+                                        echo "</tr>";
+                                        break;
+                                    }
+
+                                }
+                                echo "<tr >
+                                        <th scope = 'col' colspan = '4' ><a id = 'aVerTodos' href='../view/verAmigos.view.php?userID=" . base64_encode($userID) . "'> Ver Todos </a ></th >
+                                    </tr >";
+                            }
+                            else {
+                                echo"<tr><td id='tableAmigosPerfilSemAmigos' colspan='4'><i class='	glyphicon glyphicon-warning-sign'></i>   Usuário ainda não possui amigos.</td></tr>";
+                            }
+                            ?>
                             </tbody>
                         </table>
                     </div>
@@ -359,11 +401,10 @@ atribuidos via sessão ou cookies -->
 
                             <div class="col-md-2">
                                 <?php
-                                if($fotoPerfil == 'perfil.png') {
+                                if ($fotoPerfil == 'perfil.png') {
                                     echo "<img id='imgFotoPerfilPostagem' src='../imagens/perfil.png' alt='Foto Perfil' class='img-circle' />";
-                                }
-                                else {
-                                    echo"<img id='imgFotoPerfilPostagem' src='../imagens/Usuario/".$idUsuario."/Albuns/Perfil/".$fotoPerfil."' alt='Foto Perfil' 
+                                } else {
+                                    echo "<img id='imgFotoPerfilPostagem' src='../imagens/Usuario/" . $idUsuario . "/Albuns/Perfil/" . $fotoPerfil . "' alt='Foto Perfil' 
                                     class='img-circle' >";
                                 }
                                 ?>
@@ -371,24 +412,27 @@ atribuidos via sessão ou cookies -->
 
                             <div class="col-md-10">
                                 <div id='divInputPostagemPerfilUsuario' class='input-group'>
-                                    <input hidden value="<?=$idUsuario ?>" name="idRemetente">
-                                    <input hidden value="<?=$usuario->getIdUsuario() ?>" name="idDestinatario">
+                                    <input hidden value="<?= $idUsuario ?>" name="idRemetente">
+                                    <input hidden value="<?= $usuario->getIdUsuario() ?>" name="idDestinatario">
                                     <input hidden value="texto" name="tipoPost">
-                                    <input id='inputPostagemPerfilUsuario' name='textoPostagem' type='text' class='form-control' autocomplete='off' placeholder='<?php
-                                    if($userID == $idUsuario){
-                                        echo $nomeUsuario." escreva algo para que seus amigos vejam...";
-                                    }
-                                    else {
-                                        echo $nomeUsuario." escreva algo para ".$usuario->getNome()."...";
-                                    }?>' maxlength='500'>
-                                    <div class='input-group-btn' >
-                                        <button id='botaoPostarPerfilUsuario' title="Postar" class='btn btn-warning' type='submit'>
+                                    <input id='inputPostagemPerfilUsuario' name='textoPostagem' type='text'
+                                           class='form-control' autocomplete='off' placeholder='<?php
+                                    if ($userID == $idUsuario) {
+                                        echo $nomeUsuario . " escreva algo para que seus amigos vejam...";
+                                    } else {
+                                        echo $nomeUsuario . " escreva algo para " . $usuario->getNome() . "...";
+                                    } ?>' maxlength='500'>
+                                    <div class='input-group-btn'>
+                                        <button id='botaoPostarPerfilUsuario' title="Postar" class='btn btn-warning'
+                                                type='submit'>
                                             <i class='glyphicon glyphicon-send'></i>
                                         </button>
-                                        <button id='botaoPostarImgPerfilUsuario' title="Postar Imagem" class='btn btn-warning'>
+                                        <button id='botaoPostarImgPerfilUsuario' title="Postar Imagem"
+                                                class='btn btn-warning'>
                                             <i class='glyphicon glyphicon-camera'></i>
                                         </button>
-                                        <button id='botaoPostarVideoPerfilUsuario' title="Postar Vídeo" class='btn btn-warning'>
+                                        <button id='botaoPostarVideoPerfilUsuario' title="Postar Vídeo"
+                                                class='btn btn-warning'>
                                             <i class='glyphicon glyphicon-facetime-video'></i>
                                         </button>
                                     </div>
@@ -406,14 +450,43 @@ atribuidos via sessão ou cookies -->
 
 
                 <!-- Início do Mural de Notícias -->
-                <h3 id="h3MuralPerilUsuario"><i class="glyphicon glyphicon-bullhorn"></i>   Mural de Notícias</h3>
+                <h3 id="h3MuralPerilUsuario"><i class="glyphicon glyphicon-bullhorn"></i> Mural de Notícias</h3>
                 <br/>
                 <div class="row">
                     <div id="divPostagemMuralPerfilUsuario" class="col-md-10">
-                        <h1>Oi</h1>
-                        <h1>Oi</h1>
-                        <h1>Oi</h1>
-                        <h1>Oi</h1>
+
+                        <div class="col-md-1">
+                            <?php
+                            if ($fotoPerfil == 'perfil.png') {
+                                echo "<img id='imgFotoPerfilPostagem' src='../imagens/perfil.png' alt='Foto Perfil' class='img-circle' />";
+                            } else {
+                                echo "<img id='imgFotoPerfilPostagem' src='../imagens/Usuario/" . $idUsuario . "/Albuns/Perfil/" . $fotoPerfil . "' alt='Foto Perfil' 
+                                class='img-circle' >";
+                            }
+                            ?>
+                        </div>
+                        <div id="nomeUsuarioPostagemMural" class="col-md-7" >
+                            <a href="">Nome do Remetente</a>
+                        </div>
+                        <div class="col-md-4">
+                            <small id="smallDataPostagemMural">Postado em 20/01/2019 às 21:30</small>
+                        </div>
+
+                        <div id="divConteudoPostagemMural" class="col-md-12">
+                            <h3>Conteúdo do Post - Texto</h3>
+                        </div>
+
+                        <div id="divRodapePostagemMural" class="col-md-12">
+                            <div id="divRecaoPostagemMural" class="col-md-6">
+                                <a title="Gostei"><i class="glyphicon glyphicon-thumbs-up"></i></a>
+                                <a>|</a>
+                                <a title="Não Gostei"><i class="glyphicon glyphicon-thumbs-down"></i></a>
+                            </div>
+                            <div id="divComentariosPostagemMural" class="col-md-6">
+                                <a><i class="glyphicon glyphicon-comment"></i>   Comentários...</a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <!-- Fim do Mural de Notícias -->

@@ -273,12 +273,12 @@ atribuidos via sessão ou cookies -->
                                 <?php
                                 if(!empty($_GET['busca'])) {
                                     if (count($busca) == 2) {
-                                       echo "<a class='page-link $exibir_botao_inicio' href='$endereco?page=$primeira_pagina&busca=$busca[0] $busca[1]&userID=".base64_encode($userId)."' title='Primeira Página'>&laquo; Primeira  </a>";
+                                       echo "<a class='page-link $exibir_botao_inicio' href='$endereco?page=$primeira_pagina&busca=$busca[0] $busca[1]&userID=".$userId."' title='Primeira Página'>&laquo; Primeira  </a>";
                                     } else {
-                                        echo "<a class='page-link $exibir_botao_inicio' href='$endereco?page=$primeira_pagina&busca=$busca[0]&userID=".base64_encode($userId)."' title='Primeira Página'>&laquo; Primeira  </a>";
+                                        echo "<a class='page-link $exibir_botao_inicio' href='$endereco?page=$primeira_pagina&busca=$busca[0]&userID=".$userId."' title='Primeira Página'>&laquo; Primeira  </a>";
                                     }
                                 }else{
-                                    echo "<a class='page-link $exibir_botao_inicio' href='$endereco?page=$primeira_pagina&userID=".base64_encode($userId)."' title='Primeira Página'>&laquo; Primeira  </a>";
+                                    echo "<a class='page-link $exibir_botao_inicio' href='$endereco?page=$primeira_pagina&userID=".$userId."' title='Primeira Página'>&laquo; Primeira  </a>";
                                 }
                                 ?>
                             </li>
@@ -286,12 +286,12 @@ atribuidos via sessão ou cookies -->
                                 <?php
                                 if(!empty($_GET['busca'])) {
                                     if (count($busca) == 2) {
-                                        echo "<a class='page-link $exibir_botao_inicio' href='$endereco?page=$pagina_anterior&busca=$busca[0] $busca[1]&userID=".base64_encode($userId)."' title='Página Anterior'>‹ Anterior  </a>";
+                                        echo "<a class='page-link $exibir_botao_inicio' href='$endereco?page=$pagina_anterior&busca=$busca[0] $busca[1]&userID=".$userId."' title='Página Anterior'>‹ Anterior  </a>";
                                     } else {
-                                        echo "<a class='page-link $exibir_botao_inicio' href='$endereco?page=$pagina_anterior&busca=$busca[0]&userID=".base64_encode($userId)."' title='Página Anterior'>‹ Anterior  </a>";
+                                        echo "<a class='page-link $exibir_botao_inicio' href='$endereco?page=$pagina_anterior&busca=$busca[0]&userID=".$userId."' title='Página Anterior'>‹ Anterior  </a>";
                                     }
                                 }else{
-                                    echo "<a class='page-link $exibir_botao_inicio' href='$endereco?page=$pagina_anterior&userID=". base64_encode($userId)."' title='Página Anterior'>‹ Anterior  </a>";
+                                    echo "<a class='page-link $exibir_botao_inicio' href='$endereco?page=$pagina_anterior&userID=". $userId."' title='Página Anterior'>‹ Anterior  </a>";
 
                                 }
                                 ?>
@@ -303,9 +303,9 @@ atribuidos via sessão ou cookies -->
                                     $destaque = ($i == $pagina_atual) ? 'destaque' : '';
                                     echo "<li class='page-item'>";
                                     if (count($busca) == 2) {
-                                        echo "<a class='page-link $destaque' href='$endereco?page=$i&busca=$busca[0] $busca[1]&userID=".base64_encode($userId)."'>  $i  </a>";
+                                        echo "<a class='page-link $destaque' href='$endereco?page=$i&busca=$busca[0] $busca[1]&userID=".$userId."'>  $i  </a>";
                                     } else {
-                                        echo "<a class='page-link $destaque' href='$endereco?page=$i&busca=$busca[0]&userID=".base64_encode($userId)."'>  $i  </a>";
+                                        echo "<a class='page-link $destaque' href='$endereco?page=$i&busca=$busca[0]&userID=".$userId."'>  $i  </a>";
                                     }
                                     echo "</li>";
                                 endfor;
@@ -313,7 +313,7 @@ atribuidos via sessão ou cookies -->
                                 for ($i = $range_inicial; $i <= $range_final; $i++):
                                     $destaque = ($i == $pagina_atual) ? 'destaque' : '';
                                     echo "<li class='page-item'>";
-                                    echo "<a class='page-link $destaque' href='$endereco?page=$i&userID=".base64_encode($userId)."'>  $i  </a>";
+                                    echo "<a class='page-link $destaque' href='$endereco?page=$i&userID=".$userId."'>  $i  </a>";
                                     echo "</li>";
                                 endfor;
                             }
@@ -323,12 +323,12 @@ atribuidos via sessão ou cookies -->
                                 <?php
                                 if(!empty($_GET['busca'])) {
                                     if (count($busca) == 2) {
-                                        echo "<a class='page-link $exibir_botao_final' href='$endereco?page=$proxima_pagina&busca=$busca[0] $busca[1]&userID=".base64_encode($userId)."' title='Próxima Página'> Próxima ›</a>";
+                                        echo "<a class='page-link $exibir_botao_final' href='$endereco?page=$proxima_pagina&busca=$busca[0] $busca[1]&userID=".$userId."' title='Próxima Página'> Próxima ›</a>";
                                     } else {
-                                        echo "<a class='page-link $exibir_botao_final' href='$endereco?page=$proxima_pagina&busca=$busca[0]&userID=".base64_encode($userId)."' title='Próxima Página'> Próxima ›</a>";
+                                        echo "<a class='page-link $exibir_botao_final' href='$endereco?page=$proxima_pagina&busca=$busca[0]&userID=".$userId."' title='Próxima Página'> Próxima ›</a>";
                                     }
                                 }else{
-                                    echo "<a class='page-link $exibir_botao_final' href='$endereco?page=$proxima_pagina&userID=".base64_encode($userId)."' title='Próxima Página'> Próxima ›</a>";
+                                    echo "<a class='page-link $exibir_botao_final' href='$endereco?page=$proxima_pagina&userID=".$userId."' title='Próxima Página'> Próxima ›</a>";
                                 }
                                 ?>
                             </li>
@@ -336,12 +336,12 @@ atribuidos via sessão ou cookies -->
                                 <?php
                                 if(!empty($_GET['busca'])) {
                                     if (count($busca) == 2) {
-                                        echo "<a class='page-link $exibir_botao_final' href='$endereco?page=$ultima_pagina&busca=$busca[0] $busca[1]&userID=".base64_encode($userId)."'  title='Última Página'> Última &raquo;</a>";
+                                        echo "<a class='page-link $exibir_botao_final' href='$endereco?page=$ultima_pagina&busca=$busca[0] $busca[1]&userID=".$userId."'  title='Última Página'> Última &raquo;</a>";
                                     } else {
-                                        echo "<a class='page-link $exibir_botao_final' href='$endereco?page=$ultima_pagina&busca=$busca[0]&userID=".base64_encode($userId)."'  title='Última Página'> Última &raquo;</a>";
+                                        echo "<a class='page-link $exibir_botao_final' href='$endereco?page=$ultima_pagina&busca=$busca[0]&userID=".$userId."'  title='Última Página'> Última &raquo;</a>";
                                     }
                                 }else{
-                                    echo "<a class='page-link $exibir_botao_final' href='$endereco?page=$ultima_pagina&userID=".base64_encode($userId)."'  title='Última Página'> Última &raquo;</a>";
+                                    echo "<a class='page-link $exibir_botao_final' href='$endereco?page=$ultima_pagina&userID=".$userId."'  title='Última Página'> Última &raquo;</a>";
                                 }
                                 ?>
                             </li>
