@@ -453,6 +453,8 @@ atribuidos via sessão ou cookies -->
                 <h3 id="h3MuralPerilUsuario"><i class="glyphicon glyphicon-bullhorn"></i> Mural de Notícias</h3>
                 <br/>
                 <div class="row">
+
+                    <!-- Inicio das Postagens - Laço de Repetição -->
                     <div id="divPostagemMuralPerfilUsuario" class="col-md-10">
 
                         <div class="col-md-1">
@@ -488,6 +490,8 @@ atribuidos via sessão ou cookies -->
                         </div>
 
                     </div>
+                    <!-- Fim das Postagens - Laço de Repetição -->
+
                 </div>
                 <!-- Fim do Mural de Notícias -->
             </div>
