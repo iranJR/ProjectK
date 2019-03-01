@@ -26,6 +26,32 @@ if(!empty($_COOKIE[hash('sha256','idUsuario')]) && !empty($_COOKIE[hash('sha256'
     }
 }
 
+/*Nomeclaturando sessão*/
+session_name(hash('sha256', $_SERVER['SERVER_ADDR'] . $_SERVER['REMOTE_ADDR']));
+
+/* Iniciando a sessão.*/
+session_start();
+
+//Verifica se existe um sessão criada, se houver compara os dados com os
+// dados do banco, se tudo ok, redireciona para a página inicial.
+if (!empty($_SESSION['idUsuario']) && !empty($_SESSION['nomeUsuario']) &&
+!empty($_SESSION['fotoPerfil'])) {
+
+    require_once ("../model/Usuario.php");
+    require_once ("../dao/UsuarioDAO.php");
+
+    $usuario = new Usuario('','','','','','',
+        '','','','','','');
+    $usuarioDao = new UsuarioDAO();
+    $usuario = $usuarioDao->buscarPeloId($_SESSION['idUsuario']);
+
+    if($usuario->getIdUsuario() == $_SESSION['idUsuario'] && $usuario->getNome() == $_SESSION['nomeUsuario']
+    && $usuario->getFotoPerfil() == $_SESSION['fotoPerfil']){
+        echo "<script>window.location.href='paginaInicial.view.php'</script>";
+    }
+
+}
+
 ?>
 
 <!DOCTYPE html>

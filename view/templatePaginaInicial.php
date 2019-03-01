@@ -304,6 +304,15 @@ echo "<div id = 'divMenuLateralDireito' class='col-sm-2 sidenav' >
 
         if(count($amigos) > 0) {
             $i = $j = 0;
+
+            if(count($amigos) < 7){
+                $amigoVazio = ["idSolicitacao" => "", "dataSolicitacao" => "", "idSolicitante" => "", "idSolicitado" => "", "dataConfirmacao" => ""];
+                $amigoVazio = (object)$amigoVazio;
+                while (count($amigos) < 7){
+                    array_push($amigos, $amigoVazio);
+                }
+            }
+
             foreach ($amigos as $amigo) {
 
                 $usuario = new Usuario('', '', '', '', '',
@@ -322,7 +331,11 @@ echo "<div id = 'divMenuLateralDireito' class='col-sm-2 sidenav' >
                     }
                     if ($usuario->getFotoPerfil() == "perfil.png") {
                         echo "<td ><a href='../view/perfilUsuario.view.php?userID=" . base64_encode($usuario->getIdUsuario()) . "'><img src = '../imagens/perfil.png' class='img-rounded' alt='Foto Perfil' ></a></td >";
-                    } else {
+                    }
+                    else if($usuario->getFotoPerfil() == ""){
+                        echo "<td ><img src = '../imagens/perfil.png' class='img-rounded' alt='Foto Perfil' ></td >";
+                    }
+                    else {
                         echo "<td ><a href='../view/perfilUsuario.view.php?userID=" . base64_encode($usuario->getIdUsuario()) . "'><img src = '../imagens/Usuario/" . $usuario->getIdUsuario() . "/Albuns/Perfil/" . $usuario->getFotoPerfil() . "' class='img-rounded' alt='Foto Perfil' ></a></td >";
                     }
                     $i++;
@@ -334,7 +347,11 @@ echo "<div id = 'divMenuLateralDireito' class='col-sm-2 sidenav' >
                     }
                     if ($usuario->getFotoPerfil() == "perfil.png") {
                         echo "<td ><a href='../view/perfilUsuario.view.php?userID=" . base64_encode($usuario->getIdUsuario()) . "'><img src = '../imagens/perfil.png' class='img-rounded' alt='Foto Perfil' ></a></td >";
-                    } else {
+                    }
+                    else if($usuario->getFotoPerfil() == ""){
+                        echo "<td ><img src = '../imagens/perfil.png' class='img-rounded' alt='Foto Perfil' ></td >";
+                    }
+                    else {
                         echo "<td ><a href='../view/perfilUsuario.view.php?userID=" . base64_encode($usuario->getIdUsuario()) . "'><img src = '../imagens/Usuario/" . $usuario->getIdUsuario() . "/Albuns/Perfil/" . $usuario->getFotoPerfil() . "' class='img-rounded' alt='Foto Perfil' ></a></td >";
                     }
                     $i++;

@@ -946,6 +946,139 @@
      margin-left: 78.5%;
  }
 
+/* Início das Postagens de Vídeo */
+
+#divModalPostagemVideo .modal-header {
+    background-color: #4c4c4c;
+    color: white;
+}
+
+#divModalPostagemVideo .modal-header h4 {
+    font-weight: bold;
+    font-variant: small-caps;
+}
+
+#botaoFecharModalVideo {
+    color: white;
+    opacity: 1;
+    font-size: 24px;
+}
+
+#botaoFecharModalVideo:hover {
+    opacity: 0.7;
+}
+
+#contMensagemPostagemVideo {
+    color: #3A3A3A;
+    font-weight: bold;
+    margin-left: 74%;
+}
+
+#smallMensagemPostagemVideo {
+    font-weight: bold;
+    margin-left: 1%;
+}
+
+#smallMensagemPostagemVideo i {
+    color: #F0BE00;
+}
+
+#botaoEnviarModalVideo {
+    background-color: #068DD6;
+    border-color: #068DD6;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+}
+
+#botaoEnviarModalVideo i{
+    color: white;
+}
+
+#botaoEnviarModalVideo:hover{
+    opacity: 0.9;
+}
+
+#botaoCancelarModalVideo {
+    background-color: #4c4c4c;
+    border-color: #4c4c4c;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+}
+
+#botaoCancelarModalVideo i{
+    color: red;
+}
+
+#botaoCancelarModalVideo:hover{
+    opacity: 0.9;
+}
+
+/* Fim das Postagens de Vídeo */
+
+/* Início das Postagens de Imagem */
+
+#divModalPostagemImagem .modal-content{
+    width: 80%;
+    margin-left: 10%;
+}
+
+#divModalPostagemImagem .modal-header {
+    background-color: #3A3A3A;
+    color: white;
+}
+
+#divModalPostagemImagem .modal-header h4 {
+    font-weight: bold;
+    font-variant: small-caps;
+}
+
+#contMensagemPostagemImagem {
+    color: #3A3A3A;
+    font-weight: bold;
+    margin-left: 67%;
+}
+
+#textAreaPostagem {
+    margin-bottom: 0%;
+}
+
+.fotoPreview {
+    margin-left: 5%;
+    width: 200px;
+    height: 200px;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+}
+
+#imagemPost {
+    width:0.1px;
+    height:0.1px;
+    opacity:0;
+    overflow:hidden;
+    position:absolute;
+    z-index:-1;
+}
+
+#labelInputImagemPost {
+    margin-left: 60%;
+    margin-top: 20%;
+    border-color: #8699a4;
+    border-style: dashed;
+    border-width: 4px;
+    padding: 7%;
+    cursor: pointer;
+}
+
+#labelInputImagemPost i {
+    font-size: 18px;
+    color: #3A3A3A;
+}
+
+/* Fim das Postagens de Imagem */
+
 /* Fim da Parte de Postagens da Página de Perfil do Usuário */
 
 /* Início da Parte do Mural de Notícias da Página de Perfil do Usuário */

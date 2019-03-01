@@ -312,6 +312,15 @@ atribuidos via sessão ou cookies -->
                             <?php
                             if(count($amigos) > 0) {
                                 $i = $j = 0;
+
+                                if(count($amigos) < 8){
+                                    $amigoVazio = ["idSolicitacao" => "", "dataSolicitacao" => "", "idSolicitante" => "", "idSolicitado" => "", "dataConfirmacao" => ""];
+                                    $amigoVazio = (object)$amigoVazio;
+                                    while (count($amigos) < 8){
+                                        array_push($amigos, $amigoVazio);
+                                    }
+                                }
+
                                 foreach ($amigos as $amigo) {
 
                                     $usuarioAmigo = new Usuario('', '', '', '', '',
@@ -330,11 +339,15 @@ atribuidos via sessão ou cookies -->
                                         }
                                         if ($usuarioAmigo->getFotoPerfil() == "perfil.png") {
                                             echo "<td ><a href='../view/perfilUsuario.view.php?userID=" . base64_encode($usuarioAmigo->getIdUsuario()) . "'><img src = '../imagens/perfil.png' class='img-rounded' alt='Foto Perfil' ></a></td >";
-                                        } else {
+                                        }
+                                        else if($usuarioAmigo->getFotoPerfil() == ""){
+                                            echo "<td ><img src = '../imagens/perfil.png' class='img-rounded' alt='Foto Perfil' ></td >";
+                                        }
+                                        else {
                                             echo "<td ><a href='../view/perfilUsuario.view.php?userID=" . base64_encode($usuarioAmigo->getIdUsuario()) . "'><img src = '../imagens/Usuario/" . $usuarioAmigo->getIdUsuario() . "/Albuns/Perfil/" . $usuarioAmigo->getFotoPerfil() . "' class='img-rounded' alt='Foto Perfil' ></a></td >";
                                         }
                                         $i++;
-                                    } else if ($i < 7) {
+                                    } else if ($i < 8) {
                                         if ($j == 0) {
                                             echo "</tr>";
                                             echo "<tr>";
@@ -342,7 +355,11 @@ atribuidos via sessão ou cookies -->
                                         }
                                         if ($usuarioAmigo->getFotoPerfil() == "perfil.png") {
                                             echo "<td ><a href='../view/perfilUsuario.view.php?userID=" . base64_encode($usuarioAmigo->getIdUsuario()) . "'><img src = '../imagens/perfil.png' class='img-rounded' alt='Foto Perfil' ></a></td >";
-                                        } else {
+                                        }
+                                        else if($usuarioAmigo->getFotoPerfil() == ""){
+                                            echo "<td ><img src = '../imagens/perfil.png' class='img-rounded' alt='Foto Perfil' ></td >";
+                                        }
+                                        else {
                                             echo "<td ><a href='../view/perfilUsuario.view.php?userID=" . base64_encode($usuarioAmigo->getIdUsuario()) . "'><img src = '../imagens/Usuario/" . $usuarioAmigo->getIdUsuario() . "/Albuns/Perfil/" . $usuarioAmigo->getFotoPerfil() . "' class='img-rounded' alt='Foto Perfil' ></a></td >";
                                         }
                                         $i++;
@@ -427,12 +444,12 @@ atribuidos via sessão ou cookies -->
                                                 type='submit'>
                                             <i class='glyphicon glyphicon-send'></i>
                                         </button>
-                                        <button id='botaoPostarImgPerfilUsuario' title="Postar Imagem"
-                                                class='btn btn-warning'>
+                                        <button id='botaoPostarImgPerfilUsuario' type="button" title="Postar Imagem"
+                                                class='btn btn-warning' data-toggle="modal" data-target="#divModalPostagemImagem">
                                             <i class='glyphicon glyphicon-camera'></i>
                                         </button>
-                                        <button id='botaoPostarVideoPerfilUsuario' title="Postar Vídeo"
-                                                class='btn btn-warning'>
+                                        <button id='botaoPostarVideoPerfilUsuario' type="button" title="Postar Vídeo"
+                                                class='btn btn-warning' data-toggle="modal" data-target="#divModalPostagemVideo">
                                             <i class='glyphicon glyphicon-facetime-video'></i>
                                         </button>
                                     </div>
@@ -446,8 +463,87 @@ atribuidos via sessão ou cookies -->
                         <small id="contMensagemPostagem" class="form-text text-muted">500 caracteres restantes.</small>
                     </div>
                 </div>
-                <!-- Fim da Área de Postagem  -->
 
+                <!-- Início da Modal de Postagem de Imagem -->
+                <div id="divModalPostagemImagem" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button id="botaoFecharModalVideo" type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title"><i class="glyphicon glyphicon-camera"></i>   Postagem - Imagem</h4>
+                            </div>
+                            <form method="post" action="">
+                                <input hidden value="<?= $idUsuario ?>" name="idRemetente">
+                                <input hidden value="<?= $usuario->getIdUsuario() ?>" name="idDestinatario">
+                                <input hidden value="imagem" name="tipoPost">
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <img id="fotoPreview" src="" alt="" />
+                                        </div>
+                                        <div class="col-md-7">
+                                            <input id="imagemPost" name="imagemPost" type="file">
+                                            <label id="labelInputImagemPost" for="imagemPost" title="Clique para adicionar uma imagem." ><i class="glyphicon glyphicon-plus" ></i></label>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div id="textAreaPostagem" class="form-group">
+                                        <textarea class="form-control" rows="3" id="textoPostagemImagem" maxlength='500' placeholder="Escreva aqui algo sobre a imagem..."></textarea>
+                                        <small id="contMensagemPostagemImagem" class="form-text text-muted">500 caracteres restantes.</small>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="col-md-12">
+                                        <button id="botaoEnviarModalVideo" type="submit" class="btn btn-default"><i class="glyphicon glyphicon-send"></i>   Enviar</button>
+                                        <button id="botaoCancelarModalVideo" type="button" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i>   Cancelar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Início da Modal de Postagem de Imagem -->
+
+                <!-- Início da Modal de Postagem de Vídeo -->
+                <div id="divModalPostagemVideo" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button id="botaoFecharModalVideo" type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title"><i class="glyphicon glyphicon-facetime-video"></i>   Postagem - Vídeo</h4>
+                            </div>
+                            <form method="post" action="">
+                                <input hidden value="<?= $idUsuario ?>" name="idRemetente">
+                                <input hidden value="<?= $usuario->getIdUsuario() ?>" name="idDestinatario">
+                                <input hidden value="video" name="tipoPost">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <textarea class="form-control" rows="3" id="textoPostagemVideo" maxlength='500' placeholder="Escreva aqui algo sobre o vídeo..."></textarea>
+                                    <small id="contMensagemPostagemVideo" class="form-text text-muted">500 caracteres restantes.</small>
+                                </div>
+                                <div class="form-group">
+                                    <label>Link do vídeo do YouTube:</label>
+                                    <input class="form-control" type="text" placeholder="Cole aqui o link do vídeo do YouTube..." />
+                                    <small id="smallMensagemPostagemVideo"><i class="glyphicon glyphicon-alert"></i>   Atenção: o link a ser colado deve ser a URL do vídeo do YouTube.</small>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="col-md-12">
+                                    <button id="botaoEnviarModalVideo" type="submit" class="btn btn-default"><i class="glyphicon glyphicon-send"></i>   Enviar</button>
+                                    <button id="botaoCancelarModalVideo" type="button" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i>   Cancelar</button>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Início da Modal de Postagem de Vídeo -->
+
+                <!-- Fim da Área de Postagem  -->
 
                 <!-- Início do Mural de Notícias -->
                 <h3 id="h3MuralPerilUsuario"><i class="glyphicon glyphicon-bullhorn"></i> Mural de Notícias</h3>
