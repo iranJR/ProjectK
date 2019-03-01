@@ -51,6 +51,8 @@ require_once("../model/Cidade.php");
 require_once("../dao/CidadeDAO.php");
 require_once("../model/Uf.php");
 require_once("../dao/UfDAO.php");
+require_once ("../model/Post.php");
+require_once ("../dao/PostDAO.php");
 //Retira as mensagens de notificação de erro do PHP neste contexto da página.
 //Neste ponto estão vindo notificações da DAO.
 //error_reporting(E_WARNING);
@@ -65,6 +67,18 @@ $cidade = $cidadeDAO->buscarPeloId($usuario->getCidade());
 
 $ufDAO = new UfDAO();
 $uf = $ufDAO->buscarPeloId($usuario->getEstado());
+
+$postagensDAO = new PostDAO();
+$postagens = new Post('','','','','','','');
+
+if($userID == $idUsuario){
+    // meu perfil
+    $postagens = $postagensDAO->buscarMinhasPostagens($userID);
+}else{
+    // perfil visitante
+    $postagens = $postagensDAO->buscarTodasPostagensPerfil($userID);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -413,7 +427,7 @@ atribuidos via sessão ou cookies -->
 
                 <!-- Inicío da Área de Postagem -->
                 <div class="row">
-                    <form id='formPostagemPerfilUsuario' class='navbar-form navbar-left' method='post' action='#'>
+                    <form id='formPostagemPerfilUsuario' class='navbar-form navbar-left' method='post' action='../controller/postar.action.php?act=save'>
                         <div class="col-md-12">
 
                             <div class="col-md-2">
@@ -438,7 +452,7 @@ atribuidos via sessão ou cookies -->
                                         echo $nomeUsuario . " escreva algo para que seus amigos vejam...";
                                     } else {
                                         echo $nomeUsuario . " escreva algo para " . $usuario->getNome() . "...";
-                                    } ?>' maxlength='500'>
+                                    } ?>' maxlength='500' required>
                                     <div class='input-group-btn'>
                                         <button id='botaoPostarPerfilUsuario' title="Postar" class='btn btn-warning'
                                                 type='submit'>
@@ -551,43 +565,57 @@ atribuidos via sessão ou cookies -->
                 <div class="row">
 
                     <!-- Inicio das Postagens - Laço de Repetição -->
-                    <div id="divPostagemMuralPerfilUsuario" class="col-md-10">
+                    <?php
 
-                        <div class="col-md-1">
-                            <?php
-                            if ($fotoPerfil == 'perfil.png') {
+                        foreach ($postagens as $post) {
+
+                            require_once ("../dao/UsuarioDAO.php");
+                            require_once ("../model/Usuario.php");
+
+                            $userDao = new UsuarioDAO();
+                            $user = new Usuario('','','','','','','','',
+                                '','','','');
+
+                            $user = $userDao->buscarPeloId($post->idRemetente);
+
+                            echo "<div id='divPostagemMuralPerfilUsuario' class='col-md-10'>
+        
+                            <div class='col-md-1'>";
+
+                            if ($user->getFotoPerfil() == 'perfil.png') {
                                 echo "<img id='imgFotoPerfilPostagem' src='../imagens/perfil.png' alt='Foto Perfil' class='img-circle' />";
                             } else {
-                                echo "<img id='imgFotoPerfilPostagem' src='../imagens/Usuario/" . $idUsuario . "/Albuns/Perfil/" . $fotoPerfil . "' alt='Foto Perfil' 
-                                class='img-circle' >";
+                                echo "<img id='imgFotoPerfilPostagem' src='../imagens/Usuario/" . $user->getIdUsuario() .
+                                    "/Albuns/Perfil/" . $user->getFotoPerfil() . "' alt='Foto Perfil' class='img-circle'/>";
                             }
-                            ?>
-                        </div>
-                        <div id="nomeUsuarioPostagemMural" class="col-md-7" >
-                            <a href="">Nome do Remetente</a>
-                        </div>
-                        <div class="col-md-4">
-                            <small id="smallDataPostagemMural">Postado em 20/01/2019 às 21:30</small>
-                        </div>
-
-                        <div id="divConteudoPostagemMural" class="col-md-12">
-                            <h3>Conteúdo do Post - Texto</h3>
-                        </div>
-
-                        <div id="divRodapePostagemMural" class="col-md-12">
-                            <div id="divRecaoPostagemMural" class="col-md-6">
-                                <a title="Gostei"><i class="glyphicon glyphicon-thumbs-up"></i></a>
-                                <a>|</a>
-                                <a title="Não Gostei"><i class="glyphicon glyphicon-thumbs-down"></i></a>
+                            echo "</div>
+                                     <div id='nomeUsuarioPostagemMural' class='col-md-7' >
+                                        <a href='../view/perfilUsuario.view.php?userID=" . base64_encode($user->getIdUsuario()) . "'> ".$user->getNome()." ". $user->getSobrenome()." </a>
+                                    </div>
+                                    <div class='col-md-4'>
+                                        <small id='smallDataPostagemMural'>".date('d/m/Y H:i:s', strtotime($post->dataPost))." </small>
+                                    </div>
+        
+                                <div id='divConteudoPostagemMural' class='col-md-12'>
+                                    <h3> $post->textoPost </h3>
+                                </div>
+        
+                                <div id='divRodapePostagemMural' class='col-md-12'>
+                                    <div id='divRecaoPostagemMural' class='col-md-6'>
+                                        <a title='Gostei'><i class='glyphicon glyphicon-thumbs-up'></i></a>
+                                        <a>|</a>
+                                        <a title='Não Gostei'><i class='glyphicon glyphicon-thumbs-down'></i></a>
+                                    </div>
+                                    <div id='divComentariosPostagemMural' class='col-md-6'>
+                                        <a><i class='glyphicon glyphicon-comment'></i>   Comentários...</a>
+                                    </div>
+                                </div>
+        
                             </div>
-                            <div id="divComentariosPostagemMural" class="col-md-6">
-                                <a><i class="glyphicon glyphicon-comment"></i>   Comentários...</a>
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- Fim das Postagens - Laço de Repetição -->
-
+                            <!-- Fim das Postagens - Laço de Repetição -->
+                            ";
+                        }
+                     ?>
                 </div>
                 <!-- Fim do Mural de Notícias -->
             </div>
