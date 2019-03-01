@@ -140,4 +140,57 @@ class PostDAO implements GenericsDAO
             return "Erro ao conectar com o banco de dados: " . $erro->getMessage();
         }
     }
+
+    public function buscarTodasPostagensPerfil($idUsuario)
+    {
+        global $pdo;
+        try{
+            $statement= $pdo->prepare("SELECT * FROM post WHERE idDestinatario = :id AND idRemetente != idDestinatario ORDER BY dataPost desc");
+            $statement->bindValue(":id",$idUsuario);
+            if($statement->execute()){
+                $result = $statement->fetchAll(PDO::FETCH_OBJ);
+                return $result;
+            } else {
+                throw new PDOException("<script> alert('Não foi possível executar o código SQL'); </script>");
+            }
+        } catch (PDOException $erro) {
+            return "Erro ao conectar com o banco de dados: " . $erro->getMessage();
+        }
+    }
+
+    public function buscarMinhasPostagens($idUsuario)
+    {
+        global $pdo;
+        try{
+            $statement= $pdo->prepare("SELECT * FROM post WHERE idRemetente = :id AND idRemetente = idDestinatario OR idDestinatario = :id ORDER BY dataPost desc");
+            $statement->bindValue(":id",$idUsuario);
+            if($statement->execute()){
+                $result = $statement->fetchAll(PDO::FETCH_OBJ);
+                return $result;
+            } else {
+                throw new PDOException("<script> alert('Não foi possível executar o código SQL'); </script>");
+            }
+        } catch (PDOException $erro) {
+            return "Erro ao conectar com o banco de dados: " . $erro->getMessage();
+        }
+    }
+
+    public function buscarPostagensPaginaInicial($idUsuario){
+
+        global $pdo;
+        try{
+            $statement= $pdo->prepare("select * from post as p join amigo a on (a.idSolicitante = p.idRemetente or a.idSolicitado = p.idRemetente) and (a.dataConfirmacao is not null) and (a.idSolicitante = :id or a.idSolicitado = :id) and (p.idRemetente = p.idDestinatario) group by p.idPost ORDER BY p.dataPost desc ");
+            $statement->bindValue(":id",$idUsuario);
+            if($statement->execute()){
+                $result = $statement->fetchAll(PDO::FETCH_OBJ);
+                return $result;
+            } else {
+                throw new PDOException("<script> alert('Não foi possível executar o código SQL'); </script>");
+            }
+        } catch (PDOException $erro) {
+            return "Erro ao conectar com o banco de dados: " . $erro->getMessage();
+        }
+
+    }
+
 }
