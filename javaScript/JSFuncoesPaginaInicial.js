@@ -85,4 +85,27 @@ $(document).ready(function(){
 
 <!--Fim da Função para Carregar uma Pré-Visualização da Imagem do Input do Formulário de Postagem de Imagem.-->
 
+<!--Início da Função de Exibição e Ocultação da Div dos Comentários na Página de Perfil do Usuário-->
+
+$(document).ready(function(){
+    $("#aBotaoExibirComentarios").click(
+        function () {
+
+            if($("#divComentariosInputPostagemMural").css("display") === "none") {
+                $("#iExpandirOcultarComentario").attr("class", "");
+                $("#iExpandirOcultarComentario").attr("class", "glyphicon glyphicon-menu-up");
+                $("#divComentariosInputPostagemMural").css("display", "block");
+            }
+            else {
+                $("#iExpandirOcultarComentario").attr("class", "");
+                $("#iExpandirOcultarComentario").attr("class", "glyphicon glyphicon-menu-down");
+                $("#divComentariosInputPostagemMural").css("display", "none");
+            }
+
+        }
+    );
+});
+
+<!--Fim da Função de Exibição e Ocultação da Div dos Comentários na Página de Perfil do Usuário-->
+
 /*----------------------------------------------------------------------------*/
