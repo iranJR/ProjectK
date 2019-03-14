@@ -487,7 +487,7 @@ atribuidos via sessão ou cookies -->
                                 <button id="botaoFecharModalVideo" type="button" class="close" data-dismiss="modal">&times;</button>
                                 <h4 class="modal-title"><i class="glyphicon glyphicon-camera"></i>   Postagem - Imagem</h4>
                             </div>
-                            <form method="post" action="">
+                            <form method="post" action="../controller/postar.action.php?act=save">
                                 <input hidden value="<?= $idUsuario ?>" name="idRemetente">
                                 <input hidden value="<?= $usuario->getIdUsuario() ?>" name="idDestinatario">
                                 <input hidden value="imagem" name="tipoPost">
@@ -503,7 +503,7 @@ atribuidos via sessão ou cookies -->
                                     </div>
                                     <br/>
                                     <div id="textAreaPostagem" class="form-group">
-                                        <textarea class="form-control" rows="3" id="textoPostagemImagem" maxlength='500' placeholder="Escreva aqui algo sobre a imagem..."></textarea>
+                                        <textarea class="form-control" rows="3" id="textoPostagemImagem" name="textoPostagemImagem" maxlength='500' placeholder="Escreva aqui algo sobre a imagem..."></textarea>
                                         <small id="contMensagemPostagemImagem" class="form-text text-muted">500 caracteres restantes.</small>
                                     </div>
                                 </div>
@@ -529,18 +529,18 @@ atribuidos via sessão ou cookies -->
                                 <button id="botaoFecharModalVideo" type="button" class="close" data-dismiss="modal">&times;</button>
                                 <h4 class="modal-title"><i class="glyphicon glyphicon-facetime-video"></i>   Postagem - Vídeo</h4>
                             </div>
-                            <form method="post" action="">
+                            <form method="post" action="../controller/postar.action.php?act=save">
                                 <input hidden value="<?= $idUsuario ?>" name="idRemetente">
                                 <input hidden value="<?= $usuario->getIdUsuario() ?>" name="idDestinatario">
                                 <input hidden value="video" name="tipoPost">
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <textarea class="form-control" rows="3" id="textoPostagemVideo" maxlength='500' placeholder="Escreva aqui algo sobre o vídeo..."></textarea>
+                                    <textarea class="form-control" rows="3" name="textoPostagemVideo" id="textoPostagemVideo" maxlength='500' placeholder="Escreva aqui algo sobre o vídeo..."></textarea>
                                     <small id="contMensagemPostagemVideo" class="form-text text-muted">500 caracteres restantes.</small>
                                 </div>
                                 <div class="form-group">
                                     <label>Link do vídeo do YouTube:</label>
-                                    <input class="form-control" type="text" placeholder="Cole aqui o link do vídeo do YouTube..." />
+                                    <input class="form-control" type="text" name="linkVideo" placeholder="Cole aqui o link do vídeo do YouTube..." />
                                     <small id="smallMensagemPostagemVideo"><i class="glyphicon glyphicon-alert"></i>   Atenção: o link a ser colado deve ser a URL do vídeo do YouTube.</small>
                                 </div>
                             </div>
@@ -552,7 +552,6 @@ atribuidos via sessão ou cookies -->
                             </div>
                             </form>
                         </div>
-
                     </div>
                 </div>
                 <!-- Início da Modal de Postagem de Vídeo -->
@@ -596,9 +595,20 @@ atribuidos via sessão ou cookies -->
                                         <small id='smallDataPostagemMural'>".date('d/m/Y H:i:s', strtotime($post->dataPost))." </small>
                                     </div>
         
-                                <div id='divConteudoPostagemMural' class='col-md-12'>
-                                    <h3> $post->textoPost </h3>
-                                </div>
+                                <div id='divConteudoPostagemMural' class='col-md-12'>";
+                                    if($post->tipoPost == "texto") {
+                                        echo "<h3 > $post->textoPost </h3 >";
+                                    }
+                                    if($post->tipoPost == "imagem"){
+                                        echo "<h4> $post->textoPost </h4>
+                                              <img width='220px' height='240px' src='".$post->linkPost."'>";
+                                    }
+                                    if($post->tipoPost == "video"){
+                                        echo "<video width='220px' height='240px' controls>
+                                                <source src='".$post->linkPost."' type='video/mp4'>
+                                            </video>";
+                                    }
+                            echo  "</div>
         
                                 <div id='divRodapePostagemMural' class='col-md-12'>
                                     <div id='divRecaoPostagemMural' class='col-md-6'>
