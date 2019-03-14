@@ -592,7 +592,7 @@ atribuidos via sessão ou cookies -->
                                         <a href='../view/perfilUsuario.view.php?userID=" . base64_encode($user->getIdUsuario()) . "'> ".$user->getNome()." ". $user->getSobrenome()." </a>
                                     </div>
                                     <div class='col-md-4'>
-                                        <small id='smallDataPostagemMural'>".date('d/m/Y H:i:s', strtotime($post->dataPost))." </small>
+                                        <small id='smallDataPostagemMural'>".date('d/m/Y à\\s H:i:s', strtotime($post->dataPost))." </small>
                                     </div>
         
                                 <div id='divConteudoPostagemMural' class='col-md-12'>";
@@ -617,8 +617,67 @@ atribuidos via sessão ou cookies -->
                                         <a title='Não Gostei'><i class='glyphicon glyphicon-thumbs-down'></i></a>
                                     </div>
                                     <div id='divComentariosPostagemMural' class='col-md-6'>
-                                        <a><i class='glyphicon glyphicon-comment'></i>   Comentários...</a>
+                                        <a id='aBotaoExibirComentarios'><i class='glyphicon glyphicon-comment'></i>   Comentários...   <i id='iExpandirOcultarComentario' class='glyphicon glyphicon-menu-down'></i></a>
                                     </div>
+                                    
+                                    <!-- Início da Div de Exibição dos Comentários -->
+                                    <div id='divComentariosInputPostagemMural' class='col-md-12'>
+                                        
+                                        <!-- Início da Div do Input de Comentar -->
+                                        <hr id='hrInputComentariosPostagemMural'/>
+                                        <div class='col-md-1'>";
+                                            if ($fotoPerfil == 'perfil.png') {
+                                                echo "<img id='imgFotoPerfilPostagem' src='../imagens/perfil.png' alt='Foto Perfil' class='img-circle' />";
+                                            } else {
+                                                echo "<img id='imgFotoPerfilPostagem' src='../imagens/Usuario/" . $idUsuario . "/Albuns/Perfil/" . $fotoPerfil . "' alt='Foto Perfil' 
+                                                class='img-circle' >";
+                                            }
+                                        echo"</div>
+                                        <div class='col-md-11'>
+                                            <form method='post' action=''>
+                                            <input type='hidden' name='idUsuario' value='".$idUsuario."'>
+                                            <input type='hidden' name='idPost' value='".$post->idPost."'>
+                                            <div class='input-group'>
+                                                <input id='inputPostagemPerfilUsuario' name='textoComentario' type='text'
+                                                       class='form-control' autocomplete='off' placeholder='".$nomeUsuario." escreva aqui um comentário...' maxlength='500' required>
+                                                <div class='input-group-btn'>
+                                                    <button id='botaoPostarPerfilUsuario' title='Comentar' class='btn btn-warning'
+                                                            type='submit'>
+                                                        <i class='glyphicon glyphicon-send'></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            </form>
+                                        </div>
+                                        <!-- Início da Div do Input de Comentar -->
+                                        
+                                        <!-- Início da Div do Comentário - Laço de Repetição -->
+                                        <div id='divDadosComentario' class='col-md-12' >
+                                        
+                                            <div class='col-md-1'>";
+                                            if ($user->getFotoPerfil() == 'perfil.png') {
+                                                echo "<img id='imgFotoPerfilComentario' src='../imagens/perfil.png' alt='Foto Perfil' class='img-circle' >";
+                                            } else {
+                                                echo "<img id='imgFotoPerfilComentario' src='../imagens/Usuario/" . $user->getIdUsuario() .
+                                                    "/Albuns/Perfil/" . $user->getFotoPerfil() . "' alt='Foto Perfil' class='img-circle'/>";
+                                            }
+                                            echo "</div>
+                                                     <div id='nomeUsuarioPostagemMuralComentario' class='col-md-6' >
+                                                        <a href='../view/perfilUsuario.view.php?userID=" . base64_encode($user->getIdUsuario()) . "'> ".$user->getNome()." ". $user->getSobrenome()." </a>
+                                                    </div>
+                                                    <div class='col-md-5'>
+                                                        <small id='smallDataPostagemMural'>".date('d/m/Y à\\s H:i:s', strtotime($post->dataPost))." </small>
+                                                    </div>   
+                                                                                     
+                                            <div class='col-md-12'>
+                                                <h4 id='h4ComentarioPostagemMural'>Comentário...</h4>
+                                            </div>
+                                        </div>
+                                        <!-- Fim da Div do Comentário - Laço de Repetição -->
+                                        
+                                    </div>
+                                    <!-- Fim da Div de Exibição dos Comentários -->
+                                    
                                 </div>
         
                             </div>
